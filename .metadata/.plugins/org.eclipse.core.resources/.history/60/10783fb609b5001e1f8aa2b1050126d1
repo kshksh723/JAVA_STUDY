@@ -1,0 +1,10 @@
+package my.day02.b.constructor;
+
+public class Main_Member {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

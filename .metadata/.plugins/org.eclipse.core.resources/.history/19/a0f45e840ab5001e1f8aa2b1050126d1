@@ -1,0 +1,14 @@
+package my.day02.b.constructor;
+
+public class Member {
+	// 프로그램을 개발할 때 필요한 부품, class
+	// field, attribute, property, 속성
+	String userid;
+	String passwd;
+	String name;
+	String email;
+	int age;
+	int point;
+	
+	// behavior, 행위, 기능, method 
+}

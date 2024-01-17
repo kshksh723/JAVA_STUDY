@@ -77,6 +77,9 @@ public class Sungjuk {
 	char  hakjum; // ' ' 학점 'A' 'B' 'C' 'D' 'E' 'F' 
 	
 	
+	
+	
+	
 	// === 기능, 행위, behavior, method === //
 	void sungjuk_print() {
 		
@@ -204,6 +207,44 @@ public class Sungjuk {
 			// A는 10진수로 65로 보자. a는 10진수로 97로 보자
 			// B는 10진수로  66로 보자. b는 10진수로 98로 보자
 			// C 는 10진수로 67로 보자. c는 10진수로 99로 보자
+			// ...
+			// Z 는 10진수로 90로 보자. z는 10진수로 122로 보자
+			// 대문자와 소문자의 간격 차이는 32이다
+			// 0은 10진수로 48로 보자.
+			// 1은 10진수로 49로 보자.
+			// 2은 10진수로 50로 보자.
+			// ...
+			// 9은 10진수 50로 보자
+			// ...
+			// 9은 10진수로 57로 보자.
+			// !은 10진수로 33로 보자.
+			// @은 10진수로 64로 보자.
+			
+			System.out.println(">>> unicode에 대해서 알아보기 <<<  \n");
+			
+			char ch1 = 'A';
+			System.out.println(ch1); // A
+			System.out.println(ch1+0); // 65
+			
+			
+			int n1 = 65;
+			System.out.println(n1); //65
+			System.out.println((char)n1); // A , char 형 변환
+			
+			System.out.println(ch1+32); // 65+32 ==> 97
+			System.out.println((char)(ch1+32)); // => a 
+			
+			char ch2 = 'a';
+			System.out.println((char)(ch2-32)); // A
+			
+			char ch3 = 9748;
+			System.out.println(ch3);
+			
+			char ch4 = 44608; // 김
+			char ch5 = 49849; // 승
+			char ch6 = 54812; // 혜
+			System.out.println(ch4+ch5+ch6);
+			System.out.println(""+ch4+ch5+ch6);
 		}
 	
 }

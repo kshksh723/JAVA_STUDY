@@ -1,0 +1,24 @@
+package my.day02.b.constructor;
+
+public class Member {
+	// 프로그램을 개발할 때 필요한 부품, class
+	// field, attribute, property, 속성
+	String userid;
+	String passwd;
+	String name;
+	String email;
+	int age;
+	int point;
+	// -> 암기 
+	
+	// behavior, 행위, 기능, method 
+	void info_print() {
+		System.out.println("===" + name + "님의 회원정보 ===\n" 
+		+ "1. 아이디 : " + userid + "\n"
+		+ "2. 비밀번호 : "+ passwd + "\n"
+		+ "3. 성명 : "+ name + "\n"
+		+ "4. 나이 : "+ age + "\n"
+		+ "5. 포인트 : "+ point + "\n"
+		+ "6. 이메일 : "+ email + "\n");
+	}
+}

@@ -41,6 +41,8 @@ public class Main_sungjuk {
 		 
 		 
 		
+		 System.out.println("~~~~~~~~~~~~\n");
+		 Sungjuk.boolean_print();
 		 
 		 System.out.println("~~~~~~~~~~~~\n");
 		 Sungjuk.char_print();
