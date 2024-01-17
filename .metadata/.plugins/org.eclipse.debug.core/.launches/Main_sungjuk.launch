@@ -2,7 +2,7 @@
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
     <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/Begin/src/my/day01/Member_main.java"/>
+        <listEntry value="/Begin/src/my/day02/a/dataType/Main_sungjuk.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
@@ -10,7 +10,7 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="my.day01.Member_main"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="my.day02.a.dataType.Main_sungjuk"/>
     <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="Begin"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Begin"/>
 </launchConfiguration>
