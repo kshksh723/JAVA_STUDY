@@ -35,13 +35,6 @@ public class Member {
 	  
 	  */
 	
-	 ///////////////////////////
-    // >>> 생성자(constructor) <<< //
-    Member() { // 생성자임
-    	System.out.println(">>> Member 클래스의 생성자 호출함 <<< \n");
-    }
-   
-	
 	// 회원의 정보를 출력해주는 기능을 만들어 보겠습니다.
     void print_info() { // 인스턴스 method(메소드)이다.
   	  // void는 return 값이 없다라는 타입이다.
@@ -64,9 +57,7 @@ public class Member {
     자바에서 소괄호 () 가 나오는 것은 오로지 딱 2개 밖에 없다. 
     첫번째는 생성자(constructor)에서 소괄호 ()가 사용되고, 
     두번째는 method(메소드)에서 소괄호 ()가 사용된다.    
- 암기 해야함*/
-    
-   
+*/
 	
 	static String address; // 
 	

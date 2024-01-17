@@ -8,8 +8,6 @@ public class Member_main {
 		System.out.println("1. : "  + new Member());
 		// 화면에 보여라
 		System.out.println("2. : "  + new Member());
-		
-		
 			// 1명의 새로운 회원이 필요하다.
 		Member lssMbr = new Member();  // Member 클래스 파일을 읽었다가 메모리가 로딩
 					  // Member 클래스 인스턴스(== 객체)화 했다라고 부른다.

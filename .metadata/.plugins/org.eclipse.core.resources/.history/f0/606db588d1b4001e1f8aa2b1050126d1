@@ -7,8 +7,6 @@ public class Member_main {
 			
 		System.out.println("1. : "  + new Member());
 		// 화면에 보여라
-		System.out.println("2. : "  + new Member());
-		
 		
 			// 1명의 새로운 회원이 필요하다.
 		Member lssMbr = new Member();  // Member 클래스 파일을 읽었다가 메모리가 로딩
@@ -78,7 +76,7 @@ public class Member_main {
 	System.out.println(">> lssMbr 이라는 인스턴스(객체)에 저장된 필드 값 출력하기 2번째 << ");
 	lssMbr.print_info();
 	System.out.println(">> eom_mbr 이라는 인스턴스(객체)에 저장된 필드 값 출력하기 2번째 << ");
-	eom_mbr.print_info();
+	
 	
 		
 	}
