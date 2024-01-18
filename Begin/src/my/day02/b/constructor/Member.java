@@ -43,9 +43,18 @@ public class Member {
 		// this -> 객체 , 대명사임, this는 인스턴스에 있는 필드에 있는 userid를 넣는 것 
 		this.passwd = passwd;
 		this.name  =  name;
+		
 		this.age = age;
 		this.point = point;
 	// 해당 객체 필드 값을 대입해준다	
+	}
+	
+	
+	Member(String userid, String passwd, String name, String email, int age, int point){
+//		this(); // 소괄호면 생성자, 메소드 this는 member를 가르킴, 파라미터가 없으면  기본생성자인 Member() { }를 나타냄
+		this(userid, passwd, name, age, point); // 위에서 정의한 파라미터가 있는 생성자
+		this.email = email;
+		
 	}
 	
 	// behavior, 행위, 기능, method 
@@ -59,3 +68,23 @@ public class Member {
 		+ "6. 이메일 : "+ email + "\n");
 	}
 }
+
+
+
+
+// == 퀴즈 == //
+/*
+ * System.out.println(">>변경전 정보<<"); info_print();
+ * 
+ * System.out.println(">>변경후 정보<<");
+ */
+/*
+ * this.userid = userid; this.passwd = passwd; this.name = name; this.age = age;
+ * this.point = point; info_print();
+ * 
+ * 
+ * this(userid, passwd. name, email, age, point);
+ * 생성자로 사용되는 this() 또는 this(파라미터, 파라미터, ...) 은 오로지 생성자 내에서만 사용이 가능하다
+ * 
+ */
+
