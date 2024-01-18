@@ -1,0 +1,25 @@
+package my.day03.c.scanner;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+
+public class Main_scanner_3 {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("정수를 입력하세요 =>");
+		
+		
+	
+		String inputStr sc.nextLine(); // 123
+						// 똘똘이
+		
+		System.out.println("입력한 정수에 10을 더한 값 : ");
+		sc.close();
+		
+
+	}
+
+}
