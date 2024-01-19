@@ -1,0 +1,12 @@
+package my.day04.b.sungjuk;
+
+public class Sungjuk {
+	
+	
+	
+	String hakbun; // "091234"
+	String name;
+	byte kor; // 0 ~ 100로 제한
+	byte eng; // 0 ~ 100로 제한
+	byte math; // 0 ~ 100로 제한
+}

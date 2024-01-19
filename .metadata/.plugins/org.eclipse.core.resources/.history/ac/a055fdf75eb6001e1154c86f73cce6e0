@@ -1,0 +1,10 @@
+package my.day04.a.wrapper;
+
+public class Main_wrapper {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

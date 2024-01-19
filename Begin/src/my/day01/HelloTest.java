@@ -40,7 +40,7 @@
 
 package my.day01;
 
-// import java.lang.*; // *의 듯은 모든 것을 의미한다.
+// import java.lang.*; // *의 뜻은 모든 것을 의미한다.
 					// 즉, java.lang 패키지 속에 있는 모든 클래스들을 사용하겠다는 말이다.
 // 기본적으로 import java.lang.*; 생략되어져 있다.
 

@@ -1,0 +1,22 @@
+package my.day04.d.calcurator;
+
+import java.util.Scanner;
+
+public class Main_calcurator {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		
+		System.out.println("■ 첫번째 정수 입력 =>");
+		int num1 = Integer.parseInt(sc.nextLine());
+		System.out.println("■ 두번째 정수 입력 =>");
+		int num2 = 
+		System.out.println("■ 첫번째 정수 입력 =>");
+		int num3 = 
+		System.out.println("■ 첫번째 정수 입력 =>");
+		sc.close();
+
+	}
+
+}
