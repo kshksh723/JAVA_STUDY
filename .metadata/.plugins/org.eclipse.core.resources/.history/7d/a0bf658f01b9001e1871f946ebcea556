@@ -19,23 +19,8 @@ public class Main_quiz_1 {
 		System.out.println("\n~~~~~~~~~~~~~~~~\n");
 	
 		int upper_cnt=0, lower_cnt=0, number_cnt=0, hangul_cnt=0, special_cnt=0;
-
-		for(int i=0; i<word.length(); i++) { //문자 길이만큼 반복한다(word.length) 
-			char ch = word.charAt(i);
-			
-			if(Character.isUpperCase(ch)) { //대문자인지 검사
-				upper_cnt++;
-			} else if(Character.isLowerCase(ch)) { //소문자인지 검사
-				lower_cnt++;
-			} else if(Character.isDigit(ch)) {//숫자인지 검사
-				number_cnt++;
-			} else if('가'<= ch && ch <='힣') { //한글인지 검사
-				hangul_cnt++;	
-			} else {
-				special_cnt++;
-			}
-	
-		}
+		Object count = count(word);
+		upper_cnt = count;
 		
 		System.out.println(word+"\n"
 				+ "대문자 개수 : " + upper_cnt+"\n"
@@ -44,7 +29,12 @@ public class Main_quiz_1 {
 				+ "한글 개수 : " + hangul_cnt+"\n"
 				+ "특수문자 : " + special_cnt+"\n"
 				);
+		
 	}
-}
 
-// d오늘 배운거 중요 for 정리 다시해야함
+	private static Object count(String word) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
