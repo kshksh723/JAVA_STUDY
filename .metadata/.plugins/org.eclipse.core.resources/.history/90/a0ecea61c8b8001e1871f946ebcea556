@@ -1,0 +1,82 @@
+package my.day05.d.Switch;
+
+public class Sungjuk {
+	
+	
+	
+	String hakbun; // "091234"
+	String name;
+	byte kor; // byte -128 ~ 127 0 ~ 100로 제한
+	byte eng; //  byte -128 ~ 127 0 ~ 100로 제한
+	byte math; //  byte -128 ~ 127  0 ~ 100로 제한
+	
+	// ==== method ===
+	boolean check_jumsu(byte jumsu) {
+		if( 0 <= jumsu && jumsu <= 100 ) {
+			return true; // return을 만나면 해당 메소드가 종료가 된다
+					
+		}
+		else {
+			System.out.println("[경고] 입력하시는 점수는 0 이상 100 이하 이어야만 합니다.\n");
+			return false; // return을 만나면 해당 메소드가 종료가 된다
+		}
+	}
+	
+	void sungjuk_print() {
+		
+		float avg = (kor + eng + math) / 3.0F;
+		
+		char hakjum = 'F';
+		
+		/*
+		 * if(avg >= 90 ) { hakjum = 'A'; } else if ( avg >= 80) { hakjum = 'B'; } else
+		 * if ( avg >= 70) { hakjum = 'C'; } else if ( avg >= 60) { hakjum = 'D'; }
+		 */
+		// byte n = 0; 
+		// short n = 0;
+		// int n = 0;
+		// long n = 0; // switch문에 long문은 들어오면 안됌
+		char n = ''; 
+		switch (n) { // switch에 들어올 비교대상은 정수형중에 long을 제외한 나머지인 byte, short, int만 가능하다<기억>
+			
+			case 1:
+				
+				break;
+	
+			default:
+				break;
+		}// end of switch(key) --------
+		
+		System.out.println("\n=== " + name + "====\n"
+							+ "1. 학번 : " + hakbun + "\n" 
+							+ "2. 성명 : " + name + "\n"
+							+ "3. 국어 : " + kor + "\n"
+							+ "4. 영어 : " + eng + "\n"
+							+ "5. 수학 : " + math + "\n"
+							+ "6. 총점 : " + (kor + eng + math) + "\n"
+							+ "7. 평균 : " + avg + "\n"
+							+ "8. 학점 : " + hakjum + "\n");
+	
+	}
+	}
+	// end of
+	
+	
+		
+	
+	
+	
+	
+		
+	 //end of boolean check_jumsu(byte jumsu)-------
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

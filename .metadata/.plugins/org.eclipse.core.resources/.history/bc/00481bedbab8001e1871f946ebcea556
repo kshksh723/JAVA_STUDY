@@ -1,0 +1,20 @@
+package my.day05.a.math;
+
+public class Main_math {
+
+	public static void main(String[] args) {
+		
+		// == math 클래스에 대해서 알아봅니다 == //
+		// 1. >> 반올림에 대해서 알아본다. <<
+		double db1 = 93.45678, db2 =86.87654;
+		
+
+		System.out.println("=== 반올림 하기 전 ===");
+		System.out.println("db1 =>" +db1 +",db2 =>" + db2);
+		
+		
+		System.out.println("\n == 반올림 한 후 ===");
+		System.out.println("db1 =>" +Math.round(db1) +",db2 =>" + Math.round(db2)); //static 메소드
+	}
+
+}
