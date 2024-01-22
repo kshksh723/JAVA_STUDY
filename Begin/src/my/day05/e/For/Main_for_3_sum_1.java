@@ -36,10 +36,31 @@ public class Main_for_3_sum_1 {
 			//10번을 반복
 			sum += i;
 		} // for문을 빠져나오면 //end of for-------------------
-		
 		System.out.println(str+"="+sum);
 		// 1+2+3+4+5+6+7+8+9+10 = 55
 		
-	}
+	
+		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+		// 삼항연산자
+		sum = 0;
+		str = ""; //str 초기화
+		
+		for(int i=1; i<=10; i++) {
+			String add = (i<10)?"+":"=";
+			str += i+add; //문자열 결함 
+			sum += i; // 숫자
+	
+		} // end of for---------
+		
+			
+			
+		System.out.println(str+sum);	
+			
+		}
+		// 조건식 ? 반환값1 : 반환값2
+		// 1+2+3+4+5+6+7+8+9+10 = 55
+
+		
+	
 
 }

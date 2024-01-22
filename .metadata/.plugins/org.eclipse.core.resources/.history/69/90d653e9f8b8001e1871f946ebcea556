@@ -1,0 +1,8 @@
+package my.day05.e.For;
+
+public class Snippet {
+	public static void main(String[] args) {
+		sc.close();
+	}
+}
+
