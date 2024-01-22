@@ -189,7 +189,7 @@ public class Main_for_1 {
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		
 		for(int i=10; i>0; i--) {
-			System.out.println((--i)+".Hello~~~"); //i-- + ".Hello~~"라며고하면 10을 찍어준다음 1 감소가 된다! 전위 후위 조심해야함
+			System.out.println((--i)+".Hello~~~"); //i-- + ".Hello~~"라며고하면 10을 찍어준다음 1 감소가 된다! 전위 후위 조심해야함 .. ((--i)+".Hello~~~")이거랑 다름
 		}
 		/*
 		 * 9.Hello~~ 
@@ -198,7 +198,37 @@ public class Main_for_1 {
 		 * 3.Hello~~ 
 		 * 1.Hello~~
 		 */	
-	
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		
+		for(int i=0,j=9; i<5; i++, j--) //5번 반복
+		{ 
+			System.out.println((j-1)+".헬로~~");
+		}		
+		/*
+		 * 9.헬로~~ 
+		 * 7.헬로~~ 
+		 * 5.헬로~~ 
+		 * 3.헬로~~ 
+		 * 1.헬로~~
+		 */	
+		
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		
+		int i=0; //초기화
+		for (; i<5; i++)// i : 지역변수, int i=0 괄호 안에서 할 필요 없음, 5번반복 for문 빠져나올 때 5가 되어짐 , 
+		{ 
+			System.out.println((i+1)+".길동");
+		} // end of for-----
+		
+		System.out.println("반복문을 빠져나온 i값 : " + i);
+		//반복문을 빠져나온 i값 : 5
+		
+		// switch의 brak와 반복문의 break는 다르다
+		
+		
+		
+		
+		
 		System.out.println(">> 프로그램 종료<<");
 
 	}
