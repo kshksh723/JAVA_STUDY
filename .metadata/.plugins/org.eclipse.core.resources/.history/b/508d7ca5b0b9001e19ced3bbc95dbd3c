@@ -5,9 +5,11 @@ public class Main_multifor_1 {
 	public static void main(String[] args) {
 		// 단일 for문으로 아래와 같이 나오도록 한다
 		/*
-		 * abcdfg 3행 7열 hijklmn opqrstu
+		 abcdfg 3행 7열
+		 hijklmn
+		 opqrstu
 		 */
-
+		
 //		 char ch = 'a';
 //		 
 //		for(int i=0; i<3; i++) { // 바깥 for문 => 행[암기]
@@ -104,30 +106,39 @@ public class Main_multifor_1 {
 //				}
 //				System.out.println("\n"); //for문을 나간 다음에 줄바꿈
 //			}
-
-		System.out.print("\n~~~~~~~~~~~~~~\n");
-
-		System.out.println("안녕하세요\t내일\t또뵐께요~");
-		/*
-		 * 501호 502호 503호 505호 301호 302호 303호 305호 201호 202호 203호 205호 101호 102호 103호
-		 * 105호
-		 */
-		/*
-		 * for(int floor = 5; floor >= 1; floor--) { // 4행 for (int room = 1; room <=5;
-		 * room++) { //4열 if(room == 4) continue; //4 스킵 System.out.print(floor + "0"
-		 * +room +"호" +"\t"); } System.out.println(""); }
-		 */
-		System.out.println("\n>>프로그램 종료<<\n");
-
-		// === 단일 for문을 사용하여 출력해본다 ===
-		/*
-		 * int m = 0; for (int i =0; i< i++) {
-		 * 
-		 * i ==> 0~2 이라면 m => 0 i ==> 3~5 이라면 m => 1 i ==> 6~8 이라면 m => 3
-		 * 
-		 * if(i>0 && i%3==0) { m++; } System.out.println("["+m+"]","+ n++ + "]"); }
-		 */
-
+			
+			System.out.print("\n~~~~~~~~~~~~~~\n");
+			
+			
+			System.out.println("안녕하세요\t내일\t또뵐께요~");
+			/*
+			  501호 502호 503호 505호 
+			  301호 302호 303호 305호
+			  201호 202호 203호 205호
+			  101호 102호 103호 105호
+			 */
+			/*
+			 * for(int floor = 5; floor >= 1; floor--) { // 4행 for (int room = 1; room <=5;
+			 * room++) { //4열 if(room == 4) continue; //4 스킵 System.out.print(floor + "0"
+			 * +room +"호" +"\t"); } System.out.println(""); }
+			 */
+			System.out.println("\n>>프로그램 종료<<\n");
+			
+			// === 단일 for문을 사용하여 출력해본다 ===
+			int m = 0;
+			for (int i =0; i<12 i++) {
+				/*
+				 * i ==> 0~2 이라면 m => 0
+				 * i ==> 3~5 이라면 m => 1
+				 * i ==> 6~8 이라면 m => 3
+				 */
+			if(i>0 && i%3==0) {
+				m++;
+			}
+			}
+			
 	}// end of main()------------------
+	
 
 }
+
