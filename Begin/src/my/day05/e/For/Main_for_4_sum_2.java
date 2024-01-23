@@ -62,7 +62,7 @@ public class Main_for_4_sum_2 {
 			continue;
 		}
 			sc.close();
-			break; //for문을 빠져나간다.
+			break; //for문을 빠져나간다./무한반복을 빠져나오려면 break가 있어야한다
 			}// end of for------------------------
 		System.out.println(str+sum);
 		

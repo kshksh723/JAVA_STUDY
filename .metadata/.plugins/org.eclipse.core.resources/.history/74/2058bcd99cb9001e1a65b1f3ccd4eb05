@@ -1,0 +1,31 @@
+package my.day06.a.multifor;
+
+public class Main_multifor_1 {
+
+	public static void main(String[] args) {
+		// 단일 for문으로 아래와 같이 나오도록 한다
+		/*
+		 abcdfg
+		 hijklmn
+		 opqrstu
+		 */
+		
+		 char ch = 'a';
+		 
+		for(int i=0; i<'u'-'a'+1; i++) { // 바깥 for문 => 행
+		
+			for(int j=0; j<7; j++) { // 내부 for문 => 열
+				System.out.print(ch++);
+			}// end of for -----------------
+			String add = ((i+1)%7 == 0)? "\n":"";//7의 배수
+				
+			System.out.print(ch++ + add); //ch=(char)(ch+1);
+		} // end of for ------------- //abcdefghijklmnopqrstu
+		/*
+		 * //abcdefg hijklmn opqrstu
+		 */
+
+		
+	}// end of main()------------------
+
+}
