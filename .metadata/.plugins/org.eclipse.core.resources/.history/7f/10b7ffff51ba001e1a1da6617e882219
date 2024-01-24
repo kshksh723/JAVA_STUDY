@@ -114,18 +114,11 @@ public class Main_while_1 {
 		loop = 0;
 		while(true) {
 			if(++loop > 9)
-				break; //10되기 전 그만하라고 하고 싶을 때
 			System.out.println("6*"+loop+"="+(6*loop));
 			
 		}
 		
-		System.out.println("\n==7단 다른 방법 ==\n");
 		
-		loop = 0;
-		while(!(++loop > 9)) { // while문의 탈출조건을 쓴다
-			System.out.println("7*"+loop+"="+(7*loop));
-			
-		}
 	
 		/*
 		 * // loop = 0; while(true) {

@@ -24,17 +24,17 @@ public class Main_while_1 {
 	 */
 	
 	public static void main(String[] args) {
-			System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
+		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
+			
+		int cnt =5, loop=0;
+			while(loop++ <cnt) {
+				System.out.println((loop+1)+".안녕 자바~~~"); //반복이 필요할 때마다 증감이 필요함
+				loop++;
+				//거짓이면 빠져나옴
 				
-			int cnt =5, loop=0;
-				while(loop++ <cnt) {
-					System.out.println((loop+1)+".안녕 자바~~~"); //반복이 필요할 때마다 증감이 필요함
-					loop++;
-					//거짓이면 빠져나옴
-					
-					System.out.println("\n>>프로그램 종료<<<<");
-				}
-					System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
+				System.out.println("\n>>프로그램 종료<<<<");
+			}
+		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
 		
 		/*
 		 * 1.Hi Eclipse~~
@@ -95,38 +95,7 @@ public class Main_while_1 {
 		System.out.println(loop+".Hi Oracle~~");	
 	} //end of while----
 		System.out.println("\n>>프로그램 종료<<<<");
-	 // end of main()----
-		
-
-		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
-	
-		System.out.println("\n==5단==\n");
-		
-		
-		loop = 0;
-		while(++loop < 10) {
-			System.out.println("5*"+loop+"="+(5*loop));
-			
-		}
-		
-		System.out.println("\n==6단 다른 방법 ==\n");
-		
-		loop = 0;
-		while(true) {
-			if(++loop > 9)
-				break; //10되기 전 그만하라고 하고 싶을 때
-			System.out.println("6*"+loop+"="+(6*loop));
-			
-		}
-		
-		System.out.println("\n==7단 다른 방법 ==\n");
-		
-		loop = 0;
-		while(!(++loop > 9)) { // while문의 탈출조건을 쓴다
-			System.out.println("7*"+loop+"="+(7*loop));
-			
-		}
-	
+	} // end of main()----
 		/*
 		 * // loop = 0; while(true) {
 		 * 
@@ -135,15 +104,15 @@ public class Main_while_1 {
 		
 		
 		
-
 		
+		
+		System.out.println("\n>>프로그램 종료<<<<");
+	
+	
+	
+	
+	
 	}
 	
-	
-	
-	
-		
-	}
-	
-
+}
 
