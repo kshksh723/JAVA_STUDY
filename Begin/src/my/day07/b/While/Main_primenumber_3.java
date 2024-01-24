@@ -86,13 +86,31 @@ public class Main_primenumber_3 {
 						if(i%j == 0) {
 							isSosu = false; //이 boolean이 소수가 아니다
 							break; // 소수이면 이 for문을 빠져나감
+							
 						}
 					}// end of for
 					
-				}// end of
+					if(isSosu) { //검사 대상인 이 i가 소수이라면 
+
+						cnt++; // 소수의 개수
+						
+						sum+=i; // 소수들의 누적 합계 SUM = SUM + i
+						
+						String add = (cnt==1)?"":","; //  첫번째 소수는 소수 앞에 ""을 붙여주고, 두번째 이후부터 나오는 소수는 ","를 붙여준다
+						
+						str_result +=  add + i;
+
 					
+					}
+					
+				}// end of for --------
+					
+				System.out.println(start_no + "부터" + end_no+"까지의 소수는?\n"+ str_result);
+				System.out.println(start_no + "부터" + end_no+"까지의 소수는?"+cnt+"개");
+				System.out.println(start_no + "부터" + end_no+"까지의 소수들의 합?"+ sum);
 				
 				
+				sc.close();
 				break;
 		}  catch(InputMismatchException e) {
 			System.out.println("[경고] 자연수만 입력하세요!!\n");
@@ -102,8 +120,6 @@ public class Main_primenumber_3 {
 		}
 		while(true);
 		//end of do~while-------------------
-		
-		
 		
 		
 		System.out.println("\n=== 프로그램 종료 ===");
