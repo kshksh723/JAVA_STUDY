@@ -22,19 +22,16 @@ public class Main_while_1 {
 	 * 4. 안녕 자바~~~
 	 * 5. 안녕 자바~~~
 	 */
-	
 	public static void main(String[] args) {
-		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
-			
-		int cnt =5, loop=0;
-			while(loop++ <cnt) {
-				System.out.println((loop+1)+".안녕 자바~~~"); //반복이 필요할 때마다 증감이 필요함
-				loop++;
-				//거짓이면 빠져나옴
-				
-				System.out.println("\n>>프로그램 종료<<<<");
-			}
-		}
 	
-}
+		int cnt =5, loop=0;
+		while() {
+			System.out.println((loop+1)+".안녕 자바~~~"); //반복이 필요할 때마다 증감이 필요함
+			loop++;
+			//거짓이면 빠져나옴
+			
+			System.out.println("\n>>프로그램 종료<<<<");
+		}
+	}
 
+}

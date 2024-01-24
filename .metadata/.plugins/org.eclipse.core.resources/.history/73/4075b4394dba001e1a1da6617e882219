@@ -127,18 +127,7 @@ public class 김승혜_Main_homework_5 {
 	        }
 
 		 System.out.println("\n == 숙제 6   ==\n");
-			
-		 for(int i = 1; i <=3; i ++) { 
-				for (int j = 3; j >= i; j--) {
-					System.out.print(" "); 
-				} 
-				for (int d=1; d<= (2*i-1) ; d++) {
-					
-					System.out.print("*");
-				} 
-				System.out.println();
-			}
-			
+		 
 		 
 		 
 		 System.out.println("\n == 입사문제   ==\n");
@@ -155,3 +144,5 @@ public class 김승혜_Main_homework_5 {
 
 
 	
+
+
