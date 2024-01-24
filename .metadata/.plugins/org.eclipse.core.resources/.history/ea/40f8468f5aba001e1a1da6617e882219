@@ -1,0 +1,26 @@
+package my.day07.b.While;
+
+public class Main_factorial_2 {
+
+	public static void main(String[] args) {
+		
+			/// == 입사 문제 === ///
+		/*
+		 ▣ 알고 싶은 팩토리얼 수 입력 => 5엔터
+		 >> 결과 : 5! = 120
+		 
+		 5! ==> 5*4*3*2*1
+		 7! ==> 7*6*5*4*3*2*1
+		 팩토리얼은 자연수만 되어진다
+		 
+		▣ 알고 싶은 팩토리얼 수 입력 => 0엔터
+		>> [경고] 자연수만 입력하세요!! 
+		 */
+		do {
+			
+		} while (condition);
+		
+	} // end of main()--------
+	
+
+}

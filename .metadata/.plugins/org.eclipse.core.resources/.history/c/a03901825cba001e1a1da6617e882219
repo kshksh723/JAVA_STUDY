@@ -1,0 +1,53 @@
+package my.day07.b.While;
+
+import java.util.Scanner;
+
+public class Main_factorial_2 {
+
+	public static void main(String[] args) {
+		
+			/// == 입사 문제 === ///
+		/*
+		 ▣ 알고 싶은 팩토리얼 수 입력 => 5엔터
+		 >> 결과 : 5! = 120
+		 >> 또 할래?[y/n] => y
+		 
+		 5! ==> 5*4*3*2*1
+		 7! ==> 7*6*5*4*3*2*1
+		 팩토리얼은 자연수만 되어진다
+		 
+		▣ 알고 싶은 팩토리얼 수 입력 => 0엔터
+		>> [경고] 자연수만 입력하세요!
+		
+		▣ 알고 싶은 팩토리얼 수 입력 => -5엔터
+		>> [경고] 자연수만 입력하세요!!  
+		
+		▣ 알고 싶은 팩토리얼 수 입력 => 1.25엔터
+		>> [경고] 정수만 입력하세요!!
+		
+		 ▣ 알고 싶은 팩토리얼 수 입력 => 똘똘이
+		>> [경고] 정수만 입력하세요!! 
+		
+		▣ 알고 싶은 팩토리얼 수 입력 => 4엔터
+		>> 결과 : 4! = 24
+		>> 또 할래?[Y/N] => n
+		
+		>>> 프로그램 종료 <<<
+		 
+		 */
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println( "▣ 알고 싶은 팩토리얼 수 입력 =>");
+		String input_str = sc.nextLine();
+		
+		int fac = Integer.parseInt(input_str);
+		
+		
+		
+		
+		
+	} // end of main()--------
+	
+
+}

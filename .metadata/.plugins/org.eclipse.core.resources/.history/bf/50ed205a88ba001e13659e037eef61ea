@@ -1,0 +1,26 @@
+package my.day07.c.random;
+
+public class Main_cerification_key_2 {
+
+	public static void main(String[] args) {
+		// == 소문자 3개와 숫자 4개로 이루어진 랜덤한 인증키 만들기 ==//
+		// 예> asa9040	txa2356
+
+		string certification_key="";
+		
+		for(int i=0; i<7; i++) {
+			
+			if(i<3) { //랜덤한 소문자를 발생시킨다
+			}
+			
+			else {
+				
+			}
+			// 랜덤한 숫자 0부터 9가지 발생시킨다
+			
+			
+		} // end of for----------
+		
+	} // end of main() ------------
+
+}
