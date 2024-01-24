@@ -79,15 +79,7 @@ public class Main_primenumber_3 {
 					 만약에 i가 9이라면 ==> 9%2 != 0 9%3 ==0 9%4 (검사할 필요가 없다) 9는 소수이다
 					 만약에 i가 10이라면 ==> 10%2 != 0 10%3(검사할 필요가 없다) 10는 소수이다
 					 */
-					boolean isSosu = true;
-					
-					
-					for(int j = 2; j < i; j++) { //분모에 들어갈 값
-						if(i%j == 0) {
-							isSosu = false;
-							break; // 소수이면 이 for문을 빠져나감
-						}
-					}// end of for
+						
 					
 				}// end of
 					
