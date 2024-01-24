@@ -85,7 +85,7 @@ public class Main_gawibawibo_3 {
 			}
 		} while (!(choice_num == 4)); //while (condition); // 4번일경우 여기로 내려온다
 	 // end of main()-----
-		sc.close();
+	sc.close();
 		System.out.println("\n==== 프로그램 종료 ===");
 	}
 }

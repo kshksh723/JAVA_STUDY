@@ -48,35 +48,9 @@ public class Main_gawibawibo_3 {
 				
 				if(choice_num !=4) {//메뉴번호를 1~4중에 한개를 선택한 경우
 					// 4를 제외한 나머지, 여기는 4번이 포함되면 안된다, 사용자가 1 또는 2 또는 3을 내는 경우 -> 가위바위보에 들어간다 -> else가 아니라 if로 들어가줘야 한다
-					/*
-					 pc도 1또는 2또는 3중에 하나를 랜덤하게 내야한다		
-					 // 처음얼마부터 마지막 얼마까지 랜덤한 정수
-					 // ==> rnd.nextInt(마지막- 처음수 +1)+ 창,ㅁ스
-					  
-					 */
-					int pc_num = rnd.nextInt(3-1+1) +1;
-					String msg = "";
-					// 사용자가 이긴 경우
-					if((choice_num == 1 && pc_num == 3)||
-							(choice_num == 2 && pc_num == 1)||
-							(choice_num == 3 && pc_num == 2)) {
-						
-						msg=">>사용자님이 이겼습니다!!^^\n";
-					}
-					// 사용자가 진 경우
-					else if((choice_num == 1 && pc_num == 2)||
-							(choice_num == 2 && pc_num == 3)||
-							(choice_num == 3 && pc_num == 1)) {
-						
-						msg=">>사용자님이 겼습니다ㅜㅜ\n";
-					}
 					
-			
-					// 사용자와 pc와 비긴 경우
-					else {
-						msg =">> 비겼습니다~~\n";
-					}
-					System.out.println(msg);
+					
+					System.out.println();
 					
 				}
 			
@@ -85,7 +59,7 @@ public class Main_gawibawibo_3 {
 			}
 		} while (!(choice_num == 4)); //while (condition); // 4번일경우 여기로 내려온다
 	 // end of main()-----
-		sc.close();
+	
 		System.out.println("\n==== 프로그램 종료 ===");
 	}
 }

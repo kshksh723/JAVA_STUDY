@@ -64,19 +64,15 @@ public class Main_gawibawibo_3 {
 						msg=">>사용자님이 이겼습니다!!^^\n";
 					}
 					// 사용자가 진 경우
-					else if((choice_num == 1 && pc_num == 2)||
-							(choice_num == 2 && pc_num == 3)||
-							(choice_num == 3 && pc_num == 1)) {
+					else if((choice_num == 1 && pc_num == 3)||
+							(choice_num == 2 && pc_num == 1)||
+							(choice_num == 3 && pc_num == 2)) {
 						
-						msg=">>사용자님이 겼습니다ㅜㅜ\n";
+						msg=">>사용자님이 이겼습니다!!^^\n";
 					}
-					
-			
 					// 사용자와 pc와 비긴 경우
-					else {
-						msg =">> 비겼습니다~~\n";
-					}
-					System.out.println(msg);
+					
+					
 					
 				}
 			
@@ -85,7 +81,7 @@ public class Main_gawibawibo_3 {
 			}
 		} while (!(choice_num == 4)); //while (condition); // 4번일경우 여기로 내려온다
 	 // end of main()-----
-		sc.close();
+	
 		System.out.println("\n==== 프로그램 종료 ===");
 	}
 }
