@@ -30,7 +30,7 @@ public class Main_gawibawibo_3 {
 		
 		Scanner sc = new Scanner(System.in);
 		Random rnd = new Random();
-		int choice_num = 0;
+		
 		
 		System.out.println("\n>> 프로그램 종료<<\n");
 		do {
