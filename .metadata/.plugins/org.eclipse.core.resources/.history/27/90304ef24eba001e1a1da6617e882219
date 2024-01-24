@@ -70,21 +70,7 @@ public class Main_while_1 {
 		System.out.println("\n>>프로그램 종료<<<<");
 	
 		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
-		loop = 0;
-		while(!(++loop > 5)) {
-			System.out.println(loop+".안녕 오라클");
-		}// end of while----
-		
-		/*
-		 * 1.안녕 오라클~~
-		 * 2.안녕 오라클~~
-		 * 3.안녕 오라클~~
-		 * 4.안녕 오라클~~
-		 * 5.안녕 오라클~~
-		 */
-						//증가되어진 값이 6이 되어지면 빠져나온다 -> 5보다 커야함
-						//!(++loop > 5)가 false가 되어지면 빠져나온다 -> !빠진 나머지, 반복문을 빠져나갈 조건
-		System.out.println("\n>>프로그램 종료<<<<");
+	
 	
 	
 	
