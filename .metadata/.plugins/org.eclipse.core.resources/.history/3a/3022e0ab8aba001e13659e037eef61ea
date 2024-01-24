@@ -24,10 +24,9 @@ public class MyUtil {
 	public static String certification_key() {
 	
 		
-		 // 문자열을 retrun
+		return ""; // 문자열을 retrun
 		 Random rnd = new Random();
 		 String certification_key="";
-		 
 		 for(int i=0; i<7; i++) {
 				
 				if(i<3) { //랜덤한 소문자를 발생시킨다
@@ -38,10 +37,10 @@ public class MyUtil {
 				else { // 랜덤한 숫자 0부터 9가지 발생시킨다
 					int n = rnd.nextInt(9 - 0 +1)+ 0;
 					certification_key+= n;
+					}
 				}
-			}return certification_key;
 			
-		
-	}		
-}	
-
+		}
+		return null;
+	}
+}
