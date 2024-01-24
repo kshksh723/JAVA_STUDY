@@ -149,17 +149,16 @@ public class Main_while_1 {
 				String add = (dan<9)?"\t":"\n";
 				System.out.print(dan+"*"+jul+"="+(dan*jul)+add);
 			}// end of while---------
-			//while(!())  탈출조건		
-			dan=1;
-	
+			//while(!())  탈출조건			
 		}// end of while----
 		
 		// 위의 while문 빠져나올 때 dan의 값은 10일 때 빠져나온다
 		// 그러므로 아래와 같이 dan의 값을 1로 초기화 해주어야 한다.
-		
+		dan=1;
+	
 		
 	
-	
+		
 		
 		
 		

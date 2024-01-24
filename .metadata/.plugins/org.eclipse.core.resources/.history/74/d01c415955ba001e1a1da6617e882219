@@ -137,29 +137,16 @@ public class Main_while_1 {
 		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
 
 	
-		System.out.printf("%35s\n","=== 구구단 ===");  //%35s 오른쪽 정렬
+		System.out.println("=== 구구단 ===");
 		// 9행 8열
 		// jul dan
-		
-		int jul = 0, dan=1;
-		
-		while(!(++jul > 9)) { // 9행
-			
-			while(!(++dan > 9 )) { // 8열
-				String add = (dan<9)?"\t":"\n";
-				System.out.print(dan+"*"+jul+"="+(dan*jul)+add);
-			}// end of while---------
-			//while(!())  탈출조건		
-			dan=1;
-	
-		}// end of while----
-		
-		// 위의 while문 빠져나올 때 dan의 값은 10일 때 빠져나온다
-		// 그러므로 아래와 같이 dan의 값을 1로 초기화 해주어야 한다.
+		int jul = 0; dan=1;
 		
 		
-	
-	
+		
+		
+		
+		
 		
 		
 		
