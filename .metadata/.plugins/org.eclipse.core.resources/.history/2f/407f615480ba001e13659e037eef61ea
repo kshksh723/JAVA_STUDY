@@ -1,0 +1,33 @@
+package my.day07.c.random;
+
+public class Main_random_1 {
+
+	public static void main(String[] args) {
+
+//== 랜덤한 정수를 뽑아낸다 ===//
+		//방법 1.
+		double random = Math.random(); //return타입이 double 타입이다
+		System.out.println("random=>" + random);
+		/*
+		 random => 0.3720606033227164
+		 */
+		
+		/*
+		 java.lang.Math.random() 메소드는
+		 0.0이상 1.0 미만의 실수(double)값을 랜덤하게 나타내어주는 메소드이다.
+		 	즉, 0.0 <= 임의의 난수(실수) < 1.0
+		 	
+		 	1 부터 10까지 중 랜덤한 정수를 얻어와 본다
+		 		
+		 		공식 
+		 		Math.random()*구간범위
+		 		0.3720606033227164
+		 		0.06645054565362352
+		 		
+		 		
+		 		0.0<= 임의의 난수(실수) < 1.0
+		 		
+		 */
+	}
+
+}
