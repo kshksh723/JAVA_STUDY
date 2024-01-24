@@ -69,7 +69,7 @@ public class Main_while_1 {
 		} //end of while~~~
 		System.out.println("\n>>프로그램 종료<<<<");
 	
-		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
+	
 	
 	
 	

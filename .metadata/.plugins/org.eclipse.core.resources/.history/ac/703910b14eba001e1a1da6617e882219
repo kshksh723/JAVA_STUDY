@@ -51,25 +51,10 @@ public class Main_while_1 {
 		}
 		
 		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
-		/*
-		 * 1.Hi 이클립스~~
-		 * 2.Hi 이클립스~~
-		 * 3.Hi 이클립스~~
-		 * 4.Hi 이클립스~~
-		 * 5.Hi 이클립스~~
-		 */
 		
-		loop = 0;
-		while(true) {
-			// 무한 반복
-			System.out.println(++loop+".Hi 이클립스~~");
-			//5찍고 그만 하라 하고 싶을 때
-			if(loop == 5)
-				break;
-		} //end of while~~~
-		System.out.println("\n>>프로그램 종료<<<<");
+		
 	
-		System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
+	
 	
 	
 	
