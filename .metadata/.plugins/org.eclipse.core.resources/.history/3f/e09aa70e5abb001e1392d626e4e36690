@@ -132,7 +132,7 @@ public class Main_member {
            
                System.out.print("ㅁ비밀번호 : ");
                String passwd = sc.nextLine();
-               if(!(MyUtil.isCheckPasswd(passwd)));{ //passwd 값 자체가 boolean
+               if(!MyUtil.isCheckPasswd(passwd));{ //passwd 값 자체가 boolean
                	System.out.println(">>[경고] 비밀번호는 8글자 이상 15글자 이하의 영문 대,소문자 및 숫자 및 특수문자가 혼합되어야만 합니다\n");
          }
           

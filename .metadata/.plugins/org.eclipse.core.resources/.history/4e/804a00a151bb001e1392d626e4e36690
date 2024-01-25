@@ -73,56 +73,59 @@ public class MyUtil {
 	 */
 	public static boolean isCheckPasswd(String passwd) {
 		
-		if(passwd == null) return false;
-		// 예를들어서
-		//	입력받은 passwd가 C5d#이라면 dsfdf2342@##!#@!dsffd이라면 
-		// 또는
-		// 입력받은 passwd가 C5Dfdq#이라면 C5df1@이라면
-		// 입력받은 passwd가 C5Dfdq#이라면 C5df1@이라면
-	
-	
-		int length = passwd.length();
-		// 암호에 한글이 들어가 있는지 알아본다
-		if(length < 8 || length > 15) {
+		if(passwd == null)
 			return false;
-		}
-			// 이제부터는 입력받은 passwd의 글자수가 8글자 이상 15글자 이하인 경우이다
-			
-		// 예를들어서
-			//	입력받은 passwd가 C5d#이라면 dsfdf2342@##!#@!dsffd이라면 
+	// 예를들어서
+	//	입력받은 passwd가 C5d#이라면 dsfdf2342@##!#@!dsffd이라면 
+	// 또는
+	// 입력받은 passwd가 C5Dfdq#이라면 C5df1@이라면
+	// 입력받은 passwd가 C5Dfdq#이라면 C5df1@이라면
+	
+	
+	int length = passwd.length();
+	// 암호에 한글이 들어가 있는지 알아본다
+	if(length < 8|| length > 15) {
+		return false;
+	}
+		// 이제부터는 입력받은 passwd의 글자수가 8글자 이상 15글자 이하인 경우이다
 		
-		boolean flag_upper = false;
-		boolean flag_lower = false;
-		boolean flag_number = false;	
-		boolean flag_special = false;
+	// 예를들어서
+		//	입력받은 passwd가 C5d#이라면 dsfdf2342@##!#@!dsffd이라면 
 	
-		for(int i=0; i<length; i++) {
-			// 암호에 한글이 들어가 있는지 알아본다
-			char ch = passwd.charAt(i);
-			if('가'<= ch && ch <= '힣')
-			   return false;		
+	boolean flag_upper = false;
+	boolean flag_lower = false;
+	boolean flag_number = false;	
+	boolean flag_special = false;
 	
-			else if(Character.isUpperCase(ch))  // 영문 대문자일 경우
-			     flag_upper = true;
-			
-			else if(Character.isLowerCase(ch))
-				flag_lower = true;
-			
-			else if (Character.isDigit(ch))
-				flag_number = true;
-			
-			else // 특수문자일 경우
-				flag_special = true;
-			
-		} // end of for
+	
+	for(int i=0; i<length; i++) {
+		// 암호에 한글이 들어가 있는지 알아본다
+		char ch = passwd.charAt(i);
+		if('가'<= ch && ch <= '힣');
+		return false;		
+	}
+	
+	if(Character.isUpperCase(ch)) // 영문 대문자일 경우
+		flag_upper = true;
+	
+	else if(Character.isLowerCase(ch))
+		flag_lower = true;
+	
+	else if (Character.isDigit(ch))
+		flag_number = true;
+	
+	else // 특수문자일 경우
+		flag_special = true;
+	
+	} // end of for
+	
+	
 		
-	    return 	flag_upper && flag_lower && flag_number && flag_special;
 		
-	} //end of public static boolean isCheckPasswd(string passwd) 
-	
-	
-}
+	}//end of public static boolean isCheckPasswd(string passwd) 
 
+
+		
 			
 	
 	
