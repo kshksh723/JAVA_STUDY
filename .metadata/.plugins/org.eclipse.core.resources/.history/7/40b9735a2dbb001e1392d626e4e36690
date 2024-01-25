@@ -69,7 +69,6 @@ public class Main_lotto_2 {
 				
 			} //똑같은 게 없을 때 빠져나옴
 				arr_temp[i] = idx;
-				
 			String add = (i<5)?",":" ";
 			result += arr_ball[idx]+add;
 		}// end of for----------------------

@@ -54,7 +54,6 @@ public class Main_lotto_2 {
 		Random rnd = new Random();
 		String result = "";
 		
-		outer:
 		for(int i=0; i<6; i++) {
 			// 처음 얼마부터 마지막 얼마까지 랜덤한 정수
 			// => rnd.nextInt(마지막수 - 처음수 +1) + 처음수
@@ -64,12 +63,9 @@ public class Main_lotto_2 {
 				if(idx == arr_temp[j]) {
 					//새로이 뽑아온 방번호(idx)가 기존에 뽑은 것(arr_temp[j])과 같다라면 다시 새로이 뽑아야한다
 					// 즉, 0 ~ 44 중에 새로이 또 뽑아야한다는 말이다
-					i--; //감하고 올라간다, 두번째 기회 또 뽑는 것
-					continue outer; //label이 outer인 반복문
+						continue;
 				
-			} //똑같은 게 없을 때 빠져나옴
-				arr_temp[i] = idx;
-				
+			}
 			String add = (i<5)?",":" ";
 			result += arr_ball[idx]+add;
 		}// end of for----------------------

@@ -67,9 +67,7 @@ public class Main_lotto_2 {
 					i--; //감하고 올라간다, 두번째 기회 또 뽑는 것
 					continue outer; //label이 outer인 반복문
 				
-			} //똑같은 게 없을 때 빠져나옴
-				arr_temp[i] = idx;
-				
+			}
 			String add = (i<5)?",":" ";
 			result += arr_ball[idx]+add;
 		}// end of for----------------------
