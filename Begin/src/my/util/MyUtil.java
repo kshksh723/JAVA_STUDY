@@ -121,6 +121,104 @@ public class MyUtil {
 	} //end of public static boolean isCheckPasswd(string passwd) 
 	
 	
+	public static long delete_character(String money) {
+		 // money = "$2,000,000";
+		 // money = "$500,000";
+		// money = "2,000,000$";
+		// money = "$500";
+		// money = "500";
+		// money = "2,$000,$000$";	"2,"+"000,$000$"	"2,000,"+"000$" "2,000,000"+" ==>"2,000,000"
+		
+		
+		do {
+			int dollor_index = money.indexOf("$");
+			if(dollor_index == -1)
+				break;
+			// money.substring(0 , dollor_index); // 0,0 
+			money = money.substring(0 , dollor_index) + money.substring(dollor_index +1);
+		} while (true);
+		
+		System.out.println(money);
+		
+		// 2,000,000
+		// if(money.indexOf("$") != -1) {
+		
+			
+		//	money.substring(0, 0); 
+		
+		do {
+			int comma_index = money.indexOf(",");
+			if(comma_index == -1)
+				break;
+			// money.substring(0 , dollor_index); // 0,0 
+			money = money.substring(0 , comma_index) + money.substring(comma_index +1);
+		} while (true);
+		System.out.println(money);
+		// "2000000"
+		// 문자열 돌려주기 
+		// money는 string 타입
+		
+		
+		
+		
+		
+		return 0;
+		// return 0;
+		
+	
+	}
+	// === 숫자에 3자리마다 , 를 추가해서 문자열을 리턴시켜주는 메소드 생성하기 ===//
+	public static String append_comma(long num) {
+		
+		// >> 숫자를 문자열로 변경시켜주는 메소드 <<
+		//Integer.toString(12345);	==> "12345"
+		// Long.toString(1234567890L); ==> "123456789"
+		// String.valueOf(12345); // int  타입의 string 타입, 이게 제일많이 쓰임 
+		// String.valueOf(1234567890123456789L); ==> "1234567890123456789"
+		
+		String temp = String.valueOf(num);
+		// num이 2500000이라면 temp는 "2500000"
+		// num이 892500000이라면 temp는 "892500000"
+		
+		char[] origin_arr = temp.toCharArray();		
+		/*
+		 	---------------	
+		 	|2|5|0|0|0|0|0|			=> 길이 7/3
+		 	---------------
+		 	
+		 	-------------------
+		 	|8|9|2|5|0|0|0|0|0|			=> 길이 9/3-1
+		 	-------------------
+		 */
+		int comma_len = (origin_arr.length%3==0)?origin_arr.length/3-1:origin_arr.length/3;
+		char[] result_arr = new char[origin_arr.length + comma_len ];
+		/*
+	 	---------------	
+	 	|2,|5|0|0|,|0|0|0|
+	 	---------------
+	 	
+	 	---------------------
+	 	|8|9|2|,|5|0|0|,|0|0|0|
+	 	----------------------
+	 	
+	 */
+		
+		for(int i = origin_arr.length-1, j = result_arr.length-1, count = 1; i>=0; i--, j--, count++) {
+			if(count%4 != 0) { 
+			result_arr[j] = origin_arr[i];
+			}
+			else {
+				result_arr[j] = ',';
+				i++;
+				
+				
+			}
+			// |'0'| 이 자리에 ,가 들어가야한다
+			 //|''|''|'2'|'5'|'0'|'0'|'0'|'0'|'0'|
+			 // 반복이 되어질 때마다  count 를 적는다/ 초기화에 count 를 적는다
+		}// end of for-------
+		return null;
+	}// end of public static String append_comma(long_sum_monkey)-----
 }
 
 			
