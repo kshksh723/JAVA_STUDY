@@ -1,7 +1,7 @@
 package my.day07.a.While;
 
 public class Main_while_1 {
-<<<<<<< Updated upstream
+
 	/*
     === while 문 형식 ===
     
@@ -176,7 +176,6 @@ public class Main_while_1 {
 	
 
 
-=======
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -184,4 +183,4 @@ public class Main_while_1 {
 	}
 
 }
->>>>>>> Stashed changes
+

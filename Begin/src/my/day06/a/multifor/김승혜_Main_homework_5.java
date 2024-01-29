@@ -127,7 +127,6 @@ public class 김승혜_Main_homework_5 {
 	        }
 
 		 System.out.println("\n == 숙제 6   ==\n");
-<<<<<<< Updated upstream
 		 for(int i= 1; i<=3; i++) {  //행
 			for(int j = 3 ; j >= i; j--) { 
 					System.out.print(" "); // 공백 주기
@@ -150,7 +149,7 @@ public class 김승혜_Main_homework_5 {
 	            }
 	            System.out.print("\n");
 	        }
-=======
+
 			
 		for(int i = 1; i >= 5; i += 2) { 
 				for (int j = 3; j>= 1/2; j--) {
@@ -163,7 +162,7 @@ public class 김승혜_Main_homework_5 {
 				System.out.println();
 			}
 			
->>>>>>> Stashed changes
+
 		 
 		 
 		 System.out.println("\n == 입사문제   ==\n");
