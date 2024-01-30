@@ -47,15 +47,15 @@ public class Main_gujikja {
 
 	public static void main(String[] args) {
 		
-		Gujikja[] gu_arr = new Gujikja[5];
+		Gujikja[] gu_arr = new Gujikja[5]; // Gujikja 클래스를 쓸 수 있음 5개를 만듬
 		
 		///////////////////////////////////////////////////////////
-		Gujikja gu1 = new Gujikja();
+		Gujikja gu1 = new Gujikja(); // 기본 생성자
 	    gu1.userid = "eomjh";
 	    gu1.passwd = "qWer1234$";
 	    gu1.name = "엄정화";
 	    gu1.jubun = "9610202";
-		gu_arr[Gujikja.count++] = gu1;		// 구직자 클래스에 가서 static count 선언하기
+		gu_arr[Gujikja.count++] = gu1;		// 구직자 클래스에 가서 static count 선언하기, Gujikja.count= 0
 	    
 	    Gujikja gu2 = new Gujikja();
 	    gu2.userid = "leess";
@@ -70,7 +70,7 @@ public class Main_gujikja {
 	    gu3.name = "차은우";
 	    gu3.jubun = "0106203";
 	    gu_arr[Gujikja.count++] = gu3;		// 3명으로 나옴, 3명이 저장되어있다!
-	    
+	    // Gujikja.count보면  몇개 까지 줬는지 알 수 있다
 	    /*
 	    Gujikja gu4 = new Gujikja();
 	    gu4.userid = "chaew";
@@ -107,10 +107,10 @@ public class Main_gujikja {
 				break;
 			default:	// 보기에 없는 경우
 				System.out.println("[경고] 메뉴에 없는 번호입니다.\n");
-				continue;
+				continue;	
 			}
 		} while (!("4".equals(str_menuno)));	// end of do~while------------------------
-	    
+	    //키보드에 입력해준 값이 4일 때 빠져나온다
 	    sc.close();
 	    System.out.println("\n>>> 프로그램 종료 <<<");
 	    
