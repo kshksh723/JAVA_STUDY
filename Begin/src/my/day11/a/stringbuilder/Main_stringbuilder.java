@@ -19,9 +19,29 @@ public class Main_stringbuilder {
          
          name = "끝";
          System.out.println(name);
+         
+         
   
   System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~\n");
-
+  	// 권장사항
+  	StringBuffer sb_1 = new StringBuffer();
+ // StringBuffer 는 Multi thread 를 지원해준다.
+    // 그래서 Multi thread 로 움직이는 게임에는 StringBuffer 를 사용한다.
+    // StringBuffer 는 StringBuilder 보다 무겁고 동작속도가 떨어지지만
+    // Multi thread 를 지원해주므로 게임에서 사용하는 것이 적합하다.
+    sb_1.append("일순신");
+    sb_1.append(",이순신");
+    sb_1.append(",삼순신");
+    sb_1.append(",사순신");
+    sb_1.append(",오순신");
+    sb_1.append(",육순신");
+    sb_1.append(",칠순신");
+    sb_1.append(",팔순신");
+    sb_1.append(",구순신");
+  
+  
+  
+  
 	}
 
 }
