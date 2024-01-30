@@ -323,9 +323,334 @@ public class Main_String {
 			  System.out.println("$"+df.format(sum_money));
 			
 			  
+			  String input_str = "	안녕	하세요		내일		은	수요일 		입니다.	";
+			  input_str = String.join("", input_str.split("\\ "));
+			 // \\가 2개의 공백임., {	"안녕",	"하세요",		"내일",		"은",	"수요일", 		"입니다."	}
+			 System.out.println(input_str);
+			 //안녕하세요내일은수요일입니다
+			  
+			// === 9. "문자열".replaceAll("변경대상문자열", "새로이변경될문자열") ====
+		      //        "문자열" 에서 "변경대상문자열" 을 모두 "새로이변경될문자열" 로 교체해서 반환.
+			 
+			 
+			 System.out.println(names);
+			 //한석규-두석규-세석규-네석규-오석규
+			 
+		names =	 names.replaceAll("석규", "SK");
+		 System.out.println(names); 
+		 
+		// === 10. "문자열".replaceFirst("변경대상문자열", "새로이변경될문자열") ====
+	      //        "문자열" 에서 "변경대상문자열" 을 첫번째만 "새로이변경될문자열" 로 교체해서 반환.
+		 
+		 
+		names.replaceFirst("SK", "석규");
+		System.out.println(names);  
+		
+		names ="한SK-두SK-세SK-네SK-오SK";
+		
+		//replaceFirst를 사용하여 첫번째, 두번째, 세번째 "sk"를 "석규"로 변환하세요
+		
+		for(int i=0; i<3; i++) {
+			names.replace("SK", "석규");
+		}//end of for
+			 
+			 
+		names ="한SK-두SK-세SK-네SK-오SK";
+		//  홀수번째 나오는 것만 "SK"를 "석규"로 변환하세요
+		
+		String[] irum_arr = names.split("\\-"); //{"한SK", "두SK", "세SK"."네SK", "오SK"}
+			 for(int i = 0; i<irum_arr.length; i++) {
+				 if((i+1)%2 != 0 ) { //홀수번째만 
+					 irum_arr[i].replaceAll("SK", "석규");
+				 }
+			 }//end of for
+			 // {"한석규", "두SK", "세석규"."네SK", "오석규"}
+			 names = String.join("-", irum_arr);
+			 System.out.println(names);
+			 //한석규-두SK-세석규-네SK-오석규
+			 
+			 System.out.println("\n ============ \n");
+			 String[] contents = {"호호안녕하세요","건강하세요","행복하세요 또봐요","즐겁고 건강한 하루되세요"}; 
+			
+			 
+			
+			 // "건강"이라는 단어가 포함된 것을 출력하세요
+			 for(int i = 0; i <contents.length; i++) {
+				 int idx = contents[i].indexOf("건강");
+				 if(idx != -1)
+					 System.out.println(contents[i]);
+			 } // end of for
+			 
+			 
+			 /*
+			  * 건강하세요
+			  * 즐겁고 건강한 하루 되세요
+			  * 
+			  */
+			
+			// "건강"이라는 단어로 시작되는 것만 출력하세요
+			 for(int i = 0; i <contents.length; i++) {
+				 int idx = contents[i].indexOf("건강");
+				 if(idx == 0)
+					 System.out.println(contents[i]);
+			 } // end of for
+			 /*
+			  건강하세요
+			  */
+			 
+			 System.out.println("\n ============ \n");
+			 String strr = "안녕하세요 java를 배우는 중입니다. Java is Programming Language!! JAVA를 배우는 중입니다.";
+			// str2에서 대.소문자를 구분치 않고 java 라는 글자가 몇번 나오는지 그 회수를 구하세요
+			 
+			 
+			 //strr의 글자를 모두 소문자로 변경하겠습니다.
+			char[] chr_arr = strr.toCharArray();
+			for(int i = 0; i < chr_arr.length; i++) {
+				if('A'<= chr_arr[i] && chr_arr[i] <= 'Z') {
+					chr_arr[i] = (char)(chr_arr[i]+32);
+				}
+			}
+			
+			strr = String.valueOf(chr_arr);
+			
+			// System.out.println(strr);
+			int cnt = (strr.indexOf("java") != -1)?strr.split("java").length-1:0; 
+			// 삼항연산자 : 조건문? 조검이참: 조건이거짓 
+			// strr.split("java")은 {"안녕하세요 ","를 배우는 중입니다. "," is Programming Language!! ","를 배우는 중입니다."} java 를 중심으로 쪼개워버린다
+			System.out.println("대소문자 구분치 않고 java의 개수 : " + cnt + "개");
+			
+			
+			
+			System.out.println("\n ============ \n");
+			// === 11. "문자열".startsWith("찾고자하는문자열")  ===
+		      //       "문자열" 에서 "찾고자하는문자열"이 맨첫번째에 나오면 true 를 반환.
+		       //      "문자열" 에서 "찾고자하는문자열"이 맨첫번째에 나오지 않으면 false 를 반환. 
+			
+			// "건강"이라는 단어가 포함된 것을 출력하세요
+			 for(int i = 0; i <contents.length; i++) {
+				 if(contents[i].startsWith("건강"));
+				 System.out.println(contents[i]);
+			 } // end of for
+			
+			
+			 //toCharArray 글자 한개 한개를 본다는 의미
+			 
+			 
+			 
+			 
+			 
+			 
+			 
+			// === 12. "문자열".endsWith("찾고자하는문자열")  ===
+		      //       "문자열" 에서 "찾고자하는문자열"로 끝나면 true 를 반환.
+		       //      "문자열" 에서 "찾고자하는문자열"로 끝나지 않으면 false 를 반환.
 			  //split, join 기억하기
 			
-			// $2,500,000
-			  
+				// "하세요" 이라는 단어로 끝나는 것을 출력하세요
+			 for(int i = 0; i <contents.length; i++) {
+				 if(contents[i].startsWith("하세요"));
+				 System.out.println(contents[i]);
+			 }
+			 /*
+			  * 호호안녕하세요
+			  * 건강하세요
+			  * 
+			  */
+			 
+			 
+			// === 13. "문자열".trim()  === 
+		      //       "문자열".trim() 은 "문자열"의  좌,우에 공백이 있으면 공백을 모두 제거하고서 반환. 
+		      String insa = "          수고        많으셨습니다                ";
+		      
+		      System.out.println("하하하"+insa+"내일 뵐께요~~");
+		      // 하하하          수고        많으셨습니다                내일 뵐께요~~
+		      
+		      System.out.println("하하하"+insa.trim()+"내일 뵐께요~~");
+		      // 하하하수고        많으셨습니다내일 뵐께요~~
+		      
+		      
+		      // === 14. "문자열".isEmpty()  === 
+		      //       "문자열" 이 아무것도 없으면  true 를 반환해주고,
+		        //       "문자열" 이 뭔가 있으면  false 를 반환해준다.
+		      String str1="", str2="abc", str3="        ";
+		      
+		      System.out.println(str1.isEmpty());  // true 
+		      System.out.println(str2.isEmpty());  // false
+		      System.out.println(str3.isEmpty());  // false
+		      System.out.println(str3.trim().isEmpty());  // true
+		      //                 "".isEmpty(); 
+		      
+		   // === 15. "문자열".toUpperCase()  ===
+		      //       "문자열"에서 소문자가 있으면 모두 대문자로 변경해서 반환.
+		      String words = "My Name is Tom 입니다.";
+		      System.out.println(words.toUpperCase());
+		      // MY NAME IS TOM 입니다. 
+		            
+		            
+		      // === 16. "문자열".toLowerCase()  ===
+		      //       "문자열"에서 대문자가 있으면 모두 소문자로 변경해서 반환.
+		      words = "My Name is Tom 입니다.";
+		      System.out.println(words.toLowerCase());
+		      // my name is tom 입니다.
+		       
+		      
+		      
+		      strr = "안녕하세요 java를 배우는 중입니다. Java is Programming Language!! JAVA를 배우는 중입니다.";
+		      strr = strr.toLowerCase();
+		      cnt = (strr.indexOf("java")!= -1)?strr.split("java").length-1:0;
+		      System.out.println("대소문자 구분치 않고 java의 개수: "+ cnt + "개");
+		      // 대소문자 구분치 않고 java의 개수 : 4개
+				
+				
+		      System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+		      // == 17. "문자열".contains("찾을 문자열")==
+		      // indexOf를 대체하는 것
+		      // "문자열"에서 "찾을 문자열"을 포함하고 있으면 true를 반환
+		      // "문자열"에서 "찾을 문자열"을 포함하고 않으면 false를 반환
+		     System.out.println("안녕하세요  JaVa입니다.".contains("java")); //false
+		     System.out.println("안녕하세요  JaVa입니다.".toLowerCase().contains("java")); //false
+		     
+		     
+		      // === 18. "문자열".equals("비교대상문자열")  ===
+		      //     대문자와 소문자를 구분하면서
+		      //     "문자열" 과 "비교대상문자열" 의 값이 일치하면  true 를 반환.
+		      //      "문자열" 과 "비교대상문자열" 의 값이 일치하지 않으면  false 를 반환. 
+		     
+		     
+		     
+		     
+		            
+		     System.out.println("\n ~~~~~~~~~~~~~~~~~~~~ \n");    
+		      // === 19. "문자열".equalsIgnoreCase("비교대상문자열")  ===
+		      //     대문자와 소문자를 구분하지 않으면서 
+		      //     "문자열" 과 "비교대상문자열" 의 값이 대,소문자와 관계없이 일치하면  true 를 반환.
+		      //      "문자열" 과 "비교대상문자열" 의 값이 대,소문자와 관계없이 일치하지 않으면  false 를 반환. 
+		     
+		      
+		     System.out.println("\n ~~~~~~~~~~~~~~~~~~~~ \n");  
+		      
+		      
+		      
+		      String[] strArr = {"korea", "kORea", "     kOReA     ", "seoul", " korea seoul", " KOREA seoul", "Korea 대한민국", "서울 kOrEA 만세", null};
+		      // null 값이 포함되어있음
+		      // strArr 에서 "korea"라는 글자만 있는 것을 출력하세요
+				/*
+				 * for(String s : strArr) { if(s != null & s.trim(). equalsIgnoreCase("korea"))
+				 * { System.out.println(s); } }
+				 */
+		    	 /* -> 이 코드 오류남...
+		    	  korea
+		    	  kORea
+		    	  		kOReA
+		    	  */
+		      System.out.println("\n ========또는 ===== \n");
+		      for(String s : strArr) {
+		    	  if(s != null && "korea".equalsIgnoreCase(s.trim())) {
+		    		  System.out.println(s);
+		    	  }
+		      }
+		      
+		      // strArr 에서 "korea"라는 글자가 들어있는 것만 출력하세요
+		      // strArr에서  "korea" 또는 "KOREA" 또는 "kOrEA"와 같이 3개 중에 아무거나 입력하더라도 글자가 들어 있는 것
+		      /*
+		       * "korea"와 " KOREA seoul"와
+		       * 
+		       * 
+		       */
+		      /*
+		       *korea
+		       *korea seoul
+		       * "Korea 대한민국",
+		       *  "서울 kOrEA 만세"이 출력되도록 하세요
+		       */
+		    		   
+		    		   
+		    		   
+		    		   
+		    		   
+		    		   
+		      String search = "kORea";
+		      for(String s : strArr) {
+		    	  if(s != null && s.toLowerCase().contains(search.toLowerCase())) {
+		    	  System.out.println(s);
+		      }
+		      } // 출력은 원본
+				/*
+				 * korea korea seoul KOREA seoul Korea 대한민국 서울 kOrEA 만세
+				 */
+		     
+	System.out.println("\n ~~~~~~~~~~~~~~~~~~~~ \n"); 
+		      
+		      
+		      for(String s : strArr) {
+		    	  if(s != null && s.contains("korea")) {				//s.contains("koera") : indexof 대체 가능
+		    		  System.out.println(s);
+		    	  }
+		      }// end of for-----------
+		    		  
+		    	
+		   
+		    		 /* i <strArr.length; i++) {
+					 if(strArr[i].startsWith("korea"));
+					 System.out.println(strArr[i]);
+					 strArr.equalsIgnoreCase(strArr);*/
+		     // }
+		     
+		      
+		      
+		      System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+		      
+		      
+		      
+		      
+		   // ==== JDK 11 부터 새로이 추가된 String 관련 메소드 (JDK 1.8 에서는 사용이 불가함) ==== //
+		      
+		      		// isBlank: 문자열이 비어있거나 공백이면 true 반환
+		      System.out.println("".isBlank()); // true
+		      System.out.println("".isEmpty()); // true
+		      
+		      System.out.println("         ".isEmpty()); // false
+		      System.out.println("         ".isBlank()); // true
+		      System.out.println("         ".trim().isEmpty()); // true
+		      
+		      System.out.println(" 안녕 ".isBlank()); // false
+		      System.out.println(" 안녕 ".trim().isEmpty()); // false
+		      
+		      System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+		      
+		      // strip: 문자열 공백 제거 
+		      // stripLeading: 문자열 앞의 공백을 제거
+		      // stripTrailing: 문자열 뒤의 공백을 제거
+		      System.out.println("시작" + "        ja va       ".strip() +"끝");
+		      // 시작java끝
+		      
+		      System.out.println("시작" + "        ja  va       ".stripLeading() +"끝"); //왼쪽 공백을 지움.l트립
+		      // 시작java       끝
+		      
+		      System.out.println("시작" + "        ja va       ".stripTrailing() +"끝"); // r 트립
+		      // 시작        java끝 
+		      
+		      // repeat: 문자열을 파라미터로 주어진 수 만큼 반복
+		      System.out.println("\n"+"~".repeat(50)+"\n");
+		      System.out.println("안녕 ".repeat(5));
+		      // 안녕 안녕 안녕 안녕 안녕
+		      
+		      System.out.println("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+		      
+		      // lines: 줄 단위로 나뉘어 있는 문자를 배열로 반환
+		      Object[] arr_obj = "id:leess\npwd:qwer1234$\n성명:이순신\n주소:경기도 군포시".lines().toArray(); //.lines()를 쓰면 배열로 바꾸어줌
+		      for(Object obj : arr_obj) {
+		         System.out.println((String)obj);
+		      }// end of for------------------
+		      
+		      System.out.println("------------------");
+		      
+		      String[] arr_str = "id:leess\npwd:qwer1234$\n성명:이순신\n주소:경기도 군포시".split("\n"); // 이것을 주로 쓰면 됌
+		      for(String info : arr_str) {
+		         System.out.println(info);
+		      }// end of for------------------
+		      
+		      
+		     
 	}
 }
