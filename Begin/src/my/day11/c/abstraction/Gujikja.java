@@ -214,6 +214,29 @@ public class Gujikja {
 		register_day = df.format(now);
 		// "2023-01-30 15:12:10"
 	}
+
+	//=== 구직자의 정보를 한줄로 메소드 생성하기 ===
+	public String getInfo() {
+		// 	eomjh		qWe*****	엄정화		961020		여		  29		2024-01-31 10:30:40
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(userid + "\t");
+		
+		String str_star = "*".repeat(passwd.length()-3);
+		sb.append(passwd.substring(0, 3) + "\t"); //3글자를 공개
+		sb.append(name + "\t");
+		sb.append(jubun.substring(0, jubun.length()-1)+"\t"); // 6번 앞까지-> 꼴지 앞자리 jubun.length()-1)
+		
+		// 성별 구하기 //
+		if("1".equals(jubun.substring( jubun.length()-1)) || 
+			"3".equals(jubun.substring( jubun.length()-1))	) {// 마지막 인덱스는 길이 -1
+			sb.append("남" + "\t");
+		}
+		else {
+			sb.append("여" + "\t");
+		}
+		return null;
+	}
 	
 }
 

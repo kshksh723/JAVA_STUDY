@@ -297,14 +297,17 @@ public class Ctrl_gujikja {
 				isUse_jubun = true; // 초기화
 				
 				System.out.print("4.주민번호 : ");
-				jubun = sc.nextLine(); // "9610022" 
+				jubun = sc.nextLine(); //"9610021" "9610022" 
+										// "0010023" "0010024"
+										// "9604311" "9604312"	"0004313"
+										// "9610025" "0010025"
 				
-			/*	
-				if( !MyUtil.isCheckJubun(jubun) ) {
+				
+				if( !MyUtil.isCheckJubun(jubun) ) { // ischeckjubun에서 creat 눌르기!
 					System.out.println("[경고] 올바른 주민번호를 입력하세요!!\n"); 
 					isUse_jubun = false;
 				}
-			*/	
+			
 			} while (!isUse_jubun);
 			// end of do~while--------------------------------
 			
@@ -323,8 +326,38 @@ public class Ctrl_gujikja {
 		else { // 지금까지 생성된 구직자 회원수가 gu_arr.length(==>정원) 와 같거나 큰 경우에만 신규회원을 받아들이면 안된다.
 			System.out.println(">> 정원 "+ gu_arr.length + "명이 꽉차서 구직자 회원가입이 불가합니다.!! <<\n");
 		}
+	}	
+		// 구직자 모두보기
+		 void view_all_info(Gujikja[] gu_arr) {
+/*
+ * ---------------------------------------------------------------------------
+ * 		아이디			비밀번호		성명		 생년월일 		성별		현재나이		가입일자
+ *----------------------------------------------------------------------------
+ *		eomjh		qWe*****	엄정화		961020		여		  29		2024-01-31 10:30:40
+ *		leess		abC*****	이순신 	960120		남		  29		2024-01-31 10:30:40
+ *		chaew		aSd*****	차은우		010620		남		  22		2024-01-31 10:30:40
+ *------------------------------------------------------------------------------
+ */
+	if(Gujikja.count == 0) {
+		System.out.println(">> 구직자로 가입된 회원이 아무도 없습니다 <<\n");
+	}
+	else {
+		title();	
+		StringBuilder sb = new StringBuilder();
 		
-	}// end of void register(Scanner sc, Gujikja[] gu_arr)------------
+		for(int i = 0; i<Gujikja.count; i++);
+		{
+		 sb.append(gu_arr[i].getInfo()+"\n");//꺼내오기, 전체 인스턴스 정보를 가져오는 것,sb에 쌓아둬야한다, getInfo에 creat 누르기
+	}
+		 System.out.println(sb.toString());
 	
+	}
+	
+	
+}// end of void register(Scanner sc, Gujikja[] gu_arr)------------
+		void title() {
+			System.out.println("-".repeat(60)+"\n"+"아이디			비밀번호		성명		 생년월일 		성별		현재나이		가입일자\n" 
+		+ " "+"-".repeat(60));
+		}
 	
 }

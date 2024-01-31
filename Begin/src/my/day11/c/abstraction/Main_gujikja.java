@@ -130,7 +130,7 @@ public class Main_gujikja {
 					break;
 					
 				case "2": // 구직자 모두보기
-					
+					ctrl.view_all_info(gu_arr);
 					break;
 					
 				case "3": // 검색하기
