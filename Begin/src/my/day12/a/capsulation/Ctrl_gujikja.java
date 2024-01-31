@@ -1301,7 +1301,7 @@
 //	
 //	}
 //
-package my.day11.c.abstraction;
+package my.day12.a.capsulation;
 
 import java.util.Scanner;
 
@@ -1323,7 +1323,8 @@ public class Ctrl_gujikja {
 	void register(Scanner sc, Gujikja[] gu_arr) {
 		
 		if(Gujikja.count < gu_arr.length) { // 지금까지 생성된 구직자 회원수가 gu_arr.length(==>정원) 보다 적을 경우에만 신규회원을 받아들인다.
-		    
+		
+			//field 생성
 			String userid;
 			String passwd;
 			String name;

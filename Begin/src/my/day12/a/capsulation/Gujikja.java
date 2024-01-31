@@ -586,7 +586,7 @@
 //
 //
 //*/
-package my.day11.c.abstraction;
+package my.day12.a.capsulation;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -648,12 +648,21 @@ import java.util.Date;
     |-- 행동양식(기능, 메소드) : 구직자로 접속(로그인)할수 있는 기능, 구직자정보를 조회해주는 기능, 구직자정보를 변경해주는 기능, ....... 
 
 */	
-
+/*
+---------------------------------------------------------------------------------------------------------------------------
+접근제한자(접근지정자, accessmodifier)   자기자신클래스내부      동일패키지에있는다른클래스      다른패키지에있는하위(자식)클래스       그외의영역  
+--------------------------------------------------------------------------------------------------------------------------- 
+public                                    O                    O                         O                        O  
+protected                                 O                    O                         O                        X
+없음(default)                              O                    O                         X                        X
+private                                   O                    X                         X                        X
+*/
 public class Gujikja {
 
 	// field 생성
-    String userid;        // 아이디
-	String passwd;        // 비밀번호
+	// field의 캡슐화(EnCapsulation == 은닉화)
+	private String userid;        // 아이디
+	private String passwd;        // 비밀번호
 	String name;          // 성명
 	String jubun;         // 주민번호인데 앞자리 6자리에 + 성별을 나타내는 1자리까지만 입력한다. 
 	                      // 예: "9506201"  "9607202"   "0006203"  "0007204"  "1106203" 
@@ -661,6 +670,7 @@ public class Gujikja {
 	
 	static int count;     // Gujikja 객체(인스턴스)의 개수를 알아오려는 용도 
 	
+
 	
 	// 기본생성자
 	public Gujikja() {
@@ -670,7 +680,15 @@ public class Gujikja {
 		register_day = df.format(now);
 		// "2023-01-30 15:12:10"
 	}
-
+	
+	 // 캡슐화(EnCapsulation == 은닉화) 되어진 field를 메소드를 통해 접근하도록 만들기 
+	public void setUserid(String userid) { //접근제한자 public
+		
+		if(userid == null || userid.isBlank()) {
+			System.out.println("[경고] 아이디는 공백이 아닌 글자로 입력하셔야 합니다");
+		}
+		this.userid = userid;
+	}
 
 	// === 구직자의 만나이을 알려주는 메소드 생성하기 === //
 	int getAge() {
