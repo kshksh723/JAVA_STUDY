@@ -377,6 +377,7 @@ public class Ctrl_gujikja {
 				str_menuno = sc.nextLine();
 				switch (str_menuno) {
 				case "1": // 연령대 검색
+					search_ageLine(sc, gu_arr); // creat 만들기
 					
 					break;
 				case "2": // 성별 검색
@@ -398,5 +399,12 @@ public class Ctrl_gujikja {
 				
 			
 		}//end of void search_menu(Scanner sc, Gugikja
+
+		
+//== 연령대 검색해주는 메소드 == //
+		void search_ageLine(Scanner sc, Gujikja[] gu_arr) {
+			
+			System.out.println("> 검색하고자하는 연령대 :");
+		}// end of void search_ageLine(Scanner sc, Gujjikja[] gu_arr)
 	
 }
