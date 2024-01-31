@@ -179,6 +179,9 @@ public class Ctrl_gujikja {
 				
 				}	// end of void register(Scanner sc, Gujikja[] gu_arr)-------------
 */
+
+
+
 package my.day11.c.abstraction;
 
 import java.util.Scanner;
@@ -338,6 +341,7 @@ public class Ctrl_gujikja {
  *		chaew		aSd*****	차은우		010620		남		  22		2024-01-31 10:30:40
  *------------------------------------------------------------------------------
  */
+			 
 	if(Gujikja.count == 0) {
 		System.out.println(">> 구직자로 가입된 회원이 아무도 없습니다 <<\n");
 	}
@@ -345,8 +349,9 @@ public class Ctrl_gujikja {
 		title();	
 		StringBuilder sb = new StringBuilder();
 		
-		for(int i = 0; i<Gujikja.count; i++);
+		for(int i = 0; i<Gujikja.count; i++)
 		{
+			
 		 sb.append(gu_arr[i].getInfo()+"\n");//꺼내오기, 전체 인스턴스 정보를 가져오는 것,sb에 쌓아둬야한다, getInfo에 creat 누르기
 	}
 		 System.out.println(sb.toString());
@@ -359,5 +364,39 @@ public class Ctrl_gujikja {
 			System.out.println("-".repeat(60)+"\n"+"아이디			비밀번호		성명		 생년월일 		성별		현재나이		가입일자\n" 
 		+ " "+"-".repeat(60));
 		}
+
+		// == 검색하기 메뉴를 보여주는 메소드 생성하기 == //
+		void search_menu(Scanner sc, Gujikja[] gu_arr) {
+			
+			String str_menuno = "";
+			do {
+			System.out.println("\n === 검색메뉴 ===\n"
+						         + "1.연령대검색   2.성별검색   3.연령대 및 성별 검색하기   4.메인메뉴로 돌아가기\n");  
+				System.out.print("▷ 검색 메뉴번호 선택 : ");
+				
+				str_menuno = sc.nextLine();
+				switch (str_menuno) {
+				case "1": // 연령대 검색
+					
+					break;
+				case "2": // 성별 검색
+					break;
+					
+				case "3": // 연령대 및 성별 검색
+					break;
+					
+				case "4": // 메인메뉴로 돌아가기
+					
+					break;
+					
+				default:
+					System.out.println("[경고] 검색메뉴에 존재하는 번호만 입력하세요!! \n");
+					break;
+				}// end of switch (key), switch ctrl+space key누르면 됌
+				
+			} while(!"4".equals(str_menuno));
+				
+			
+		}//end of void search_menu(Scanner sc, Gugikja
 	
 }

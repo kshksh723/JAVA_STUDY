@@ -134,7 +134,7 @@ public class Main_gujikja {
 					break;
 					
 				case "3": // 검색하기
-					
+					ctrl.search_menu(sc, gu_arr);
 					break;	
 					
 				case "4": // 프로그램종료

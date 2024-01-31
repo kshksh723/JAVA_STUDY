@@ -133,6 +133,7 @@
  */
 package my.day11.c.abstraction;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -223,7 +224,7 @@ public class Gujikja {
 		sb.append(userid + "\t");
 		
 		String str_star = "*".repeat(passwd.length()-3);
-		sb.append(passwd.substring(0, 3) + "\t"); //3글자를 공개
+		sb.append(passwd.substring(0, 3) + str_star + "\t"); //3글자를 공개
 		sb.append(name + "\t");
 		sb.append(jubun.substring(0, jubun.length()-1)+"\t"); // 6번 앞까지-> 꼴지 앞자리 jubun.length()-1)
 		
@@ -235,8 +236,61 @@ public class Gujikja {
 		else {
 			sb.append("여" + "\t");
 		}
-		return null;
-	}
+		
+		// 만나이 구하기 //
+		int age = 0;
+		
+		// 구직자의 올해 생일이 현재날짜와 같거나 현재날짜보다 이전(과거)이라면
+		// 나이 = 현재년도 - 구직자의 태어난 년도 + 1 -1
+		// 구직자의 올해 생일이 현재날짜보다 이후 (미래)이라면
+		// 나이 = 현재년도 - 구직자의 태어난 년도 - 1
+		Date now = new Date(); // 현재 시각, 시분초 다 포함
+		SimpleDateFormat sdfmt = new SimpleDateFormat("yyyyMMdd");
+		String str_now = sdfmt.format(now);// "20240131"	// 오늘
+		
+		// 구직자의 올해 생일
+		String str_now_birthday = str_now.substring(0, 4) + jubun.substring(2, 6);
+		//  "20240131"여기서 '2024' 4글자를 얻어오는 것 + "1020" 그 사람의 월,일을 붙여라 ==> "20241020"
+		
+		// 현재년도
+		int now_year = Integer.parseInt(str_now.substring(0, 4));
+		
+		// 구직자의 태어난 년도
+		int centry = ("1".equals(jubun.substring(jubun.length()-1))||
+				 "2".equals(jubun.substring(jubun.length()-1)))?1900:2000;
+		int birthday_year = centry + Integer.parseInt(jubun.substring(0, 2));
+		
+		
+		
+		
+		
+		// 날짜로 비교
+		 try {
+			now = sdfmt.parse(str_now);	// 오늘의 자정	오늘의 0시 0분 0초
+			Date now_birthday = sdfmt.parse(str_now_birthday); //올해의 생일의 자정
+			
+			if(now_birthday.compareTo(now) > 0) { // 구직자의 올해 생일이 현재일보다 뒤에 있는 경우 (미래)
+				age = now_year - birthday_year - 1;
+			}
+			else { // 구직자의 올해 생일이 현재일이거나 현재일보다 이전에 있는 경우 (미래)
+				 age = now_year - birthday_year;
+				
+			}
+				
+		 } catch (ParseException e) {
+			
+			//e.printStackTrace();
+		}
+		 
+		 sb.append(age + "\t");
+		 sb.append(register_day);
+		 
+		 
+		 
+		 // surround클릭하기
+		
+		return sb.toString();
+	}// end of String getInfo()------
 	
 }
 
