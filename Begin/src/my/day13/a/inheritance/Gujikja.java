@@ -1533,7 +1533,7 @@
 //
 //
 //
-package my.day12.a.capsulation;
+package my.day13.a.inheritance;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -1600,9 +1600,10 @@ import my.util.MyUtil;
 
 */	
 
-public class Gujikja {
-
-	
+public class Gujikja extends CommonMember {
+	// Gujikja 클래스는 commonMember 클래스에 생성되어진 field 및 method 및 기본 생성자를 상속 받아온다 
+	// extends 다음 나오는 commonMember클래스는 Gujikja 클래스의 부모 클래수가 되어지고 
+	// 꺼꾸로 gujikja클래스는 commonMember 클래스의 자식 클래스가 되어진다(부모 - 자식 관계)
 /*
     ---------------------------------------------------------------------------------------------------------------------------
 	접근제한자(접근지정자, accessmodifier)   자기자신클래스내부      동일패키지에있는다른클래스      다른패키지에있는하위(자식)클래스       그외의영역  
@@ -1617,23 +1618,25 @@ public class Gujikja {
 	// field 생성
 	// field 의 캡슐화(EnCapsulation == 은닉화)
 	private String userid;  // 아이디
-	private String passwd;  // 비밀번호
-	private String name;    // 성명
+	 private String passwd;  // 비밀번호
+	 private String name;    // 성명
 	private String jubun;           // 주민번호인데 앞자리 6자리에 + 성별을 나타내는 1자리까지만 입력한다. 
 	                              // 예: "9506201"  "9607202"   "0006203"  "0007204"  "1106203" 
-	String register_day;  // 가입일자
+	 private String register_day;  // 가입일자
+	
 	
 	static int count;     // Gujikja 객체(인스턴스)의 개수를 알아오려는 용도 
 	
 	
 	// 기본생성자
-	public Gujikja() {
-		Date now = new Date(); // 현재시각
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
-		register_day = df.format(now);
-		// "2023-01-30 15:12:10"
-	}
+//	public Gujikja() {
+//		super(); // 부모 클래스인 CommonMember클래스의 기본생성자를 호출한다는 것이닫 (자동적으로 )
+//		Date now = new Date(); // 현재시각
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		
+//		register_day = df.format(now);
+//		// "2023-01-30 15:12:10"
+//	}
 
 	// 캡슐화(EnCapsulation == 은닉화) 되어진 field 를 메소드를 통해 접근하도록 만들기 //
 	// == getter, setter 하기 == // 
@@ -1665,8 +1668,16 @@ public class Gujikja {
 			
 			// == 3. 판별하도록 한다. == //
 			if(m.matches()) {
-				this.userid = userid;
+				super.id = userid; //부모 객체(super)
+			// 또는 
+			//	this.id = userid;
+				// 또는 
+		//		id = userid;
 			}
+			
+				
+				// this.userid = userid; // this 나
+			// }
 			else {
 				System.out.println("[경고] 아이디는 첫글자는 영문이어야 하고 나머지는 영문 또는 숫자로만 이루어진 글자길이는 3~10글자만 가능합니다.\n");
 			}
@@ -1676,7 +1687,7 @@ public class Gujikja {
 	
 	public String getUserid() {
 		
-		return userid;
+		return id;
 	}
 		
 	
@@ -1837,7 +1848,7 @@ public class Gujikja {
 		// eomjh   qWe******    엄정화    961020   여     27        2024-01-31 10:30:40
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append(userid+"\t");
+		sb.append(super.id+"\t");
 		
 		sb.append(passwd.substring(0, 3) + "*".repeat(passwd.length() - 3) +"\t");
 		
@@ -1855,6 +1866,14 @@ public class Gujikja {
 		
 	} // end of String getInfo()------------------- 
 	
+	////////////////////////////
+	void test() {
+		System.out.println(super.parent_test());
+		// 또는 
+		System.out.println(this.parent_test());
+		// 또는
+		System.out.println(parent_test());
+	}
 }
 
 

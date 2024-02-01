@@ -1811,7 +1811,7 @@
 //	}// end of void search_ageLine_gender(Scanner sc, Gujikja[] gu_arr)------	
 //	
 //}
-package my.day12.a.capsulation;
+package my.day13.a.inheritance;
 
 import java.util.Scanner;
 
