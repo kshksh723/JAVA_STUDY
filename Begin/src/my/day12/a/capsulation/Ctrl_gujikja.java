@@ -1323,60 +1323,93 @@ public class Ctrl_gujikja {
 	void register(Scanner sc, Gujikja[] gu_arr) {
 		
 		if(Gujikja.count < gu_arr.length) { // 지금까지 생성된 구직자 회원수가 gu_arr.length(==>정원) 보다 적을 경우에만 신규회원을 받아들인다.
-		
-			//field 생성
-			String userid;
+			
 			String passwd;
 			String name;
 			String jubun;
+		
+			Gujikja gu = new Gujikja();
 			
-			boolean isUse_userid;
 			do {
-				isUse_userid = true; // 초기화 
+			System.out.println("1. 아이디 :");
+			String userid = sc.nextLine(); //null이 될 수 없음
+			
+			// == 중복 아이디 검사하기 시작= =
+			for (int i = 0; i < Gujikja.count; i++) {
 				
-				System.out.print("1.아이디 : ");
-				userid = sc.nextLine(); // "eomjh"  "leess"  "chaew" 현재 사용중인 아이디 이므로 입력불가!! 
-				                        // "" 또는 "        " 공백만으로는 입력불가!!
-				
-				// == 가입된 회원들에 대해 중복아이디 검사하기 == //
-			//	if(userid.trim().isEmpty()) // JDK 1.8
-				if(userid.isBlank()) {	    // JDK 11
-					System.out.println(">> 아이디는 필수 입력사항 입니다. <<\n");
-					isUse_userid = false;
-				}
-				else {
-					
-					for(int i=0; i<Gujikja.count; i++) {
-						if( userid.equals(gu_arr[i].userid) ) {
-							System.out.println(">> 이미 사용중인 아이디 입니다. <<\n");
-							isUse_userid = false;
-							break;
-						}
-					}// end of for---------------------
-				}
-			} while(!isUse_userid);
-			// end of do~while--------------------------------
+				if(userid.equals(gu_arr[i].getUserid()) ) //내가 입력한 userid와 같냐는 뜻이다
+					System.out.println(">> 이미 사용중인 아이디이므로 다른 아이디값을 입력하세요!!\n");
+					continue outer;
+			}
+			
+			} // end of for 
+			//== 중복 아이디 검사 끝
+			gu.setUserid(userid); // 계속 null 값을 유지
 			
 			
-			// 비밀번호는 필수 입력사항이면서 비밀번호 조건에 맞을때 까지 반복해야 한다.
-			boolean isUse_passwd;
+			} while(!(gu.getUserid() != null)); 
+			
 			do {
-				isUse_passwd = true; // 초기화
+				System.out.println("2. 비밀번호 :");
+				String passwd1 = sc.nextLine();
 				
-				System.out.print("2.비밀번호 : ");
-				passwd = sc.nextLine(); // "Qw12$"  "Qwer1234sdfsdfdsfsfsdf$"  "qwer1234$"  "qWer1234$"
-				
-				if( !MyUtil.isCheckPasswd(passwd) ) {
-					System.out.println("[경고] 비밀번호는 8글자 이상 15글자 이하의 대,소문자,숫자,특수기호가 혼합되어야만 합니다.\n"); 
-					isUse_passwd = false;
-				}
-				
-			} while (!isUse_passwd);
-			// end of do~while--------------------------------
+				gu.setPasswd(); // 계속 null 값을 유지
+				} while(!(gu.getPasswd() != null));
 			
 			
-			// 성명은 필수 입력사항이므로 그냥 엔터나 공백만으로 된 것이 아닐때 까지 반복해야 한다.
-			// 성명은 2글자 이상 6글자 이하의 한글로만 되어져야 한다.
+			//field 생성
+//			String userid;
+//			String passwd;
+//			String name;
+//			String jubun;
+//			
+//			boolean isUse_userid;
+//			do {
+//				isUse_userid = true; // 초기화 
+//				
+//				System.out.print("1.아이디 : ");
+//				userid = sc.nextLine(); // "eomjh"  "leess"  "chaew" 현재 사용중인 아이디 이므로 입력불가!! 
+//				                        // "" 또는 "        " 공백만으로는 입력불가!!
+//				
+//				// == 가입된 회원들에 대해 중복아이디 검사하기 == //
+//			//	if(userid.trim().isEmpty()) // JDK 1.8
+//				if(userid.isBlank()) {	    // JDK 11
+//					System.out.println(">> 아이디는 필수 입력사항 입니다. <<\n");
+//					isUse_userid = false;
+//				}
+//				else {
+//					
+//					for(int i=0; i<Gujikja.count; i++) {
+//						if( userid.equals(gu_arr[i].getUserid()) ) { 
+//							System.out.println(">> 이미 사용중인 아이디 입니다. <<\n");
+//							isUse_userid = false;
+//							break;
+//						}
+//					}// end of for---------------------
+//				}
+//			} while(!isUse_userid);
+//			// end of do~while--------------------------------
+//			
+//			
+		// 비밀번호는 필수 입력사항이면서 비밀번호 조건에 맞을때 까지 반복해야 한다.
+//		boolean isUse_passwd;
+//		do {
+//				isUse_passwd = true; // 초기화
+//				
+//				System.out.print("2.비밀번호 : ");
+//			passwd = sc.nextLine(); // "Qw12$"  "Qwer1234sdfsdfdsfsfsdf$"  "qwer1234$"  "qWer1234$"
+//			
+//		if( !MyUtil.isCheckPasswd(passwd) ) {
+//				System.out.println("[경고] 비밀번호는 8글자 이상 15글자 이하의 대,소문자,숫자,특수기호가 혼합되어야만 합니다.\n"); 
+//				isUse_passwd = false;
+//			}
+//			
+////		} while (!isUse_passwd);
+//			// end of do~while--------------------------------
+//			
+//			
+//			// 성명은 필수 입력사항이므로 그냥 엔터나 공백만으로 된 것이 아닐때 까지 반복해야 한다.
+//			// 성명은 2글자 이상 6글자 이하의 한글로만 되어져야 한다.
 			boolean isUse_name;
 			do {
 				isUse_name = true; // 초기화
@@ -1400,7 +1433,7 @@ public class Ctrl_gujikja {
 							}
 						}// end of for---------------------
 						
-					}
+				}
 					else {
 						isUse_name = false;
 					}

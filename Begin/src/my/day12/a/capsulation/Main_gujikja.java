@@ -99,27 +99,24 @@ public class Main_gujikja {
 		
 		///////////////////////////////////////////////
 		Gujikja gu1 = new Gujikja();
-		gu1.setUserid(" eomjh ");
-		// gu1.setUserid("eomjh"); //메소드의 접근제한자
-		
-		//gu1.userid = "eomjh";
-		gu1.passwd = "aaaaaaaaaaaaaaaa";
-		gu1.name = "Eom Jung Hwa";
-		gu1.jubun = "8610022";
+		gu1.setUserid("eomjh ");	// 메소드의 접근제한자
+		gu1.setPasswd("aaaaaaaaaaaaaaaa");
+		gu1.setName("Eom Jung Hwa");
+		gu1.setJubun("8610022");
 		gu_arr[Gujikja.count++] = gu1;
 		
 		Gujikja gu2 = new Gujikja();
-		gu2.userid = "leess";
-		gu2.passwd = "abCd12345$";
-		gu2.name = "이순신";
-		gu2.jubun = "9209201";
+		gu2.setUserid("leess");
+		gu2.setPasswd("abCd12345$");
+		gu2.setName("이순신");
+		gu2.setJubun("9209201");
 		gu_arr[Gujikja.count++] = gu2;
 		
 		Gujikja gu3 = new Gujikja();
-		gu3.userid = "chaew";
-		gu3.passwd = "aSdf1234$";
-		gu3.name = "차은우";
-		gu3.jubun = "0106203";
+		gu3.setUserid("chaew");
+		gu3.setPasswd("aSdf1234$");
+		gu3.setName("차은우");
+		gu3.setJubun("0106203");
 		gu_arr[Gujikja.count++] = gu3;
         ///////////////////////////////////////////////
 		
