@@ -180,11 +180,12 @@ package my.day13.a.inheritance;
 
 import java.util.Scanner;
 
-public class Main_gujikja {
+public class Main_gujikja_company {
 
 	public static void main(String[] args) {
 		
 		Gujikja[] gu_arr = new Gujikja[5];
+		
 		
 		///////////////////////////////////////////////
 		Gujikja gu1 = new Gujikja();
@@ -215,41 +216,50 @@ public class Main_gujikja {
 		cp1.setId("samsung");
 		cp1.setPasswd("Abcd1234$");
 		cp1.setName("삼성");
-		
-		
+		cp1.setBusiness_number("wsfljslfj");
+		cp1.setJob_type("제조업");
+		cp1.setSeed_money(80000000L);
+		cp_arr[Company.count++] = cp1;
 		
 		Company cp2 = new Company();
 		cp2.setId("lg");
 		cp2.setPasswd("Abcd007$");
 		cp2.setName("엘지");
-		
-		
+		cp2.setBusiness_number("46486456");
+		cp2.setJob_type("IT");
+		cp2.setSeed_money(7000000000L);
+		cp_arr[Company.count++] = cp2;
 		///////////////////////////////////////////////
 		
 		Scanner sc = new Scanner(System.in);
-		Ctrl_gujikja ctrl = new Ctrl_gujikja();
+		Ctrl_Common ctrl_Common = new Ctrl_Common();
+		Ctrl_gujikja ctrl_gu = new Ctrl_gujikja();
+		Ctrl_company ctrl_cp = new Ctrl_company();
 		
 		String str_menuno = "";
 		do {
-			ctrl.main_menu();
+			ctrl_gu.main_menu();
 			str_menuno = sc.nextLine();
 			
 			switch (str_menuno) {
 				case "1": // 구직자 회원가입
-					ctrl.register(sc, gu_arr);
+					ctrl_gu.register(sc, gu_arr);
 					break;
 					
-				case "2": // 구직자 모두보기
-					ctrl.view_all_info(gu_arr);
+				case "2": // 구인회사 회원가입
+					ctrl_gu.register(sc, cp_arr);
 					break;
 					
-				case "3": // 검색하기
-					ctrl.search_menu(sc, gu_arr);
+				case "3": // 구인회사 로그인
+					ctrl_gu.login(sc, gu_arr);
 					break;	
 					
-				case "4": // 프로그램종료
+				case "4": // 구인회사 로그인
 					
 					break;						
+				case "5": // 프로그램 종료
+					
+					break;
 	
 				default:
 					System.out.println("[경고] 메뉴에 없는 번호 입니다.\n");
