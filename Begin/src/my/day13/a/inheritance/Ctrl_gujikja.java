@@ -2634,5 +2634,21 @@ public class Ctrl_gujikja extends Ctrl_Common_ {
 		}// end of if~else----------------------------------
 		
 	}// end of void search_ageLine_gender(Scanner sc, Gujikja[] gu_arr)------	
+
+	// 구직자 로그인 메소드 생성하기
+	public Gujikja login(Scanner sc, Gujikja[] gu_arr) {
+	System.out.println("> 구직자 ID : ");
+	String id = sc.nextLine();
+	
+	System.out.println("> 비밀번호 : ");
+	String passwd = sc.nextLine();
+	
+	for(int i = 0; i <Gujikja.count; i++) {
+		if(id.equals(gu_arr[i].getId()) && passwd.equals(gu_arr[i].getPasswd())) {
+			return gu_arr[i];
+		}
+	}// end of for------------
+		return null;
+	} // end of public Gujikja login(Scanner sc, Gujikja[] gu_arr) 
 	
 }

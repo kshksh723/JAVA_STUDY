@@ -250,8 +250,18 @@ public class Main_gujikja_company {
 					ctrl_gu.register(sc, cp_arr);
 					break;
 					
-				case "3": // 구인회사 로그인
-					ctrl_gu.login(sc, gu_arr);
+				case "3": // 구직자 로그인
+					Gujikja login_gu = ctrl_gu.login(sc, gu_arr);
+					
+					if(login_gu != null) {
+						System.out.println(">> 구직자" + login_gu.getName()+ "님 로그인 성공^^ << \n");
+						
+						ctrl_gu.gu_menu(sc, login_gu, cp_arr);// 구직자 전용메뉴
+					}
+					else {
+						System.out.println(">> 구직자로 로그인 실패 ㅠㅜㅠㅠ << \n");
+					}
+					
 					break;	
 					
 				case "4": // 구인회사 로그인
@@ -266,7 +276,7 @@ public class Main_gujikja_company {
 					break;
 			}// end of switch()---------------
 			
-		} while (!("4".equals(str_menuno)));
+		} while (!("5".equals(str_menuno)));
 		// end of do~while-----------------------
 		
 		sc.close();
