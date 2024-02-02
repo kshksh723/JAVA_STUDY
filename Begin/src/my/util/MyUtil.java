@@ -1,4 +1,4 @@
-package my.util;
+ package my.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -229,8 +229,8 @@ public class MyUtil {
 		if(jubun.length() != 7) {
 			return false;
 		}
-		else if("1".equals(jubun.substring(6))|| "2".equals(jubun.substring(6))||
-		"3".equals(jubun.substring(6))|| "4".equals(jubun.substring(6))){// jubun.length 조건에 안맞아야 들어옴
+		else if(!("1".equals(jubun.substring(6))|| "2".equals(jubun.substring(6))||
+		"3".equals(jubun.substring(6))|| "4".equals(jubun.substring(6)))){// jubun.length 조건에 안맞아야 들어옴
 			return false;
 			}
 		else 
@@ -262,7 +262,7 @@ public class MyUtil {
 			 		 return false;
 			 	 }
 			 	 else {	// 생년월일이 현재 일 이거나 생년월일이 현재일보다 과거인 경우
-			 		 return false;
+			 		 return true;
 			 	 }
 			 	//System.out.println("정상날짜입니다");
 			 	 
