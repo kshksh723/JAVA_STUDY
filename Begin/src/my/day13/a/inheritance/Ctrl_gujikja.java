@@ -3123,6 +3123,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 					break;					
 	
 				case "5" :
+					
 					break;
 				default:
 					System.out.println(">> [경고] 선택하신 번호는 메뉴에 없습니다. <<\n");
@@ -3140,7 +3141,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 
 
 
-	// 구인회사검색하기
+	
 	// 구인회사검색하기
 		private void search_company(Scanner sc, Company[] cp_arr) {
 			
@@ -3360,10 +3361,53 @@ public class Ctrl_gujikja extends Ctrl_common {
 			System.out.println("회사명 업종 사업자등록번호 자본금" );
 			System.out.println("=".repeat(70));
 		}// end of void title_company
-		
 
+
+		public void cp_menu(Scanner sc, Gujikja login_cp, Company[] cp_arr) {
+			
+			String str_cp_menuo = "";		
+			
+			do {
+				///////////////////////////////////////////////////////////////////
+				System.out.println(">>> 구인회사 전용메뉴 (" + str_cp_menuo +")기업 로그인 중) ==="
+						         + "1. 회사정보 보기    2.회사정보 수정   3.모든 구직자 조회 4.구직자 성별 검색 5. 구직자 연령대 검색 6. 구직자 연령대 및 성별 검색 7. 로그아웃 "); 
+				System.out.print("▷ 메뉴번호 선택 : ");
+				cp_menuo = sc.nextLine();
+				
+				switch (cp_menuo) {
+					case "1": // 회사정보 보기
+						jobtype_company(sc, cp_arr);
+						break;
+						
+					case "2": // 회사정보 수정
+						search_seedmoney_company(sc, cp_arr);
+						break;
+						
+					case "3": // 모든 구직자 조회
+						all_gujikja_seek(sc, )
+						break;	
+						
+					case "4": // 모든 구직자 조회
+						
+						break;		
+					
+					case "5": // 구직자 성별 검색
+					
+						break;
+					
+					case "6":
+						
+						break;
+			
+					default:
+						System.out.println(">>[경고] 구인회사 검색메뉴없는 번호 입니다.<<\n");
+						break;
+				}
+			
 		
+			
 		
+		}
 		
 } //end of class
 

@@ -116,4 +116,22 @@ public class Ctrl_company extends Ctrl_common {
 		
 	}// end of public void register(Scanner sc, Company[] cp_arr)-----------
 
+	// 구인회사 로그인
+	public Company login(Scanner sc, Company[] cp_arr) {
+		System.out.print("> 구인회사 ID : ");
+		String id = sc.nextLine();
+		
+		System.out.print("> 비밀번호 : ");
+		String passwd = sc.nextLine();
+		
+		for(int i = 0; i<Company.count; i++) {
+			if(id.equals(cp_arr[i].getId()) 
+			&& passwd.equals(cp_arr[i].getPasswd())) {
+				return cp_arr[i]; // 메소드  종료
+			}
+		}// end fo for
+			return null;
+	
+	}// end of	public Company login(Scanner sc, Company[] cp_arr)-------
+
 }

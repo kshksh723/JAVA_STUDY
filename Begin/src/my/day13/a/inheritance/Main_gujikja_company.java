@@ -376,7 +376,18 @@ public class Main_gujikja_company {
 					break;	
 					
 				case "4": // 구인회사 로그인
-					
+					 Company login_cp =  ctrl_cp.login(sc, cp_arr);
+					 
+
+						if(login_cp != null) {
+							System.out.println(">> 구직회사 "+ login_cp.getName() +"기업 로그인 성공^^ << \n"); 
+							
+						//	ctrl_gu.cp_menu(sc, login_cp, gu_arr); // 구인회사 전용메뉴 -> 구인회사는 사람을 찾아야함
+						}
+						else {
+							System.out.println(">> 구인회사 로그인 실패 ㅜㅜ <<\n");
+						}
+					 
 					break;	
 					
 				case "5": // 프로그램종료
