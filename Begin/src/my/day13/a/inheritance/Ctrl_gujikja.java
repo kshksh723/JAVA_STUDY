@@ -2671,6 +2671,7 @@
 //}
 package my.day13.a.inheritance;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Ctrl_gujikja extends Ctrl_common {
@@ -3362,52 +3363,78 @@ public class Ctrl_gujikja extends Ctrl_common {
 			System.out.println("=".repeat(70));
 		}// end of void title_company
 
+		// == 구인회사 전용메뉴 ==
+		   public void cp_menu(Scanner sc, Company login_cp, Gujikja[] gu_arr) {
 
-		public void cp_menu(Scanner sc, Gujikja login_cp, Company[] cp_arr) {
-			
-			String str_cp_menuo = "";		
-			
-			do {
-				///////////////////////////////////////////////////////////////////
-				System.out.println(">>> 구인회사 전용메뉴 (" + str_cp_menuo +")기업 로그인 중) ==="
-						         + "1. 회사정보 보기    2.회사정보 수정   3.모든 구직자 조회 4.구직자 성별 검색 5. 구직자 연령대 검색 6. 구직자 연령대 및 성별 검색 7. 로그아웃 "); 
-				System.out.print("▷ 메뉴번호 선택 : ");
-				cp_menuo = sc.nextLine();
-				
-				switch (cp_menuo) {
-					case "1": // 회사정보 보기
-						jobtype_company(sc, cp_arr);
-						break;
-						
-					case "2": // 회사정보 수정
-						search_seedmoney_company(sc, cp_arr);
-						break;
-						
-					case "3": // 모든 구직자 조회
-						all_gujikja_seek(sc, )
-						break;	
-						
-					case "4": // 모든 구직자 조회
-						
-						break;		
-					
-					case "5": // 구직자 성별 검색
-					
-						break;
-					
-					case "6":
-						
-						break;
-			
-					default:
-						System.out.println(">>[경고] 구인회사 검색메뉴없는 번호 입니다.<<\n");
-						break;
-				}
-			
-		
-			
-		
-		}
+		      String str_menuno;
+		      do {
+		         System.out.println("=== 구인회사 전용메뉴(삼성 기업 로그인중) ===\n"
+		                        + "1.우리회사정보 보기     2.우리회사정보 수정        3.모든구직자 조회     4.구직자 성별검색\n" 
+		                        + "5.구직자 연령대검색     6.구직자 연령대 및 성별검색    7.로그아웃");
+		         System.out.print("▷ 메뉴번호 선택 : ");
+		         str_menuno = sc.nextLine();
+		         
+		         switch (str_menuno) {
+		            case "1": // 우리회사정보 보기
+		               view_myInfo(login_cp);
+		               break;
+		               
+		            case "2": // 우리회사정보 수정
+		            	update_myInfo(sc, login_cp);
+		               break;
+		               
+		            case "3": // 모든구직자 조회
+		               view_all_info(gu_arr);
+		               break;
+		               
+		            case "4": // 구직자 성별검색
+		               search_gender(sc, gu_arr);
+		               break;
+		               
+		            case "5": // 구직자 연령대검색
+		               search_ageLine(sc, gu_arr); 
+		               break;
+		               
+		            case "6": // 구직자 연령대 및 성별검색
+		               search_ageLine_gender(sc, gu_arr);
+		               break;
+		               
+		            case "7": // 로그아웃
+		               login_cp = null;
+		               break;               
+		   
+		            default:
+		               System.out.println(">> [경고] 선택하신 번호는 메뉴에 없습니다. <<\n"); 
+		               break;
+		         }// end of switch (str_menuno)------------------------
+		         
+		      } while(!"7".equals(str_menuno));
+		      
+		   }// end of public void cp_menu(Scanner sc, Company login_cp, Gujikja[] gu_arr)--------------------
+		// == 우리회사정보 보기 ==
+		   private void view_myInfo(Company login_cp) {
+		   /*
+		        
+		        >>> 삼성 기업의 정보 <<<
+		        ----------------------------------------------------------------------------------
+		          아이디     비밀번호      회사명   가입일자      사업자등록번호  직종타입   자본금
+		        ----------------------------------------------------------------------------------  
+		          samsung  Abcd1234$   삼성     2024-02-02  8123456789   제조업    8,000,000,000원
+		   */
+		      
+		      System.out.println("\n>>> "+ login_cp.getName() +" 기업의 정보 <<<");
+		      System.out.println("-".repeat(80));
+		      System.out.println("  아이디     비밀번호      회사명   가입일자      사업자등록번호  직종타입   자본금 ");
+		      System.out.println("-".repeat(80));
+		      System.out.println(login_cp.getId()+"\t"+
+		                       login_cp.getPasswd()+"\t"+
+		                       login_cp.getName()+"\t"+
+		                       login_cp.getRegister_day().substring(0, 10)+"\t"+
+		                       login_cp.getBusiness_number()+"\t"+
+		                       login_cp.getJob_type()+"\t"+
+		                       new DecimalFormat("#,###").format(login_cp.getSeed_money())+ "원\n" 
+		                      );      
+		   }// end of private void view_myInfo(Company login_cp)------------
 		
 } //end of class
 

@@ -133,5 +133,171 @@ public class Ctrl_company extends Ctrl_common {
 			return null;
 	
 	}// end of	public Company login(Scanner sc, Company[] cp_arr)-------
-
+	// == 우리회사정보 수정 ==
+	   private void update_myInfo(Scanner sc, Company login_cp) {
+	      
+	      view_myInfo(login_cp);
+	      
+	      System.out.println("\n>> [주의사항] 변경하지 않고 예전의 데이터값을 그대로 사용하시려면 그냥 엔터하세요!!\n");
+	      
+	      boolean exit_ok = false;
+	      do {
+	         //////////////////////////////////////////////////////////////
+	         System.out.print("1.비밀번호 : ");
+	         String new_passwd = sc.nextLine();  // 기존비밀번호인 qWer1234$ 을 qWer0070$ 으로 변경하려고 한다.
+	                                             // 기존비밀번호인 qWer1234$ 을 qWer1234$ 으로 변경하려고 하려면 기존암호와 동일하므로 변경이 불가합니다. 
+	                                             // 기존비밀번호인 qWer1234$ 을 변경하기 싫다. 
+	                                             // 기존비밀번호인 qWer1234$ 을 abcd 로 변경하고자 할때는 비밀정책에 맞지 않으므로 안된다.!! 
+	         
+	         if(!new_passwd.equals("")) { // 입력한 비밀번호가 엔터가 아닐 경우 
+	            
+	            if(login_cp.getPasswd().equals(new_passwd) ) { // 입력한 비밀번호가 기존 비밀번호와 같을 경우 
+	               System.out.println(">> 기존암호와 동일하므로 변경이 불가합니다.!!");
+	            }
+	            else {
+	               login_cp.setPasswd(new_passwd);
+	               
+	               if(login_cp.getPasswd().equals(new_passwd)) {
+	                  exit_ok = true;
+	               }
+	            }
+	            
+	         }
+	         
+	         else { // 입력한 비밀번호가 엔터일 경우
+	            exit_ok = true;
+	         }
+	        //////////////////////////////////////////////////////////////
+	      } while(!exit_ok);
+	      // end of do~while-------------------------------------------
+	      
+	      
+	      exit_ok = false;
+	      do {
+	         ////////////////////////////////////////////////////////////////////
+	         System.out.print("2.회사명 : ");
+	         String new_name = sc.nextLine(); // 기존회사명인 삼성 을 삼성전자 로 변경하려고 한다.
+	                                            // 기존회사명인 삼성 을 삼성 으로 변경하려고 하려면 기존회사명과 동일하므로 변경이 불가합니다. 
+	                                            // 기존회사명인 삼성 을 변경하기 싫다. 
+	                                            // 기존회사명인 삼성 을 삼sung 으로 변경하고자 할때는 회사명정책에 맞지 않으므로 안된다.!!
+	         
+	         if(!new_name.equals("")) { // 입력한 회사명이 엔터가 아닐 경우 
+	            
+	            if(login_cp.getName().equals(new_name) ) { // 입력한 회사명이 기존 회사명과 같을 경우 
+	               System.out.println(">> 기존의 회사명과 동일하므로 변경이 불가합니다.!!");
+	            }
+	            else {
+	               login_cp.setName(new_name);
+	               
+	               if(login_cp.getName().equals(new_name)) {
+	                  exit_ok = true;
+	               }
+	            }
+	            
+	         }
+	         
+	         else { // 입력한 회사명이 엔터일 경우
+	            exit_ok = true;
+	         }
+	          ////////////////////////////////////////////////////////////////////
+	      } while(!exit_ok);
+	        
+	      
+	      exit_ok = false;
+	      do {
+	         ////////////////////////////////////////////////////////////////////
+	         System.out.print("3.사업자등록번호 : ");
+	         
+	         String new_business_number = sc.nextLine(); 
+	   
+	         if(!new_business_number.equals("")) {  
+	   
+	            if(login_cp.getBusiness_number().equals(new_business_number) ) {  
+	               System.out.println(">> 기존의 사업자등록번호와 동일하므로 변경이 불가합니다.!!");
+	            }
+	            else {
+	               login_cp.setBusiness_number(new_business_number);
+	               
+	               if(login_cp.getBusiness_number().equals(new_business_number)) {
+	                  exit_ok = true;
+	               }
+	            }
+	   
+	         }
+	         
+	         else { // 입력한 사업자등록번호가 엔터일 경우
+	            exit_ok = true;
+	         }
+	         /////////////////////////////////////////////////////////////////   
+	      } while(!exit_ok);      
+	      
+	      
+	      exit_ok = false;
+	      do {
+	         ////////////////////////////////////////////////////////////////////
+	         System.out.print("4.회사직종타입 : ");
+	         
+	         String new_job_type = sc.nextLine(); 
+	   
+	         if(!new_job_type.equals("")) {  
+	   
+	            if(login_cp.getJob_type().equals(new_job_type) ) {  
+	               System.out.println(">> 기존의 직종타입과 동일하므로 변경이 불가합니다.!!");
+	            }
+	            else {
+	               login_cp.setJob_type(new_job_type); 
+	               
+	               if(login_cp.getJob_type().equals(new_job_type)) {
+	                  exit_ok = true;
+	               }
+	            }
+	   
+	         }
+	         
+	         else { // 입력한 직종타입이 엔터일 경우
+	            exit_ok = true;
+	         }
+	         /////////////////////////////////////////////////////////////////   
+	      } while(!exit_ok);   
+	      
+	   
+	      exit_ok = false;
+	      do {
+	         ////////////////////////////////////////////////////////////////////
+	         System.out.print("5.자본금 : ");
+	         
+	         String str_new_seed_money = sc.nextLine(); 
+	         
+	         if(!str_new_seed_money.equals("")) {  
+	   
+	            long new_seed_money = 0;
+	            
+	            try {
+	                new_seed_money = Long.parseLong(str_new_seed_money);
+	            } catch(NumberFormatException e) {
+	               System.out.println(">> [경고] 자본금은 정수로만 입력하셔야 합니다.!! \n"); 
+	               continue;
+	            }
+	            
+	            if(login_cp.getSeed_money() == new_seed_money) {  
+	               System.out.println(">> 기존의 자본금과 동일하므로 변경이 불가합니다.!!");
+	            }
+	            else {
+	               login_cp.setSeed_money(new_seed_money); 
+	               
+	               if(login_cp.getSeed_money() == new_seed_money) {
+	                  exit_ok = true;
+	               }
+	            }
+	   
+	         }
+	         
+	         else { // 입력한 자본금이 엔터일 경우
+	            exit_ok = true;
+	         }
+	         /////////////////////////////////////////////////////////////////   
+	      } while(!exit_ok);      
+	      
+	      
+	   }// end of private void update_myInfo(Scanner sc, Company login_cp)--------
 }
