@@ -3364,7 +3364,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 		}// end of void title_company
 
 		// == 구인회사 전용메뉴 ==
-		   public void cp_menu(Scanner sc, Company login_cp, Gujikja[] gu_arr) {
+		   public void cp_menu(Scanner sc, Company login_cp, Gujikja[] gu_arr, Recruit[] rc_arr) {
 
 		      String str_menuno;
 		      do {
@@ -3400,7 +3400,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 		               break;
 		               
 		            case "7": // 사원모집공고	
-		               login_cp = null;
+		               register_recruit(sc, login_cp, rc_arr);
 		               break;               
 		   
 		            case "8": // 모집공고 지원
@@ -3415,6 +3415,12 @@ public class Ctrl_gujikja extends Ctrl_common {
 		      } while(!"7".equals(str_menuno));
 		      
 		   }// end of public void cp_menu(Scanner sc, Company login_cp, Gujikja[] gu_arr)--------------------
+		private void register_recruit(Scanner sc, Company login_cp, Recruit[] rc_arr) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
 		// == 우리회사정보 보기 ==
 		   private void view_myInfo(Company login_cp) {
 		   /*

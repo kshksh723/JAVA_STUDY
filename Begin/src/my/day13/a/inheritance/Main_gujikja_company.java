@@ -340,6 +340,17 @@ public class Main_gujikja_company {
 		
 		///////////////////////////////////////////////
 		
+		
+		
+		Recruit[] rc_arr = new Recruit[10];
+		Recruit rc1 = new Recruit();
+		rc1.setCp(cp1);
+		rc1.setWork_type("연구직");
+		rc1.setCnt(5);
+		rc1.setFinish_day("2024-02-08");
+		rc_arr[Recruit.count++] = rc1;
+		
+		
 		Scanner sc = new Scanner(System.in);
 		Ctrl_common  ctrl_common = new Ctrl_common();
 		Ctrl_gujikja ctrl_gu = new Ctrl_gujikja();
@@ -382,7 +393,8 @@ public class Main_gujikja_company {
 						if(login_cp != null) {
 							System.out.println(">> 구직회사 "+ login_cp.getName() +"기업 로그인 성공^^ << \n"); 
 						
-							ctrl_gu.cp_menu(sc, login_cp, gu_arr); // 구인회사 전용메뉴 -> 구인회사는 사람을 찾아야함
+							ctrl_gu.cp_menu(sc, login_cp, gu_arr, rc_arr); // 구인회사 전용메뉴 -> 구인회사는 사람을 찾아야함
+		
 						}
 						else {
 							System.out.println(">> 구인회사 로그인 실패 ㅜㅜ <<\n");
