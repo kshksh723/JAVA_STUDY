@@ -401,7 +401,7 @@ public class Main_gujikja_company {
 			
 		} while (!("5".equals(str_menuno)));
 		// end of do~while-----------------------
-		
+		 
 		sc.close();
 		System.out.println("\n>>> 프로그램 종료 <<<");
 		
