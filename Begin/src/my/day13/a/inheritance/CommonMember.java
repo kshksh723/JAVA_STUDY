@@ -246,7 +246,7 @@ public class CommonMember {
 	
 	private String id;           // 아이디
 	private String passwd;       // 비밀번호
-	private String name;         // 성명
+	private String name;         // 성명  또는 회사명 
 	private String register_day; // 가입일자
 	
 	// Gujikja 및 Company 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 

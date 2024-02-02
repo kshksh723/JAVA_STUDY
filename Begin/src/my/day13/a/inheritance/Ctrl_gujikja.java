@@ -3101,7 +3101,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 		String str_menuno;
 		do {
 			System.out.println("\n === 구직자 전용메뉴("+ login_gu.getName() +"님 로그인중) ===\n"
-			                 + "1.내정보 보기   2.내정보 수정   3.모든구인회사 조회   4.로그아웃\n");  
+			                 + "1.내정보 보기   2.내정보 수정   3.모든구인회사 조회 4.구인회사검색하기   5.로그아웃\n");  
 			System.out.print("▷ 메뉴번호 선택 : ");
 			str_menuno = sc.nextLine();
 			
@@ -3111,28 +3111,129 @@ public class Ctrl_gujikja extends Ctrl_common {
 					break;
 					
 				case "2": // 내정보 수정
-					update_myInfo(sc,);
+					update_myInfo(sc, login_gu);
 					break;	
 					
 				case "3": // 모든구인회사 조회
-					
+					view_all_company_info(cp_arr);
 					break;	
 					
-				case "4": // 로그아웃
-					
+				case "4": // 구인회사검색하기
+					search_company(sc, cp_arr);
 					break;					
 	
+				case "5" :
+					break;
 				default:
 					System.out.println(">> [경고] 선택하신 번호는 메뉴에 없습니다. <<\n");
 					break;
 			}// end of switch (str_menuno)-----------------------
 			
-		} while(!"4".equals(str_menuno));
+		} while(!"5".equals(str_menuno));
 		// end of do~while-----------------------------
 		
 		System.out.println(">> 로그아웃 되었습니다. <<\n");
 		
 	}// end of public void gu_menu(Scanner sc, Gujikja login_gu, Company[] cp_arr)--------------
+
+
+
+
+
+	// 구인회사검색하기
+	// 구인회사검색하기
+		private void search_company(Scanner sc, Company[] cp_arr) {
+			
+			String str_menuno = "";		
+			
+			do {
+				///////////////////////////////////////////////////////////////////
+				System.out.println(">>> 구인회사 검색메뉴 <<<\n"
+						         + "1. 업종검색    2.자본금검색    3.구직자메뉴로 돌아가기"); 
+				System.out.print("▷ 검색메뉴번호 입력 : ");
+				str_menuno = sc.nextLine();
+				
+				switch (str_menuno) {
+					case "1": // 업종검색
+						search_jobtype_company(sc, cp_arr);
+						break;
+						
+					case "2": // 자본금검색
+						search_seedmoney_company(sc, cp_arr);
+						break;
+						
+					case "3": // 구직자메뉴로 돌아가기
+						
+						break;				
+			
+					default:
+						System.out.println(">>[경고] 구인회사 검색메뉴없는 번호 입니다.<<\n");
+						break;
+				}// end of switch(str_menuno)-------------------------------
+		        ///////////////////////////////////////////////////////////////////
+			} while(!"3".equals(str_menuno));
+			
+		}// end of private void search_company(Scanner sc, Company[] cp_arr)----------	
+
+		
+		// 업종검색
+		private void search_jobtype_company(Scanner sc, Company[] cp_arr) {
+			
+			System.out.print("▷ 업종명 : ");
+			String job_type_name = sc.nextLine().toLowerCase();
+			
+			StringBuilder sb = new StringBuilder();
+			boolean is_existence = false;
+			for(int i=0; i<Company.count; i++) {
+				if(cp_arr[i].getJob_type().toLowerCase().contains(String.join("", job_type_name.split("\\ ")))) {
+					is_existence = true;
+					sb.append(cp_arr[i].getInfo()+"\n");
+				}
+			}// end of for----------------------------
+			
+			if(is_existence) {
+				title_company();
+				System.out.println(sb.toString());
+			}
+			else {
+				System.out.println(">> 검색하시려는 "+ job_type_name +"업종에 해당하는 회사는 없습니다.!!\n");
+			}
+			
+		}// end of private void search_jobtype_company(Company[] cp_arr)------
+
+		
+		// 자본금검색
+		private void search_seedmoney_company(Scanner sc, Company[] cp_arr) {
+			
+			System.out.print("▷ 자본금 : ");
+			String str_search_seed_money = sc.nextLine();
+			
+			try {
+				long search_seed_money = Long.parseLong(str_search_seed_money);
+				
+				StringBuilder sb = new StringBuilder();
+				boolean is_existence = false;
+				
+				for(int i=0; i<Company.count; i++) {
+					if( search_seed_money <= cp_arr[i].getSeed_money() ) {
+						is_existence = true;
+						sb.append(cp_arr[i].getInfo()+"\n");
+					}
+				}// end of for----------------------------
+				
+				if(is_existence) {
+					title_company();
+					System.out.println(sb.toString());
+				}
+				else {
+					System.out.println(">> 검색하시려는 자본금이 "+ str_search_seed_money +"원 이상인 회사는 없습니다.!!\n");
+				}
+				
+			} catch(NumberFormatException e) {
+				System.out.println(">>[경고] 자본금은 정수로만 입력하세요!!<< \n");
+			}
+			
+		}// end of private void search_seedmoney_company(Company[] cp_arr)------
 
 
 	private void view_myInfo(Gujikja login_gu) {
@@ -3154,14 +3255,115 @@ public class Ctrl_gujikja extends Ctrl_common {
 	*/
 	
 	private void update_myInfo(Scanner sc, Gujikja login_gu) {
+		
 	view_myInfo(login_gu);
-	System.out.println("[주의사항] 변경하지 않고 예전의 데이터값을 그대로 사용하시려면 그냥 엔터하세요!");
-	System.out.println("1. 비밀번호 :");
-	String new_passwd = sc.nextLine(); // 기존 비밀번호인 qWer1234$을 qWer0070$으로 변경하려고 한다
-									   // 기존 비밀번호인 qWer1234$을 qWer0070$으로 변경하려면 기존 암호와 동일하므로 변경이 불가합니다
-										// 기존 비밀번호인 qWer1234$을 변경하기 싫다
-										// 기존 비밀번호는 qWer1234$을 abcd로 변경하고자 할 때는 비밀번호 정책에 맞지 않으므로 안된다
+	System.out.println("\n>>[주의사항] 변경하지 않고 예전의 데이터값을 그대로 사용하시려면 그냥 엔터하세요!\\n");
+	
+	boolean exit_ok = false;
+	
+	do {
+///////////////////////////////////////////////////////////////////////////////////////////		
+		System.out.println("1. 비밀번호 :");
+		String new_passwd = sc.nextLine(); // 기존 비밀번호인 qWer1234$을 qWer0070$으로 변경하려고 한다
+										   // 기존 비밀번호인 qWer1234$을 qWer0070$으로 변경하려면 기존 암호와 동일하므로 변경이 불가합니다
+											// 기존 비밀번호인 qWer1234$을 변경하기 싫다
+											// 기존 비밀번호는 qWer1234$을 abcd로 변경하고자 할 때는 비밀번호 정책에 맞지 않으므로 안된다
+		
+		
+		if(!new_passwd.equals("")) { // 입력한 비밀번호가 엔터가 아닐 경우 
+			
+			if(login_gu.getPasswd().equals(new_passwd)) { // 입력한 비밀번호가 기존 비밀번호와 같을 경우
+				System.out.println(">> 기존암호와 동일하므로 변경이 불가합니다!!");
+			}
+			else {
+				login_gu.setPasswd(new_passwd);	
+				if(login_gu.getPasswd().equals(new_passwd)) {
+					exit_ok = true;
+				} 
+			}
+	
+		} else { //입력한 비밀번호가 엔터일 경우에
+				exit_ok = true;
+			}
+		////////////////////////////////////////
+	} while(!exit_ok);
+	// end of do~while
+	
+	exit_ok = false;
+	System.out.print("2. 성명 : ");
+	String new_name = sc.nextLine();  // 기존 성명인 엄정화를 엄화정으로 변경하려고 한다
+										// 기존 성명인 엄정화을 엄정화로 변경하려면 기존 암호와 동일하므로 변경이 불가합니다
+										// 기존 성명인 엄정화을 변경하기 싫다
+										// 기존 성명인 엄JungHwa로 변경하고자 할 때는 성명 정책에 맞지 않으므로 안된다
+	do {
+		
+		if(!new_name.equals("")) {// 입력한 성명이 엔터가 아닐 경우 
+		
+			if(login_gu.getName().equals(new_name)) { // 입력한 성명이 기존 성명과 같을 경우
+				System.out.println(">> 기존성명과 동일하므로 변경이 불가합니다!!");
+			}
+			else {
+				login_gu.setName(new_name);	
+				if(login_gu.getName().equals(new_name)) {
+					exit_ok = true;
+				} 
+			} 
+			
+		} else { //입력한 비밀번호가 엔터일 경우에
+			exit_ok = true;
+			}	
+		
+	} while(!exit_ok);
+	////////////////////////////////////////////////////////////
+	exit_ok = false;
+	System.out.print("3. 주민번호 :");
+	do {
+		//////////////////////////////////
+		String new_jubun = sc.nextLine();
+		if(!new_jubun.equals("")) {
+			if(login_gu.getJubun().equals(new_jubun)) {
+				System.out.println(">>");
+			} else {
+			login_gu.setName(new_name);	
+			if(login_gu.getName().equals(new_name)) {
+				exit_ok = true;
+			} 
+		}
+			
+	} else {//입렵한 주민번호가 엔터일 경우
+			exit_ok = true;
+	}
+	} while(!exit_ok);
+	
+	}	
+	
+	
+	// 모든구인회사 조회
+		private void view_all_company_info(Company[] cp_arr) {
+			if(Company.count == 0) { 
+			System.out.println("\n>> 구인회사로 등록된 회사가 한개도 없습니다.\n");
+			}
+			else {
+				title_company(); // 회사 정보를 보여주는 타이틀
+				StringBuilder sb = new StringBuilder();
+				for(int i =0; i<Company.count; i++) {
+					sb.append(cp_arr[i].getInfo()+"\n");
+								//cp_arr[i].getInfo()
+				}// end for
+				System.out.println(sb.toString());
+			}
+		} // end of private void view_all_company_info(Company[] cp_arr) --
 
-}
-}
+
+		private void title_company() {
+			System.out.println("=".repeat(70));
+			System.out.println("회사명 업종 사업자등록번호 자본금" );
+			System.out.println("=".repeat(70));
+		}// end of void title_company
+		
+
+		
+		
+		
+} //end of class
 

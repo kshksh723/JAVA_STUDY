@@ -110,6 +110,7 @@
 //}
 package my.day13.a.inheritance;
 
+import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -193,5 +194,21 @@ public class Company extends CommonMember {
 		}
 		
 	}
+
+	public String getInfo() { // private 쓰면 안됌
+		
+		DecimalFormat df = new DecimalFormat("#,###"); // 숫자를 3자리마다 콤마
+		
+		
+		
+		// 회사명 업종 사업자등록번호 자본금
+		return super.getName() + " \t" + job_type + "\t" + business_number  + "\t" + df.format(seed_money); 
+		
+		
+		
+		
+		
+	}// end of public String getInfo()
+
 	
 }
