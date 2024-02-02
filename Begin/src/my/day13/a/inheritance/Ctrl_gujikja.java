@@ -3370,7 +3370,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 		      do {
 		         System.out.println("=== 구인회사 전용메뉴(삼성 기업 로그인중) ===\n"
 		                        + "1.우리회사정보 보기     2.우리회사정보 수정        3.모든구직자 조회     4.구직자 성별검색\n" 
-		                        + "5.구직자 연령대검색     6.구직자 연령대 및 성별검색    7.로그아웃");
+		                        + "5.구직자 연령대검색     6.구직자 연령대 및 성별검색    7.로그아웃 8. 모집공고지원자 조회 9. 로그아웃");
 		         System.out.print("▷ 메뉴번호 선택 : ");
 		         str_menuno = sc.nextLine();
 		         
@@ -3399,10 +3399,14 @@ public class Ctrl_gujikja extends Ctrl_common {
 		               search_ageLine_gender(sc, gu_arr);
 		               break;
 		               
-		            case "7": // 로그아웃
+		            case "7": // 사원모집공고	
 		               login_cp = null;
 		               break;               
 		   
+		            case "8": // 모집공고 지원
+		            	break;
+		            	
+		            case "9": // 로그아웃
 		            default:
 		               System.out.println(">> [경고] 선택하신 번호는 메뉴에 없습니다. <<\n"); 
 		               break;
