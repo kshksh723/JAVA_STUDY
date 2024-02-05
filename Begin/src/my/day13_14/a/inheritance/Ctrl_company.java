@@ -682,7 +682,37 @@ public class Ctrl_company extends Ctrl_common {
 			}
 		} while (!(rc.getCnt() > 0) );
 	
+		do {
+			System.out.print("4. 연봉 [단위  만원] : ");
+			String str_pay = sc.nextLine();
+			
+			try {
+				int pay = Integer.parseInt(str_pay);
+				if(pay <= 0) {
+					System.out.println("[경고] 1이상 입력하세요!!");
+				}
+			
+				else {
+					rc.setPay(pay);
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("[경고] 1이상 입력하세요!!");
+			}
+		} while (!(rc.getPay() > 0) );
+		
+		do {
+			System.out.print("5. 채용 마감일자 [예> 20240208] : ");
+			String finish_day = sc.nextLine();
+			rc.setFinish_day(finish_day);
+		} while (!(rc.getFinish_day() != null) );
+		System.out.println(""); // 한줄 띄우기
+		rc.setCp(login_cp);
+		
+		rc_arr[Recruit.count++] = rc;
+		
 	}// end of private void register_recruit(Scanner sc, Company login_cp)------	
+	
+	
 	
 	// 우리회사 채용 공고 조회
 	private void view_recruit_mycompany(Company login_cp, Recruit[] rc_arr) {

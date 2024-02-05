@@ -21,7 +21,7 @@ public class CommonMember {
 		// System.out.println("== 부모클래스인 CommonMember 클래스의 기본생성자 호출 ==");
 		
 		Date now = new Date(); // 현재시각
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
 		
 		register_day = df.format(now);
 	}

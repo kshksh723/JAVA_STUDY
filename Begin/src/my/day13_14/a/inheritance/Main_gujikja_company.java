@@ -85,6 +85,40 @@ public class Main_gujikja_company {
 		rc_arr[Recruit.count++] = rc3;
 		
         ///////////////////////////////////////////////
+		RecruitApply[] rcApply_arr = new RecruitApply[20];
+	      
+	      RecruitApply rcapply1 = new RecruitApply();
+	      rcapply1.setRc(rc1);
+	      rcapply1.setGu(gu1);
+	      rcapply1.setApply_motive("엄정화는 사무에 최선을 다합니다.");
+	      rcApply_arr[RecruitApply.count++] = rcapply1;
+	      
+	      RecruitApply rcapply2 = new RecruitApply();
+	      rcapply2.setRc(rc1);
+	      rcapply2.setGu(gu2);
+	      rcapply2.setApply_motive("이순신은 최고의 사무직 인재입니다.");
+	      rcApply_arr[RecruitApply.count++] = rcapply2;
+	      
+	      RecruitApply rcapply3 = new RecruitApply();
+	      rcapply3.setRc(rc2);
+	      rcapply3.setGu(gu3);
+	      rcapply3.setApply_motive("차은우는 최고의 기술을 가진 엔지니어 입니다.");
+	      rcApply_arr[RecruitApply.count++] = rcapply3;
+	      
+	      RecruitApply rcapply4 = new RecruitApply();
+	      rcapply4.setRc(rc3);
+	      rcapply4.setGu(gu1);
+	      rcapply4.setApply_motive("엄정화는 영업의 달인 입니다.");
+	      rcApply_arr[RecruitApply.count++] = rcapply4;
+	      
+	      RecruitApply rcapply5 = new RecruitApply();
+	      rcapply5.setRc(rc3);
+	      rcapply5.setGu(gu2);
+	      rcapply5.setApply_motive("이순신은 판매왕 입니다.");
+	      rcApply_arr[RecruitApply.count++] = rcapply5;
+		/////////////////////////////////////////////////
+		
+		
 		
 		
 		Scanner sc = new Scanner(System.in);
@@ -112,7 +146,7 @@ public class Main_gujikja_company {
 					if(login_gu != null) {
 						System.out.println(">> 구직자 "+ login_gu.getName() +"님 로그인 성공^^ << \n"); 
 						
-						ctrl_gu.gu_menu(sc, login_gu, cp_arr); // 구직자 전용메뉴
+						ctrl_gu.gu_menu(sc, login_gu, cp_arr,  rc_arr, rcApply_arr); // 구직자 전용메뉴
 					}
 					else {
 						System.out.println(">> 구직자로 로그인 실패 ㅜㅜ <<\n");
