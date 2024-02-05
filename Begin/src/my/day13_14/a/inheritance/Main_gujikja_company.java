@@ -1,4 +1,4 @@
-package my.day13.a.inheritance;
+package my.day13_14.a.inheritance;
 
 import java.util.Scanner;
 
@@ -53,14 +53,36 @@ public class Main_gujikja_company {
 		
 		///////////////////////////////////////////////
 		
-		Recruit[] rc_arr = new Recruit[10];
+		Recruit[] rc_arr = new Recruit[10]; // 채용을 10번까지 할 수 있다
 		
 		Recruit rc1 = new Recruit();
 		rc1.setCp(cp1);
-		rc1.setWork_type("연구직");
-		rc1.setCnt(5);
-		rc1.setFinish_day("2024-02-08");
+		rc1.setSubject("성실한 사무직원을 채용합니다.");
+		rc1.setWork_type("사무직");
+		rc1.setCnt(2);
+		rc1.setPay(4000);
+		rc1.setFinish_day("20240208");
 		rc_arr[Recruit.count++] = rc1;
+		
+		
+		Recruit rc2 = new Recruit();
+		rc2.setCp(cp2);
+		rc2.setSubject("우수한 기술직원을 채용합니다");
+		rc2.setWork_type("기술직");
+		rc2.setCnt(6);
+		rc2.setPay(4500);
+		rc2.setFinish_day("20240207");
+		rc_arr[Recruit.count++] = rc2;
+		
+		
+		Recruit rc3 = new Recruit();
+		rc3.setCp(cp2);
+		rc3.setSubject("참신한 영업직원을 채용합니다");
+		rc3.setWork_type("영업직");
+		rc3.setCnt(10);
+		rc3.setPay(5000);
+		rc3.setFinish_day("20240302");
+		rc_arr[Recruit.count++] = rc3;
 		
         ///////////////////////////////////////////////
 		

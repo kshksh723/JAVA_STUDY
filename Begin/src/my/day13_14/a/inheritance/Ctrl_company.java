@@ -1,4 +1,4 @@
-package my.day13.a.inheritance;
+package my.day13_14.a.inheritance;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -108,9 +108,9 @@ public class Ctrl_company extends Ctrl_common {
 
 		String str_menuno;
 		do {
-			System.out.println("=== 구인회사 전용메뉴(삼성 기업 로그인중) ===\n"
+			System.out.println("=== 구인회사 전용메뉴("+ login_cp.getName() +"기업 로그인중) ===\n"
 					         + "1.우리회사정보 보기     2.우리회사정보 수정        3.모든구직자 조회     4.구직자 성별검색\n" 
-					         + "5.구직자 연령대검색     6.구직자 연령대 및 성별검색  7.사원모집공고   8.모집공고지원자 조회   9.로그아웃");
+					         + "5.구직자 연령대검색     6.구직자 연령대 및 성별검색  7.채용공고입력하기   8.우리회사 채용 공고 조회   9.로그아웃");
 			System.out.print("▷ 메뉴번호 선택 : ");
 			str_menuno = sc.nextLine();
 			
@@ -139,11 +139,13 @@ public class Ctrl_company extends Ctrl_common {
 					search_ageLine_gender(sc, gu_arr);
 					break;
 					
-				case "7": // 사원모집공고   
+				case "7": // 채용공고입력하기 
 					register_recruit(sc, login_cp, rc_arr);
+					
 					break;
 					
-				case "8": // 모집공고지원자 조회		
+				case "8": // 우리회사 채용 공고 조회
+					view_recruit_mycompany(login_cp, rc_arr);
 					
 					break;
 					
@@ -161,7 +163,9 @@ public class Ctrl_company extends Ctrl_common {
 	}// end of public void cp_menu(Scanner sc, Company login_cp, Gujikja[] gu_arr)--------------------
 
 
-	
+
+
+
 	// == 우리회사정보 보기 ==
 	private void view_myInfo(Company login_cp) {
 	/*
@@ -642,11 +646,59 @@ public class Ctrl_company extends Ctrl_common {
 
 	
 	
-	// == 사원모집공고 == 
+	// == 채용공고 입력하기 
 	private void register_recruit(Scanner sc, Company login_cp, Recruit[] rc_arr) {
+		System.out.println("=====" + login_cp.getName() + " 채용 공고 등록 =============");
 		
+		Recruit rc = new Recruit();
 		
+		do {
+			System.out.print("1. 채용제목 : ");
+			String subject = sc.nextLine();
+			rc.setSubject(subject);
+		} while (!(rc.getSubject() != null) );
+		
+		do {
+			System.out.print("2. 채용 분야[예> 사무직] : ");
+			String work_type = sc.nextLine();
+			rc.setWork_type(work_type);
+		} while (!(rc.getWork_type() != null) );
+		
+		do {
+			System.out.print("3. 채용 인원 : ");
+			String str_cnt = sc.nextLine();
+			
+			try {
+				int cnt = Integer.parseInt(str_cnt);
+				if(cnt <= 0) {
+					System.out.println("[경고] 1이상 입력하세요!!");
+				}
+			
+				else {
+					rc.setCnt(cnt);
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("[경고] 1이상 입력하세요!!");
+			}
+		} while (!(rc.getCnt() > 0) );
+	
 	}// end of private void register_recruit(Scanner sc, Company login_cp)------	
 	
+	// 우리회사 채용 공고 조회
+	private void view_recruit_mycompany(Company login_cp, Recruit[] rc_arr) {
+		boolean is_existence = false;
+		
+		for(int i=0; i<Recruit.count; i++) {
+			if( login_cp.getId().equals( rc_arr[i].getCp().getId())) {
+				is_existence = true; // 발견
+				System.out.println( rc_arr[i].recruit_info()); // 채용정보를 알려줌 
+				
+			
+			}
+		}// end of for
+		if(!is_existence) {
+			System.out.println(">> 채용 공고를 낸 것이 없습니다<<\n");
+		}
+	}// end of private void view_recruit_mycompany(Company login_cp, Recruit[] rc_arr)
 	
 }

@@ -1,4 +1,4 @@
-package my.day13.a.inheritance;
+package my.day13_14.a.inheritance;
 
 import java.text.DecimalFormat;
 import java.util.regex.Matcher;

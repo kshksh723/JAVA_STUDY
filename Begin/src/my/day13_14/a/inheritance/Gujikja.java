@@ -1,4 +1,4 @@
-package my.day13.a.inheritance;
+package my.day13_14.a.inheritance;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
