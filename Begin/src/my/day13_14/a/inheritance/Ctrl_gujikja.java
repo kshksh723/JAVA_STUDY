@@ -463,7 +463,24 @@ public class Ctrl_gujikja extends Ctrl_common {
 			
 			// 채용 응모하기
 	private void input_rc(Scanner sc, Gujikja login_gu, Recruit[] rc_arr, RecruitApply[] rcApply_arr) {
-				
+		// 구직자 자신이 응모한 채용공고 번호를 알아오자
+		String str_my_recruit_no = "";
+		for(int i = 0; i<RecruitApply.count; i++) {
+		if	(rcApply_arr[i].getGu().getId().equals(login_gu.getId())) {
+			str_my_recruit_no += rcApply_arr[i].getRc().getRecruit_no()+",";
+			}
+		} // end of for
+		// str_my_recruit_no = "1,3,2,";
+		
+		str_my_recruit_no = str_my_recruit_no.substring(0, str_my_recruit_no.length()-1);
+		// "1,3,2"
+		
+		String[] my_recruit_no_arr = str_my_recruit_no.split("\\,");
+		// {"1","3","2"}
+	if(	my_recruit_no_arr.length == Recruit.count ) { // 배열의 갯수 
+		System.out.println(">> 이미 모든 채용공고에 응모하셨기에 더 이상 채용에 응모한 채용공고번호가 없습니다\n");
+		return; // 메소드 종료
+	}
 		// 채용 공고 번호는 채용 공고로 올라온 번호만 입력해야한다.
 		
 		boolean is_existence, is_duplicate_recruit_no, is_all_apply;
@@ -471,7 +488,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 		do {
 			is_existence = false;
 			is_duplicate_recruit_no = false;
-			is_all_apply = true;
+			// is_all_apply = true;
 			
 			System.out.println("> 채용 공고 번호 : ");
 			String input_recruit_no = sc.nextLine();  //"1" "3" "2" "1435" "강아지"
@@ -489,7 +506,8 @@ public class Ctrl_gujikja extends Ctrl_common {
 			if(!is_existence) {
 				System.out.println(">> 입력하신 "+ input_recruit_no  +" 번은 채용 공고에 존재하지 않습니다");
 			}
-			else {
+			
+			else {		
 			// == 채용 공고 번호는 채용공고로 올라온 번호이지만 이미 응모한 채용공고번호는 입력하면 안된다	
 			// boolean is_duplicate_recruit_no = false; // 중복된 채용공고 
 	
@@ -507,10 +525,10 @@ public class Ctrl_gujikja extends Ctrl_common {
 				    }
 				}// end of for---------------------
 			
-				    if(is_duplicate_recruit_no && RecruitApply.count != cnt ) {
+				    if(is_duplicate_recruit_no && Recruit.count != cnt ) {
 					    System.out.println(">> 입력하신 채용공고 번호"+ input_recruit_no +"번은 이미 응모하신 번호입니다");
 				    }  
-				    else if(RecruitApply.count == cnt) {
+				    else if(Recruit.count == cnt) {
 				    	System.out.println(">> 이미 모든 채용공고에 응모하셨기에 더 이상 채용에 응모한 채용공고번호가 없습니다\n");
 			    	break; //do  while문, while (!(is_existence && !is_duplicate_recruit_no) ); 이것을 빠져나간다
 				    }
@@ -537,6 +555,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 			}
 			
 		} // end of if - else
+			
 		
 	} while (!(is_existence && !is_duplicate_recruit_no) );
 		
