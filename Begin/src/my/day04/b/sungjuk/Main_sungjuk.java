@@ -27,7 +27,10 @@ public class Main_sungjuk {
 			// int status = 0; // 좌중괄호, 우중괄호만 쓰인다
 			// 벗어난 순간 예외를 못씀
 			
-		System.out.println("3. 국어 : ");
+		System.out.println("3. 국어 : "); 
+		
+		
+		
 		
 		
 		// === ** 유효성 검사하기 (올바른 데이터인지 틀린 데이터인지 검사하는 것) ***
