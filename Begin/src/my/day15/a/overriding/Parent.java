@@ -6,4 +6,9 @@ public class Parent {
 	String id;
 	String passwd;
 	
+	// method
+	protected String info() {
+		return id+" , " + passwd;
+	}
+	
 }
