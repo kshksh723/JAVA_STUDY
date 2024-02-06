@@ -1,12 +1,16 @@
-package my.day15.d.abstract_class;
+package my.day15.f.polymorphism;
 
 import java.util.Scanner;
+
+import my.day13_14.a.inheritance.Company;
 
 public class Main_gujikja_company {
 
 	public static void main(String[] args) {
 		
-		Gujikja[] gu_arr = new Gujikja[5];
+		
+		CommonMember[] cmbr_arr = new CommonMember[9];
+		
 		
 		///////////////////////////////////////////////
 		Gujikja gu1 = new Gujikja();
@@ -14,33 +18,27 @@ public class Main_gujikja_company {
 		gu1.setPasswd("qWer1234$");
 		gu1.setName("엄정화");
 		gu1.setJubun("8610202");
-		gu_arr[Gujikja.count++] = gu1;
+		cmbr_arr[CommonMember.count++] = gu1;
 		
 		Gujikja gu2 = new Gujikja();
 		gu2.setId("leess");
 		gu2.setPasswd("abCd12345$");
 	    gu2.setName("이순신");
 	    gu2.setJubun("8601201");
-		gu_arr[Gujikja.count++] = gu2;
+	    cmbr_arr[CommonMember.count++] = gu2;
 		
 		Gujikja gu3 = new Gujikja();
-		gu3.setId("chaew");
-		gu3.setPasswd("aSdf1234$");
-		gu3.setName("차은우");
-		gu3.setJubun("0106203");
-		gu_arr[Gujikja.count++] = gu3;
-        ///////////////////////////////////////////////
+		gu3.setId("chaew"); 
 		
-		Company[] cp_arr = new Company[3];
+		CommonMember cp1 = new Company();
 		
-		Company cp1 = new Company();
 		cp1.setId("samsung");
 		cp1.setPasswd("Abcd1234$");
 		cp1.setName("삼성");
 		cp1.setBusiness_number("8123456789");
 		cp1.setJob_type("제조업");
 		cp1.setSeed_money(8000000000L);
-		cp_arr[Company.count++] = cp1;
+		cmbr_arr[CommonMember.count++] = cp1;
 		
 		Company cp2 = new Company();
 		cp2.setId("lg");
@@ -49,7 +47,7 @@ public class Main_gujikja_company {
 		cp2.setBusiness_number("7123456789");
 		cp2.setJob_type("IT");
 		cp2.setSeed_money(7000000000L);
-		cp_arr[Company.count++] = cp2; 
+		cmbr_arr[CommonMember.count++] = cp2; 
 		
 		///////////////////////////////////////////////
 		
@@ -62,7 +60,7 @@ public class Main_gujikja_company {
 		rc1.setCnt(2);
 		rc1.setPay(4000);
 		rc1.setFinish_day("20240208");
-		rc_arr[Recruit.count++] = rc1;
+		rc_arr[CommonMember.count++] = rc1;
 		
 		
 		Recruit rc2 = new Recruit();
@@ -72,7 +70,7 @@ public class Main_gujikja_company {
 		rc2.setCnt(6);
 		rc2.setPay(4500);
 		rc2.setFinish_day("20240207");
-		rc_arr[Recruit.count++] = rc2;
+		rc_arr[CommonMember.count++] = rc2;
 		
 		
 		Recruit rc3 = new Recruit();
@@ -82,7 +80,7 @@ public class Main_gujikja_company {
 		rc3.setCnt(10);
 		rc3.setPay(5000);
 		rc3.setFinish_day("20240302");
-		rc_arr[Recruit.count++] = rc3;
+		rc_arr[CommonMember.count++] = rc3;
 		
 		
 		////////////////////////////////////////////////
@@ -141,20 +139,20 @@ public class Main_gujikja_company {
 			
 			switch (str_menuno) {
 				case "1": // 구직자 회원가입
-					ctrl_gu.register(sc, gu_arr);
+					ctrl_gu.register(sc,cmbr_arr);
 					break;
 					
 				case "2": // 구인회사 회원가입
-					ctrl_cp.register(sc, cp_arr);
+					ctrl_cp.register(sc, cmbr_arr);
 					break;
 					
 				case "3": // 구직자 로그인
-					Gujikja login_gu = ctrl_gu.login(sc, gu_arr);
+					Gujikja login_gu = ctrl_common.login(sc, cmbr_arr , 1);
 					
 					if(login_gu != null) {
 						System.out.println(">> 구직자 "+ login_gu.getName() +"님 로그인 성공^^ << \n"); 
 						
-						ctrl_gu.gu_menu(sc, login_gu, cp_arr,  rc_arr, rcApply_arr); // 구직자 전용메뉴
+						ctrl_gu.gu_menu(sc, login_gu, cmbr_arr,  rc_arr, rcApply_arr); // 구직자 전용메뉴
 					}
 					else {
 						System.out.println(">> 구직자로 로그인 실패 ㅜㅜ <<\n");
@@ -163,12 +161,12 @@ public class Main_gujikja_company {
 					break;	
 					
 				case "4": // 구인회사 로그인
-					Company login_cp = ctrl_cp.login(sc, cp_arr);
+					Company login_cp = ctrl_common.login(sc, cmbr_arr, 2);
 					
 					if(login_cp != null) {
 						System.out.println(">> 구인회사 "+ login_cp.getName() +"기업 로그인 성공^^ << \n"); 
 						
-						ctrl_cp.cp_menu(sc, login_cp, gu_arr, rc_arr, rcApply_arr); // 구인회사 전용메뉴
+						ctrl_gu.gu_menu(sc, login_cp, cmbr_arr, rc_arr, rcApply_arr); // 구인회사 전용메뉴
 					}
 					else {
 						System.out.println(">> 구인회사 로그인 실패 ㅜㅜ <<\n");

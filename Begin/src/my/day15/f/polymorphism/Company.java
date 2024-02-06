@@ -1,4 +1,4 @@
-package my.day15.d.abstract_class;
+package my.day15.f.polymorphism;
 
 import java.text.DecimalFormat;
 import java.util.regex.Matcher;
@@ -15,8 +15,6 @@ public class Company extends CommonMember {
 	private String business_number;   // 사업자등록번호 
 	private String job_type;          // 회사직종타입(제조업, 서비스업, IT, ...)
 	private long seed_money;          // 자본금 
-	
-	static int count;     // Company 객체(인스턴스)의 개수를 알아오려는 용도	
 
 	// 기본생성자 생략됨!!
 /*	

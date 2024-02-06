@@ -1,4 +1,4 @@
-package my.day15.c.overriding_overloading;
+package my.day15.f.polymorphism;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,22 +6,28 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import my.util.MyUtil;
-// 일반 클래스
-public class CommonMember {
+
+
+// 미완성 클래스 (== 추상클래스 == abstract class
+public  abstract class CommonMember {
 
 	// Gujikja 클래스와 Company 클래스에서 공통으로 사용되어지는 field(속성) 생성하기
 	
+	private int type;			 // Gujikja와 company 를 구분짓는 용도, type 값이 1이라면 gujikja로 보고, type 값이 2이라면 company라고 본다
 	private String id;           // 아이디
 	private String passwd;       // 비밀번호
 	private String name;         // 성명 또는 회사명
 	private String register_day; // 가입일자
+	
+	static int count;	// gujikja 객체 및 company 객체가 생성되어진 개수를 알아오려는 용도이다
+	
 	
 	// Gujikja 및 Company 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 
 	public CommonMember(){
 		// System.out.println("== 부모클래스인 CommonMember 클래스의 기본생성자 호출 ==");
 		
 		Date now = new Date(); // 현재시각
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
 		
 		register_day = df.format(now);
 	}
@@ -29,6 +35,22 @@ public class CommonMember {
 	
 	// 캡슐화(EnCapsulation == 은닉화) 되어진 field 를 메소드를 통해 접근하도록 만들기 //
 	// == getter, setter 하기 == // 
+	public int getType() {
+		return type;
+	}
+
+
+	public void setType(int type) {
+		if(type == 1 || type == 2) {
+			this.type = type;
+			// type의 값이 1이라면 Gujikja로 보고 
+			//  type의 값이 2이라면 company 라 보겠다 
+		}
+		this.type = type;
+	}
+	
+	
+	
 	public void setId(String id) {
 		
 		if( id == null || id.isBlank() ) {
@@ -66,6 +88,9 @@ public class CommonMember {
 	}
 	
 	
+	
+
+
 	public String getId() {
 		
 		return id;
@@ -88,32 +113,7 @@ public class CommonMember {
 		return passwd;
 	}
 	
-/*	
-	public void setName(String name) {
-		// 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.
-		
-		if(name != null) {
-			char[] ch_arr = name.toCharArray();
-			
-			boolean isOnly_hangul = true;
-		    for(char ch : ch_arr) {
-		       if( !('가' <= ch && ch <= '힣') ) {
-		    	   isOnly_hangul = false;
-		    	   break;
-		       }
-		    }// end of for-----------------
-		    
-		    if(2 <= ch_arr.length && ch_arr.length <= 6 
-		       && isOnly_hangul) {
-		    	this.name = name;
-		    }
-		    else {
-		    	System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 합니다.\n");
-		    }
-		}
-		
-	}
-*/
+
 	
 	
 	public void setName(String name) {
@@ -132,7 +132,15 @@ public class CommonMember {
 	}
 
 
+	///////////////////////////////////////////////////
+	public abstract String  getInfo(); 
+	//{ //미완성 메소드
+	//	return "1. 아이디 : " + id + ", 2. 비밀번호 :" + passwd;
+	
 
+	 // 미완성 메소드(== 추상메소드 abstract method) -> 해당클래스가 미완성 클래스가 되어야함
+	
+	
 	///////////////////////////////////////////////////////
 	String parent_test() {
 		return "부모클래스에서 만들었어요. 그냥 연습이에요!!";

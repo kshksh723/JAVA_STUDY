@@ -135,11 +135,13 @@ public  abstract class CommonMember {
 
 
 	///////////////////////////////////////////////////
-	public String getInfo() { //미완성 메소드
-		return "1. 아이디 : " + id + ", 2. 비밀번호 :" + passwd;
-	}
+	public abstract String  getInfo(); 
+	//{ //미완성 메소드
+	//	return "1. 아이디 : " + id + ", 2. 비밀번호 :" + passwd;
+	
 
 	 // 미완성 메소드(== 추상메소드 abstract method) -> 해당클래스가 미완성 클래스가 되어야함
+	
 	
 	///////////////////////////////////////////////////////
 	String parent_test() {
