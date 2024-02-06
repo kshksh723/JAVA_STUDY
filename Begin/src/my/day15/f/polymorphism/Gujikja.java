@@ -92,10 +92,12 @@ public class Gujikja extends CommonMember {
 	
 	// 기본생성자 
 	
-	public Company() {
-		super(); // Gujikja 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 이다.
-		super.setType(2);
-	}
+	// 기본생성자
+		public Gujikja() {
+			super(); // Gujikja 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 이다.
+			super.setType(1);
+		}
+		
 
 	// 메소드의 오버라이딩(overriding), 메소드의 재정의
 		@Override
@@ -198,39 +200,34 @@ public class Gujikja extends CommonMember {
 	}// end of String getGender()-------------------------------
 	
 	
-	// === 구직자의 정보를 한줄로 출력해주는 메소드 생성하기 ===
-
-	// 메소드의 오버라이딩
-	@Override
-	public String get_Info() {
-		
-		// eomjh   qWe******    엄정화    961020   여     27        2024-01-31 10:30:40
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.getId() +"\t");
-		
-		sb.append(super.getPasswd().substring(0, 3) + "*".repeat(this.getPasswd().length() - 3) +"\t");
-		
-		sb.append(getName()+"\t");
-		
-		sb.append(jubun.substring(0, jubun.length()-1) +"\t");
-		
-		sb.append(getGender()+"\t"); // 성별
-		
-		sb.append(getAge()+"\t"); // 만나이
-		
-		sb.append(super.getRegister_day());
-		
-		return sb.toString();
-		
-	} // end of String getInfo()------------------- 
+	// >> 메소드의 오버라이딩 << //
+		// === 구직자의 정보를 한줄로 출력해주는 메소드 생성하기 ===
+		@Override
+		public String getInfo() {
+			
+			// eomjh   qWe******    엄정화    961020   여     27        2024-01-31 10:30:40
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append(super.getId() +"\t");
+			
+			sb.append(super.getPasswd().substring(0, 3) + "*".repeat(this.getPasswd().length() - 3) +"\t");
+			
+			sb.append(getName()+"\t");
+			
+			sb.append(jubun.substring(0, jubun.length()-1) +"\t");
+			
+			sb.append(getGender()+"\t"); // 성별
+			
+			sb.append(getAge()+"\t"); // 만나이
+			
+			sb.append(super.getRegister_day());
+			
+			return sb.toString();
+			
+		} // end of String getInfo()------------------- 
+	
 	//////////////////////////////////////////////////////
 	
-	@Override
-	public String getInfo() {
-		
-		return null;
-	}
 	
 	
 	
@@ -241,7 +238,13 @@ public class Gujikja extends CommonMember {
 		System.out.println(this.parent_test());
 		// 또는
 		System.out.println(parent_test());
-	}s
+	}
+
+
+	public String getJubun() {
+		return jubun;
+		
+	}
 	
 	
 }

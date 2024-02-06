@@ -2,15 +2,11 @@ package my.day15.f.polymorphism;
 
 import java.util.Scanner;
 
-import my.day13_14.a.inheritance.Company;
-
 public class Main_gujikja_company {
 
 	public static void main(String[] args) {
 		
-		
 		CommonMember[] cmbr_arr = new CommonMember[9];
-		
 		
 		///////////////////////////////////////////////
 		Gujikja gu1 = new Gujikja();
@@ -28,10 +24,15 @@ public class Main_gujikja_company {
 	    cmbr_arr[CommonMember.count++] = gu2;
 		
 		Gujikja gu3 = new Gujikja();
-		gu3.setId("chaew"); 
+		gu3.setId("chaew");
+		gu3.setPasswd("aSdf1234$");
+		gu3.setName("차은우");
+		gu3.setJubun("0106203");
+		cmbr_arr[CommonMember.count++] = gu3;
+        ///////////////////////////////////////////////
+			
 		
-		CommonMember cp1 = new Company();
-		
+		Company cp1 = new Company();
 		cp1.setId("samsung");
 		cp1.setPasswd("Abcd1234$");
 		cp1.setName("삼성");
@@ -51,7 +52,7 @@ public class Main_gujikja_company {
 		
 		///////////////////////////////////////////////
 		
-		Recruit[] rc_arr = new Recruit[10]; // 채용을 10번까지 할 수 있다
+		Recruit[] rc_arr = new Recruit[10];
 		
 		Recruit rc1 = new Recruit();
 		rc1.setCp(cp1);
@@ -60,71 +61,67 @@ public class Main_gujikja_company {
 		rc1.setCnt(2);
 		rc1.setPay(4000);
 		rc1.setFinish_day("20240208");
-		rc_arr[CommonMember.count++] = rc1;
+		rc_arr[Recruit.count++] = rc1;
 		
 		
 		Recruit rc2 = new Recruit();
 		rc2.setCp(cp2);
-		rc2.setSubject("우수한 기술직원을 채용합니다");
+		rc2.setSubject("우수한 기술직원을 채용합니다.");
 		rc2.setWork_type("기술직");
-		rc2.setCnt(6);
+		rc2.setCnt(5);
 		rc2.setPay(4500);
 		rc2.setFinish_day("20240207");
-		rc_arr[CommonMember.count++] = rc2;
+		rc_arr[Recruit.count++] = rc2;
 		
 		
 		Recruit rc3 = new Recruit();
 		rc3.setCp(cp2);
-		rc3.setSubject("참신한 영업직원을 채용합니다");
+		rc3.setSubject("참신한 영업직원을 채용합니다.");
 		rc3.setWork_type("영업직");
 		rc3.setCnt(10);
 		rc3.setPay(5000);
 		rc3.setFinish_day("20240302");
-		rc_arr[CommonMember.count++] = rc3;
+		rc_arr[Recruit.count++] = rc3;
 		
+        ///////////////////////////////////////////////////
+	//	CommonMember cmbr = new CommonMeber();
+	//  오류!! 왜냐하면 미완성클래스(추상클래스)는 객체화(인스턴스화) 할 수 없기 때문이다.!!!	
 		
-		////////////////////////////////////////////////
-	//	CommonMember cmbr = new CommonMember(); // 미완성 클래스는 객체화할 수 없다
-		// 오류 !! 왜냐하면 미완성 클래스(추상 클래스)는 객체화(인스턴스화) 할 수 없기 때문이다
-		// CommonMember cmbr = new CommonMember();
+		///////////////////////////////////////////////////
 		
-		
-		
-        ///////////////////////////////////////////////
 		RecruitApply[] rcApply_arr = new RecruitApply[20];
-	      
-	      RecruitApply rcapply1 = new RecruitApply();
-	      rcapply1.setRc(rc1);
-	      rcapply1.setGu(gu1);
-	      rcapply1.setApply_motive("엄정화는 사무에 최선을 다합니다.");
-	      rcApply_arr[RecruitApply.count++] = rcapply1;
-	      
-	      RecruitApply rcapply2 = new RecruitApply();
-	      rcapply2.setRc(rc1);
-	      rcapply2.setGu(gu2);
-	      rcapply2.setApply_motive("이순신은 최고의 사무직 인재입니다.");
-	      rcApply_arr[RecruitApply.count++] = rcapply2;
-	      
-	      RecruitApply rcapply3 = new RecruitApply();
-	      rcapply3.setRc(rc2);
-	      rcapply3.setGu(gu3);
-	      rcapply3.setApply_motive("차은우는 최고의 기술을 가진 엔지니어 입니다.");
-	      rcApply_arr[RecruitApply.count++] = rcapply3;
-	      
-	      RecruitApply rcapply4 = new RecruitApply();
-	      rcapply4.setRc(rc3);
-	      rcapply4.setGu(gu1);
-	      rcapply4.setApply_motive("엄정화는 영업의 달인 입니다.");
-	      rcApply_arr[RecruitApply.count++] = rcapply4;
-	      
-	      RecruitApply rcapply5 = new RecruitApply();
-	      rcapply5.setRc(rc3);
-	      rcapply5.setGu(gu2);
-	      rcapply5.setApply_motive("이순신은 판매왕 입니다.");
-	      rcApply_arr[RecruitApply.count++] = rcapply5;
-		/////////////////////////////////////////////////
 		
+		RecruitApply rcapply1 = new RecruitApply();
+		rcapply1.setRc(rc1);
+		rcapply1.setGu(gu1);
+		rcapply1.setApply_motive("엄정화는 사무에 최선을 다합니다.");
+		rcApply_arr[RecruitApply.count++] = rcapply1;
 		
+		RecruitApply rcapply2 = new RecruitApply();
+		rcapply2.setRc(rc1);
+		rcapply2.setGu(gu2);
+		rcapply2.setApply_motive("이순신은 최고의 사무직 인재입니다.");
+		rcApply_arr[RecruitApply.count++] = rcapply2;
+		
+		RecruitApply rcapply3 = new RecruitApply();
+		rcapply3.setRc(rc2);
+		rcapply3.setGu(gu3);
+		rcapply3.setApply_motive("차은우는 최고의 기술을 가진 엔지니어 입니다.");
+		rcApply_arr[RecruitApply.count++] = rcapply3;
+		
+		RecruitApply rcapply4 = new RecruitApply();
+		rcapply4.setRc(rc3);
+		rcapply4.setGu(gu1);
+		rcapply4.setApply_motive("엄정화는 영업의 달인 입니다.");
+		rcApply_arr[RecruitApply.count++] = rcapply4;
+		
+		RecruitApply rcapply5 = new RecruitApply();
+		rcapply5.setRc(rc3);
+		rcapply5.setGu(gu2);
+		rcapply5.setApply_motive("이순신은 판매왕 입니다.");
+		rcApply_arr[RecruitApply.count++] = rcapply5;
+		
+		///////////////////////////////////////////////////////////////////
 		
 		
 		Scanner sc = new Scanner(System.in);
@@ -139,7 +136,7 @@ public class Main_gujikja_company {
 			
 			switch (str_menuno) {
 				case "1": // 구직자 회원가입
-					ctrl_gu.register(sc,cmbr_arr);
+					ctrl_gu.register(sc, cmbr_arr);
 					break;
 					
 				case "2": // 구인회사 회원가입
@@ -147,12 +144,12 @@ public class Main_gujikja_company {
 					break;
 					
 				case "3": // 구직자 로그인
-					CommonMember login_gu = ctrl_common.login(sc, cmbr_arr , 1);
+					CommonMember login_gu = ctrl_common.login(sc, cmbr_arr, 1);
 					
 					if(login_gu != null) {
 						System.out.println(">> 구직자 "+ login_gu.getName() +"님 로그인 성공^^ << \n"); 
 						
-						ctrl_gu.gu_menu(sc,(Gujikja)login_gu, cmbr_arr,  rc_arr, rcApply_arr); // 구직자 전용메뉴
+						ctrl_gu.gu_menu(sc, (Gujikja)login_gu, cmbr_arr, rc_arr, rcApply_arr); // 구직자 전용메뉴
 					}
 					else {
 						System.out.println(">> 구직자로 로그인 실패 ㅜㅜ <<\n");
