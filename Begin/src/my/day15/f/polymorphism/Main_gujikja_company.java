@@ -147,12 +147,12 @@ public class Main_gujikja_company {
 					break;
 					
 				case "3": // 구직자 로그인
-					Gujikja login_gu = ctrl_common.login(sc, cmbr_arr , 1);
+					CommonMember login_gu = ctrl_common.login(sc, cmbr_arr , 1);
 					
 					if(login_gu != null) {
 						System.out.println(">> 구직자 "+ login_gu.getName() +"님 로그인 성공^^ << \n"); 
 						
-						ctrl_gu.gu_menu(sc, login_gu, cmbr_arr,  rc_arr, rcApply_arr); // 구직자 전용메뉴
+						ctrl_gu.gu_menu(sc,(Gujikja)login_gu, cmbr_arr,  rc_arr, rcApply_arr); // 구직자 전용메뉴
 					}
 					else {
 						System.out.println(">> 구직자로 로그인 실패 ㅜㅜ <<\n");
@@ -161,12 +161,12 @@ public class Main_gujikja_company {
 					break;	
 					
 				case "4": // 구인회사 로그인
-					Company login_cp = ctrl_common.login(sc, cmbr_arr, 2);
+					CommonMember login_cp = ctrl_common.login(sc, cmbr_arr, 2);
 					
 					if(login_cp != null) {
 						System.out.println(">> 구인회사 "+ login_cp.getName() +"기업 로그인 성공^^ << \n"); 
 						
-						ctrl_gu.gu_menu(sc, login_cp, cmbr_arr, rc_arr, rcApply_arr); // 구인회사 전용메뉴
+						ctrl_cp.cp_menu(sc, (Company)login_cp, cmbr_arr, rc_arr, rcApply_arr); // 구인회사 전용메뉴
 					}
 					else {
 						System.out.println(">> 구인회사 로그인 실패 ㅜㅜ <<\n");

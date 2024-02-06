@@ -132,32 +132,32 @@ public class Ctrl_gujikja extends Ctrl_common {
 					/*	case "3": // 모든구인회사 조회
 					view_company_info(cp_arr); 
 					break;	
-					
+					*/
 				case "4": // 구인회사검색하기
-					view_company_info(sc, cp_arr);
+					view_company_info(sc, cmbr_arr);
 					break;
-				-> 오류남  메소드의 오버로딩, 이름은 같지만 파라미터가 다르기 때문 	*/
+				// -> 오류남  메소드의 오버로딩, 이름은 같지만 파라미터가 다르기 때문 	*/
 					
 					
-				case "4": // 구인회사검색하기
+				case "5": // 구인회사검색하기
 					view_company_info(sc, cmbr_arr);// 메소드의 오버로딩(overloading)
 					break;
 					
 					
-				case "5" : //모든 채용 공고 조회 	
+				case "6" : //모든 채용 공고 조회 	
 					view_all_recruit_info(rc_arr);
 					break;
 					
-				case "6" : // 채용 응모 하기 
+				case "7" : // 채용 응모 하기 
 					input_rc(sc, login_gu, rc_arr, rcApply_arr);
 					break;
 				
-				case "7" : // 채용 응모 한 것 조회
+				case "8" : // 채용 응모 한 것 조회
 					view_rc(login_gu,rcApply_arr );
 					break;
 					
 					
-				case "8": // 로그아웃
+				case "9": // 로그아웃
 					login_gu = null;
 					break;					
 	
@@ -314,7 +314,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 	
 	
 	// 모든구인회사 조회
-	private void view_all_company_info(Company[] cp_arr) {
+	private void view_all_company_info(CommonMember[] cmbr_arr) {
 		
 		if(Company.count == 0) {
 			System.out.println(">> 구인회사로 등록된 회사가 한개도 없습니다. << \n");
@@ -326,7 +326,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 			StringBuilder sb = new StringBuilder();
 			
 			for(int i=0; i<Company.count; i++) {
-				sb.append(cp_arr[i].getInfo()+"\n"); 
+				sb.append(cmbr_arr[i].getInfo()+"\n"); 
 			}// end of for--------------
 			
 			System.out.println(sb.toString());
@@ -345,7 +345,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 	
 	
 	// 구인회사검색하기
-	private void view_company_info(Scanner sc, Company[] cp_arr) {
+	private void view_company_info(Scanner sc, CommonMember[] cmbr_arr) {
 		
 		String str_menuno = "";		
 		
@@ -358,11 +358,11 @@ public class Ctrl_gujikja extends Ctrl_common {
 			
 			switch (str_menuno) {
 				case "1": // 업종검색
-					search_jobtype_company(sc, cp_arr);
+					search_jobtype_company(sc, cmbr_arr);
 					break;
 					
 				case "2": // 자본금검색
-					search_seedmoney_company(sc, cp_arr);
+					search_seedmoney_company(sc, cmbr_arr);
 					break;
 					
 				case "3": // 구직자메뉴로 돌아가기
@@ -380,17 +380,20 @@ public class Ctrl_gujikja extends Ctrl_common {
 
 	
 	// 업종검색
-	private void search_jobtype_company(Scanner sc, Company[] cp_arr) {
+	private void search_jobtype_company(Scanner sc, CommonMember[] cmbr_arr) {
 		
 		System.out.print("▷ 업종명 : ");
 		String job_type_name = sc.nextLine().toLowerCase();
 		
 		StringBuilder sb = new StringBuilder();
 		boolean is_existence = false;
-		for(int i=0; i<Company.count; i++) {
-			if(cp_arr[i].getJob_type().toLowerCase().contains(String.join("", job_type_name.split("\\ ")))) {
+		for(int i=0; i<CommonMember.count; i++) {
+			
+			if((company) cmbr_arr[i]).get
+			if(cmbr_arr[i])
+			if(cmbr_arr[i].getJob_type().toLowerCase().contains(String.join("", job_type_name.split("\\ ")))) {
 				is_existence = true;
-				sb.append(cp_arr[i].getInfo()+"\n");
+				sb.append(cmbr_arr[i].getInfo()+"\n");
 			}
 		}// end of for----------------------------
 		
@@ -402,11 +405,11 @@ public class Ctrl_gujikja extends Ctrl_common {
 			System.out.println(">> 검색하시려는 "+ job_type_name +"업종에 해당하는 회사는 없습니다.!!\n");
 		}
 		
-	}// end of private void search_jobtype_company(Company[] cp_arr)------
+	}//end of  private void search_jobtype_company(Scanner sc, CommonMember[] cmbr_arr)
 
 	
 	// 자본금검색
-	private void search_seedmoney_company(Scanner sc, Company[] cp_arr) {
+	private void search_seedmoney_company(Scanner sc, CommonMember[] cmbr_arr) {
 		
 		System.out.print("▷ 자본금 : ");
 		String str_search_seed_money = sc.nextLine();
@@ -417,10 +420,10 @@ public class Ctrl_gujikja extends Ctrl_common {
 			StringBuilder sb = new StringBuilder();
 			boolean is_existence = false;
 			
-			for(int i=0; i<Company.count; i++) {
-				if( search_seed_money <= cp_arr[i].getSeed_money() ) {
+			for(int i=0; i<CommonMember.count; i++) {
+				if(cmbr_arr[i] instanceof Company && search_seed_money <= ((Company) cmbr_arr[i]).getSeed_money() ) {
 					is_existence = true;
-					sb.append(cp_arr[i].getInfo()+"\n");
+					sb.append(cmbr_arr[i].getInfo()+"\n");
 				}
 			}// end of for----------------------------
 			

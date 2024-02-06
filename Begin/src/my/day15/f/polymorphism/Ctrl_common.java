@@ -13,7 +13,7 @@ public class Ctrl_common {
 	}// end of void main_menu()--------------------------- 
 	
 	// 구직자 및 구인회사 로그인 메소드 생성하기
-	public CommonMember login(Scanner sc, CommonMember[] cmbr_arr) {
+	public CommonMember login(Scanner sc, CommonMember[] cmbr_arr, int type) {
 		System.out.println("ㅁ id :");
 		String id = sc.nextLine();
 		
@@ -21,11 +21,18 @@ public class Ctrl_common {
 		String passwd = sc.nextLine();
 		
 		for(int i=0; i<CommonMember.count; i++) {
-			cmbr_arr[i].getType() == type
 			
+			if(cmbr_arr[i].getType() == type &&
+					cmbr_arr[i].getId().equals(id)&&
+					cmbr_arr[i].getPasswd().equals(passwd)) {
+				return cmbr_arr[i];
+			}
+		}
+					
+				return null;	
 		} // end of for
-		return null;
+
 	}
 
 	
-}
+

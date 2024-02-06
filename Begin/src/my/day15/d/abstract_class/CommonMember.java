@@ -147,6 +147,12 @@ public  abstract class CommonMember {
 	String parent_test() {
 		return "부모클래스에서 만들었어요. 그냥 연습이에요!!";
 	}
+
+
+	public String get_Info() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
