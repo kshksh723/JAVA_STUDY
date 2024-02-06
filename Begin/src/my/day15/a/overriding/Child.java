@@ -12,6 +12,8 @@ public class Child extends Parent {
 	 * 
 	 * } -> 알맹이(내용몰)은 새롭게 정의해서 만들면 된다
 	 */
+	// 면접 볼 때 오버로딩, 오버라이딩을 물어봄...,.
+	//
 	@Override	//@를 애노테이션(어노테이션)이라고 부른다
 	public String info() {
 		return " 아이디 : " + this.id + " \n "
