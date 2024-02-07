@@ -7,7 +7,7 @@ package my.day16.b.INTERFACE;
 
 
 
-public interface Figure {
+public interface Figure { //메소드를 강제 구현할 때 interface를 씀 
 	// == field ==
 	// public final double pi = 3.141592;
 	// 또는
@@ -15,5 +15,14 @@ public interface Figure {
 	
 	// == method == 
 		double area(double x, double y);  //Abstract methods do not specify a body -> 미완성 메소드, {} 를 못 씀
-	// 즉, public abstract double area(double x, double y); 이다
+	// 즉, public abstract double area(double x, double y); 이다 // public abstract이 생략되어진 것이다
+		
+		
+		//정원의 면적
+		double circle_area(double r);// public abstract이 생략되어진 것이다
+		// 즉, public abstract double area(double x, double y);
+		// 메소드의 오버로딩(overloading)
+		// 타원의 면적
+		double circle_area(double x, double y);// 메소드의 오버로딩(overloading)
+		// 파라미터가 다름
 }
