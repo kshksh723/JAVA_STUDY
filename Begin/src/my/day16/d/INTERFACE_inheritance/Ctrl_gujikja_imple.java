@@ -6,12 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class Ctrl_gujikja_imple extends Ctrl_common_imple {
+public class Ctrl_gujikja_imple extends Ctrl_common_imple implements Ctrl_gujikja {
 	
 	// == 구직자(Gujikja) 신규 회원가입시
 	//    Gujikja 클래스의 field 의 요구사항에 모두 맞으면
 	//    CommonMember[] cmbr_arr 에 저장시켜주는 메소드 생성하기 ==
-	void register(Scanner sc, CommonMember[] cmbr_arr) {
+	public void register(Scanner sc, CommonMember[] cmbr_arr) {
 		
 		if(CommonMember.count < cmbr_arr.length) { // 지금까지 생성된 구직자 회원수가 cmbr_arr.length(==>정원) 보다 적을 경우에만 신규회원을 받아들인다.
 		    
@@ -84,7 +84,8 @@ public class Ctrl_gujikja_imple extends Ctrl_common_imple {
 
 	
 	// == 구직자 전용메뉴 메소드 생성하기 == //
-	public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr, Recruit[] rc_arr, RecruitApply[] rcApply_arr) {
+@Override
+public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr, Recruit[] rc_arr, RecruitApply[] rcApply_arr) {
 		
 		String str_menuno;
 		do {

@@ -125,9 +125,9 @@ public class Main_gujikja_company {
 		
 		
 		Scanner sc = new Scanner(System.in);
-		Ctrl_common_imple  ctrl_common = new Ctrl_common_imple();
-		Ctrl_gujikja_imple ctrl_gu = new Ctrl_gujikja_imple();
-		Ctrl_company_imple ctrl_cp = new Ctrl_company_imple();
+		Ctrl_common ctrl_common = new Ctrl_common_imple();
+		Ctrl_gujikja ctrl_gu = new Ctrl_gujikja_imple();
+		Ctrl_company ctrl_cp = new Ctrl_company_imple();
 				
 		String str_menuno = "";
 		do {

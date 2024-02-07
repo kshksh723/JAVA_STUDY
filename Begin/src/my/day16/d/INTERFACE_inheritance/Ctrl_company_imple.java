@@ -3,7 +3,7 @@ package my.day16.d.INTERFACE_inheritance;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class Ctrl_company_imple extends Ctrl_common_imple {
+public class Ctrl_company_imple extends Ctrl_common_imple implements Ctrl_company{
 
 	// == 구인회사(Company) 신규 회원가입시
 	//    Company 클래스의 field 의 요구사항에 모두 맞으면
