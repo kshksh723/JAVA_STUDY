@@ -6,7 +6,7 @@ import java.util.Date;
 public class RecruitApply {
 
 	// field 
-	private Recruit rc;           // 채용정보
+	private Recruit_imple rc;           // 채용정보
 	private Gujikja_imple gu;           // 구직자 
 	private String apply_motive;  // 지원동기
 	private String register_day;  // 등록일자
@@ -21,11 +21,11 @@ public class RecruitApply {
 	}
 
 	// method 
-	public Recruit getRc() {
+	public Recruit_imple getRc() {
 		return rc;
 	}
 
-	public void setRc(Recruit rc) {
+	public void setRc(Recruit_imple rc) {
 		
 		if(rc != null) {
 			this.rc = rc;

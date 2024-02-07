@@ -7,27 +7,23 @@ import java.util.regex.Pattern;
 
 import my.util.MyUtil;
 
+public abstract class CommonMember implements Common {
 
-// 미완성 클래스 (== 추상클래스 == abstract class
-public class CommonMember {
-//public  abstract  class CommonMember
 	// Gujikja 클래스와 Company 클래스에서 공통으로 사용되어지는 field(속성) 생성하기
-	
-	private int type;			 // Gujikja와 company 를 구분짓는 용도, type 값이 1이라면 gujikja로 보고, type 값이 2이라면 company라고 본다
+	private int type;            // Gujikja 와 Company 를 구분짓는 용도. type 값이 1 이라면 Gujikja 라 보고, type 값이 2 이라면 Company 라고 보겠다.  
 	private String id;           // 아이디
 	private String passwd;       // 비밀번호
 	private String name;         // 성명 또는 회사명
 	private String register_day; // 가입일자
 	
-	static int count;	// gujikja 객체 및 company 객체가 생성되어진 개수를 알아오려는 용도이다
-	
+	static int count; // Gujikja 객체 및 Company 객체가 생성되어진 개수를 알아오려는 용도 
 	
 	// Gujikja 및 Company 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 
 	public CommonMember(){
 		// System.out.println("== 부모클래스인 CommonMember 클래스의 기본생성자 호출 ==");
 		
 		Date now = new Date(); // 현재시각
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		
 		register_day = df.format(now);
 	}
@@ -43,12 +39,10 @@ public class CommonMember {
 	public void setType(int type) {
 		if(type == 1 || type == 2) {
 			this.type = type;
-			// type의 값이 1이라면 Gujikja로 보고 
-			//  type의 값이 2이라면 company 라 보겠다 
+			// type 의 값이 1 이라면 Gujikja 라 보고,
+			// type 의 값이 2 이라면 Company 라 보겠다.
 		}
-		this.type = type;
 	}
-	
 	
 	
 	public void setId(String id) {
@@ -87,9 +81,6 @@ public class CommonMember {
 		}
 	}
 	
-	
-	
-
 
 	public String getId() {
 		
@@ -115,10 +106,8 @@ public class CommonMember {
 	
 
 	
-	
 	public void setName(String name) {
 		this.name = name;
-					
 	}
 	
 		
@@ -132,25 +121,13 @@ public class CommonMember {
 	}
 
 
-	///////////////////////////////////////////////////
-	
-	
-	// public abstract String  getInfo(); 
-	//{ //미완성 메소드
-	//	return "1. 아이디 : " + id + ", 2. 비밀번호 :" + passwd;
+	///////////////////////////////////////////////////////
 	
 
-	 // 미완성 메소드(== 추상메소드 abstract method) -> 해당클래스가 미완성 클래스가 되어야함
-	
-	
 	///////////////////////////////////////////////////////
 	String parent_test() {
 		return "부모클래스에서 만들었어요. 그냥 연습이에요!!";
 	}
-	
-	
-	
-	
 	
 	
 }

@@ -52,36 +52,36 @@ public class Main_gujikja_company {
 		
 		///////////////////////////////////////////////
 		
-		Recruit[] rc_arr = new Recruit[10];
+		Recruit[] rc_arr = new Recruit_imple[10];
 		
-		Recruit rc1 = new Recruit();
+		Recruit_imple rc1 = new Recruit_imple();
 		rc1.setCp(cp1);
 		rc1.setSubject("성실한 사무직원을 채용합니다.");
 		rc1.setWork_type("사무직");
 		rc1.setCnt(2);
-		rc1.setPay(4000);
-		rc1.setFinish_day("20240208");
-		rc_arr[Recruit.count++] = rc1;
+		rc1.setYearpay(4000);
+		rc1.setFinish_day("20241208");
+		rc_arr[Recruit_imple.count++] = rc1;
 		
 		
-		Recruit rc2 = new Recruit();
+		Recruit_imple rc2 = new Recruit_imple();
 		rc2.setCp(cp2);
 		rc2.setSubject("우수한 기술직원을 채용합니다.");
 		rc2.setWork_type("기술직");
 		rc2.setCnt(5);
-		rc2.setPay(4500);
-		rc2.setFinish_day("20240207");
-		rc_arr[Recruit.count++] = rc2;
+		rc2.setYearpay(4500);
+		rc2.setFinish_day("20241207");
+		rc_arr[Recruit_imple.count++] = rc2;
 		
 		
-		Recruit rc3 = new Recruit();
+		Recruit_imple rc3 = new Recruit_imple();
 		rc3.setCp(cp2);
 		rc3.setSubject("참신한 영업직원을 채용합니다.");
 		rc3.setWork_type("영업직");
 		rc3.setCnt(10);
-		rc3.setPay(5000);
-		rc3.setFinish_day("20240302");
-		rc_arr[Recruit.count++] = rc3;
+		rc3.setYearpay(5000);
+		rc3.setFinish_day("20241202");
+		rc_arr[Recruit_imple.count++] = rc3;
 		
         ///////////////////////////////////////////////////
 	//	CommonMember cmbr = new CommonMeber();

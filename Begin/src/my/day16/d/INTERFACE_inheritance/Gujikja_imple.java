@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import my.util.MyUtil;
 
-
 public class Gujikja_imple extends CommonMember implements Gujikja {
 //  Gujikja 클래스는 CommonMember 클래스에 생성되어진 field 및 method 및 기본생성자를 상속 받아온다. 
 //  CommonMember 클래스는 Gujikja 클래스의 부모클래스 가 되어지고,
@@ -30,39 +29,38 @@ public class Gujikja_imple extends CommonMember implements Gujikja {
 	
 	private String jubun;   // 주민번호인데 앞자리 6자리에 + 성별을 나타내는 1자리까지만 입력한다. 
 	                        // 예: "9506201"  "9607202"   "0006203"  "0007204"  "1106203" 
-	
-	
-	// static int count;     // Gujikja 객체(인스턴스)의 개수를 알아오려는 용도 
-	
-	// 기본생성자 
+	 
 	
 	// 기본생성자
-		public Gujikja_imple() {
-			super(); // Gujikja 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 이다.
-			super.setType(1);
-		}
-		
+	public Gujikja_imple() {
+		super(); // Gujikja 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 이다.
+		super.setType(1);
+	}
+	
+	
 
-	// 메소드의 오버라이딩(overriding), 메소드의 재정의
-		@Override
-		public void setName(String name) {
-			// 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.
+	// == 메소드의 오버라이딩(overriding) , 메소드의 재정의 == //
+	@Override
+	public void setName(String name) {
+		// 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 한다.
 			
-			// == 1. 정규표현식(Regular Expression) 패턴을 작성한다. == //
-			Pattern p = Pattern.compile("^[가-힣]{2,6}$");
+		// == 1. 정규표현식(Regular Expression) 패턴을 작성한다. == //
+		Pattern p = Pattern.compile("^[가-힣]{2,6}$");
 			
-			// == 2. 문자열이 주어진 정규식 패턴과 일치하는지 판별하는 객체를 생성한다. == //
-			Matcher m = p.matcher(name);
+		// == 2. 문자열이 주어진 정규식 패턴과 일치하는지 판별하는 객체를 생성한다. == //
+		Matcher m = p.matcher(name);
 						
-			// == 3. 판별하도록 한다. == //
-			if(m.matches()) {
-				super.setName(name);
-			}
-			else {
-				 System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 합니다.\n");
-			}
-						
+		// == 3. 판별하도록 한다. == //
+		if(m.matches()) {
+			super.setName(name);
 		}
+		else {
+			 System.out.println("[경고] 성명은 공백이 없는 한글로만 이루어져야 하며 최소 2글자 이상 최대 6글자로만 되어져야 합니다.\n");
+		}
+						
+	}	
+	
+	
     // === getter , setter === // 
 	public void setJubun(String jubun) {
 		
@@ -76,14 +74,15 @@ public class Gujikja_imple extends CommonMember implements Gujikja {
 	}
 
 	
-	
+	public String getJubun() {
+		return jubun;
+	}
 	
 	
 	// === 구직자의 만나이을 알려주는 메소드 생성하기 === //
-	
-	@Override
+	@Override	
 	public int getAge() {
-		
+			
 		int age = 0;
 		
 		// 구직자의 올해 생일이 현재날짜와 같거나 현재날짜 보다 이전(과거)이라면
@@ -127,8 +126,9 @@ public class Gujikja_imple extends CommonMember implements Gujikja {
 	
 	
 	// === 성별을 구해주는 메소드 === //
+	@Override
 	public String getGender() {
-	
+		
 		if("1".equals(jubun.substring(jubun.length()-1)) ||
 		   "3".equals(jubun.substring(jubun.length()-1)) ) {
 		    return "남";	
@@ -143,37 +143,36 @@ public class Gujikja_imple extends CommonMember implements Gujikja {
 			return "";
 		}
 		
-	}// end of String getGender()-------------------------------
+	}// end of String getGender()-------------------------------	
 	
 	
 	// >> 메소드의 오버라이딩 << //
-		// === 구직자의 정보를 한줄로 출력해주는 메소드 생성하기 ===
-		@Override
-		public String getInfo() {
-			
-			// eomjh   qWe******    엄정화    961020   여     27        2024-01-31 10:30:40
-			
-			StringBuilder sb = new StringBuilder();
-			sb.append(super.getId() +"\t");
-			
-			sb.append(super.getPasswd().substring(0, 3) + "*".repeat(this.getPasswd().length() - 3) +"\t");
-			
-			sb.append(getName()+"\t");
-			
-			sb.append(jubun.substring(0, jubun.length()-1) +"\t");
-			
-			sb.append(getGender()+"\t"); // 성별
-			
-			sb.append(getAge()+"\t"); // 만나이
-			
-			sb.append(super.getRegister_day());
-			
-			return sb.toString();
-			
-		} // end of String getInfo()------------------- 
+	// === 구직자의 정보를 한줄로 출력해주는 메소드 생성하기 ===
+	@Override
+	public String getInfo() {
+		
+		// eomjh   qWe******    엄정화    961020   여     27        2024-01-31 10:30:40
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.getId() +"\t");
+		
+		sb.append(super.getPasswd().substring(0, 3) + "*".repeat(this.getPasswd().length() - 3) +"\t");
+		
+		sb.append(getName()+"\t");
+		
+		sb.append(jubun.substring(0, jubun.length()-1) +"\t");
+		
+		sb.append(getGender()+"\t"); // 성별
+		
+		sb.append(getAge()+"\t"); // 만나이
+		
+		sb.append(super.getRegister_day());
+		
+		return sb.toString();
+		
+	} // end of String getInfo()------------------- 
 	
 	//////////////////////////////////////////////////////
-	
 	
 	
 	
@@ -186,12 +185,6 @@ public class Gujikja_imple extends CommonMember implements Gujikja {
 		System.out.println(parent_test());
 	}
 
-
-	public String getJubun() {
-		return jubun;
-		
-	}
-	
 	
 }
 

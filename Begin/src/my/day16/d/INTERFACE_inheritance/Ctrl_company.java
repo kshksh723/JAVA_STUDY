@@ -686,7 +686,7 @@ public class Ctrl_company extends Ctrl_common {
 		
 		System.out.println("======= " + login_cp.getName() + " 채용공고 등록 ======="); 
 		
-		Recruit rc = new Recruit();
+		Recruit_imple rc = new Recruit_imple();
 		
 		do {
 			System.out.print("1.채용제목 : ");
@@ -731,13 +731,13 @@ public class Ctrl_company extends Ctrl_common {
 					System.out.println("[경고] 1 이상 입력하세요!!");
 				}
 				else {
-					rc.setPay(yearpay);
+					rc.setYearpay(yearpay);
 				}
 			} catch(NumberFormatException e) {
 				System.out.println("[경고] 1 이상 입력하세요!!");
 			}
 			
-		} while ( !(rc.getPay() > 0) );
+		} while ( !(rc.getYearpay() > 0) );
 		
 		
 		do {
@@ -751,7 +751,7 @@ public class Ctrl_company extends Ctrl_common {
 		
 		rc.setCp(login_cp); 
 		
-		rc_arr[Recruit.count++] = rc;
+		rc_arr[Recruit_imple.count++] = rc;
 		
 	}// end of private void register_recruit(Scanner sc, Company login_cp)------	
 	
@@ -761,9 +761,9 @@ public class Ctrl_company extends Ctrl_common {
 		
 		boolean is_existence = false;
 		
-		for(int i=0; i<Recruit.count; i++) {
+		for(int i=0; i<Recruit_imple.count; i++) {
 			
-			if( login_cp.getId().equals(rc_arr[i].getCp().getId()) ) {
+			if( login_cp.getId().equals( ((Recruit_imple) rc_arr[i]).getCp().getId()) ) {
 				is_existence = true;
 				System.out.println(rc_arr[i].recruit_info());
 			}

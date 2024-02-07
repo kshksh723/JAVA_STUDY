@@ -12,27 +12,27 @@ public class Ctrl_common {
 		System.out.print("▷ 메뉴번호 선택 : ");
 	}// end of void main_menu()--------------------------- 
 	
-	// 구직자 및 구인회사 로그인 메소드 생성하기
+	// == 구직자 및 구인회사 로그인 메소드 생성하기 == //
 	public CommonMember login(Scanner sc, CommonMember[] cmbr_arr, int type) {
-		System.out.println("ㅁ id :");
+	
+		System.out.print("▷ ID : ");
 		String id = sc.nextLine();
 		
-		System.out.println("ㅁ 비밀번호 :");
+		System.out.print("▷ 비밀번호 : ");
 		String passwd = sc.nextLine();
 		
 		for(int i=0; i<CommonMember.count; i++) {
 			
 			if(cmbr_arr[i].getType() == type &&
-					cmbr_arr[i].getId().equals(id)&&
-					cmbr_arr[i].getPasswd().equals(passwd)) {
-				return cmbr_arr[i];
+			   cmbr_arr[i].getId().equals(id) &&
+			   cmbr_arr[i].getPasswd().equals(passwd)) {
+				  return cmbr_arr[i];
 			}
-		}
-					
-				return null;	
-		} // end of for
-
-	}
-
+			
+		}// end of for---------------------------
+		
+		return null;
+	}// end of public CommonMember login(Scanner sc, CommonMember[] cmbr_arr, int type)-------
 	
-
+	
+}

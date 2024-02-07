@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Company_imple extends CommonMember implements Company{
+public class Company_imple extends CommonMember implements Company {
 //  Company 클래스는 CommonMember 클래스에 생성되어진 field 및 method 및 생성자를 상속 받아온다. 
 //  CommonMember 클래스는 Company 클래스의 부모클래스 가 되어지고,
 //  Company 클래스는 CommonMember 클래스의 자식클래스 가 되어진다.
@@ -15,20 +15,23 @@ public class Company_imple extends CommonMember implements Company{
 	private String business_number;   // 사업자등록번호 
 	private String job_type;          // 회사직종타입(제조업, 서비스업, IT, ...)
 	private long seed_money;          // 자본금 
+	
 
-	// 기본생성자 생략됨!!
-/*	
-	public Company() {
-	//	super(); // Company 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 이다.
+	// 기본생성자
+	public Company_imple() {
+	  	super(); // Company 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 이다.
+		super.setType(2);
 	}
-*/
-	// 메소드의 오버라이딩(overriding), 메소드의 재정의
+
+	
+	// == 메소드의 오버라이딩(overriding) , 메소드의 재정의 == //
 	@Override
-	public void  setName(String name) {
-	// 회사명은 공백이 없는 한글 또는 영문만 이루어져야 하며 최소 2글자 이상 최대 10글자로만 되어져야 한다.
+	public void setName(String name) {
+		
+		// 회사명은 공백이 없는 한글 또는 영문만 이루어져야 하며 최소 2글자 이상 최대 10글자로만 되어져야 한다.
 		
 		// == 1. 정규표현식(Regular Expression) 패턴을 작성한다. == //
-		Pattern p = Pattern.compile("^[가-힣a-zA-Z]{2,10}$");
+		Pattern p = Pattern.compile("^[가-힣A-Za-z]{2,10}$");
 		
 		// == 2. 문자열이 주어진 정규식 패턴과 일치하는지 판별하는 객체를 생성한다. == //
 		Matcher m = p.matcher(name);
@@ -39,7 +42,8 @@ public class Company_imple extends CommonMember implements Company{
 		}
 		else {
 			 System.out.println("[경고] 성명은 공백이 없는 영문 또는 한글로만 이루어져야 하며 최소 2글자 이상 최대 10글자로만 되어져야 합니다.\n");
-		}
+		}	
+		
 	}
 	
 	
@@ -102,9 +106,10 @@ public class Company_imple extends CommonMember implements Company{
 		}
 		
 	}
-	
-	
 
+	
+	// >> 메소드의 오버라이딩 << //
+	// == 회사정보를 한줄로 출력해주는 미완성 메소드(추상 메소드) == //
 	@Override
 	public String getInfo() {
 		
@@ -113,11 +118,6 @@ public class Company_imple extends CommonMember implements Company{
 		         //  회사명               업종              사업자등록번호               자본금
 		return super.getName() + "\t" + job_type + "\t" + business_number + "\t" + df.format(seed_money) + "원"; 
 	}// end of public String getInfo()-------------------------
-	
-	
-
-	
-	
 	
 	
 	
