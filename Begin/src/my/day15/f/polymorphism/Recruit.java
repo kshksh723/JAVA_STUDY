@@ -18,7 +18,7 @@ public class Recruit {
 	private String finish_day;    // 채용 마감일자
 	private Object yearpay;
 	
-	static int count; // Recruit 객체(인스턴스)의 개수를 알아오려는 용도, 
+	public static int count; // Recruit 객체(인스턴스)의 개수를 알아오려는 용도, 
 	
 	// rc_arr[count++] = rc1;
 	// 기본생성자

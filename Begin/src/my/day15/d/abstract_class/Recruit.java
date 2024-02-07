@@ -123,7 +123,7 @@ public class Recruit {
 			
 			if(date_finish_day.after(date_register_day)) { // date_finish_day.after(date_register_day) 마감일자가 공고일자보다 뒤에 있어야 한다
 			
-				this.finish_day = finish_day;
+				this.finish_day = finish_day; //finish데이가 널값
 				
 			} else {
 				System.out.println("[경고] 채용마감일자는 현재일자 보다 이후인 날짜 이어야 합니다 \n");

@@ -1,6 +1,9 @@
 package my.day15.f.polymorphism;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Ctrl_gujikja extends Ctrl_common {
@@ -407,7 +410,8 @@ public class Ctrl_gujikja extends Ctrl_common {
 	}// end of private void search_seedmoney_company(Scanner sc, CommonMember[] cmbr_arr)------
 
 
-	// 모든채용공고조회
+	// 모든채용공고조회(채용마감일자가 오늘보다 이전인 것은 보여주면 안된다)
+	
 	private void view_all_recruit_info(Recruit[] rc_arr) {
 		
 		if(Recruit.count == 0) {
@@ -415,20 +419,34 @@ public class Ctrl_gujikja extends Ctrl_common {
 		}
 		
 		else {
-			
 			StringBuilder sb = new StringBuilder();
-			
-			for(int i=0; i<Recruit.count; i++) {
-				sb.append(rc_arr[i].getRecruit_no()+"\t\t"+
-						  rc_arr[i].getCp().getName()+"\t"+
-						  rc_arr[i].getCp().getJob_type()+"\t"+
-						  new DecimalFormat("#,###").format(rc_arr[i].getCp().getSeed_money())+"원\t"+
-						  rc_arr[i].getWork_type()+"\t"+
-						  rc_arr[i].getCnt()+"\t"+
-						  rc_arr[i].getRegister_day().substring(0,4)+"-"+rc_arr[i].getRegister_day().substring(4,6)+"-"+rc_arr[i].getRegister_day().substring(6)+"\t"+  
-						  rc_arr[i].getFinish_day().substring(0,4)+"-"+rc_arr[i].getFinish_day().substring(4,6)+"-"+rc_arr[i].getFinish_day().substring(6)+"\n");
-			}// end of for-----------------------------------
-		
+			try {
+				
+				Date now = new Date(); // util로 import
+				SimpleDateFormat sdft = new SimpleDateFormat("yyyyMMdd");
+				Date today = sdft.parse( sdft.format(now)); // "20240207"
+				
+				for(int i=0; i<Recruit.count; i++) {
+					 
+				
+					Date date_finish_day = sdft.parse( rc_arr[i].getFinish_day()); 
+					
+					
+				if(!date_finish_day.before(today)) {
+				
+					sb.append(rc_arr[i].getRecruit_no()+"\t\t"+
+							  rc_arr[i].getCp().getName()+"\t"+
+							  rc_arr[i].getCp().getJob_type()+"\t"+
+							  new DecimalFormat("#,###").format(rc_arr[i].getCp().getSeed_money())+"원\t"+
+							  rc_arr[i].getWork_type()+"\t"+
+							  rc_arr[i].getCnt()+"\t"+
+							  rc_arr[i].getRegister_day().substring(0,4)+"-"+rc_arr[i].getRegister_day().substring(4,6)+"-"+rc_arr[i].getRegister_day().substring(6)+"\t"+  
+							  rc_arr[i].getFinish_day().substring(0,4)+"-"+rc_arr[i].getFinish_day().substring(4,6)+"-"+rc_arr[i].getFinish_day().substring(6)+"\n");
+				 	}
+			 }// end of for-----------------------------------
+			} catch(ParseException e) {
+				
+			}
 			System.out.println("-".repeat(90));
 			System.out.println("채용공고순번      회사명   회사직종타입  자본금   채용분야(근무형태)  채용인원  등록일자  채용마감일자");
 			System.out.println("-".repeat(90));
@@ -452,6 +470,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 		}// end of for-------------------------------
 		//  str_my_recruit_no = "1,3,2,";
 		
+		if(str_my_recruit_no.length() > 0) { // 응모한 경우가 있는 경우라면
 		str_my_recruit_no = str_my_recruit_no.substring(0, str_my_recruit_no.length()-1); 
 		//  "1,3,2"
 		
@@ -463,7 +482,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 			return; // 메소드 종료 
 		}
 		
-		
+		}
 		// == 채용공고번호는 채용공고로 올라온 번호만 입력해야 한다. == //
 		boolean is_existence, is_duplicate_recruit_no;
 		Recruit rc = null;

@@ -261,9 +261,10 @@ public class Main_calendar {
 		// === 문자열을 날짜 형태로 변환하기 === //
 		try {
 		 //	 Date d = sdformat.parse("19980430");
+			 //  Thu Apr 30 00:00:00 GMT+09:00 1998	 
 		 	 Date d = sdformat.parse("19980431");
 			 System.out.println(d);
-		 //  Thu Apr 30 00:00:00 GMT+09:00 1998	 
+		 
 		} catch (ParseException e) {
 		 //	e.printStackTrace();
 			System.out.println(">> 달력에 존재하지 않는 값입니다. <<");

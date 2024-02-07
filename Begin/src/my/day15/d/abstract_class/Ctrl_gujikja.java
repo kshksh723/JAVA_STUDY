@@ -465,13 +465,14 @@ public class Ctrl_gujikja extends Ctrl_common {
 				System.out.println(sb.toString()); 
 				System.out.println("[채용공고가"+  Recruit.count  +"건이 있습니다]\n");
 			}
-			}
+		}
 			
 			
 			// 채용 응모하기
 	private void input_rc(Scanner sc, Gujikja login_gu, Recruit[] rc_arr, RecruitApply[] rcApply_arr) {
 		
 			// 구직자 자신이 응모한 채용공고 번호를 알아오자
+		
 		String str_my_recruit_no = "";
 		for(int i = 0; i<RecruitApply.count; i++) {
 		if	(rcApply_arr[i].getGu().getId().equals(login_gu.getId())) {
@@ -479,7 +480,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 			}
 		} // end of for
 		// str_my_recruit_no = "1,3,2,";
-		
+		if(str_my_recruit_no.length() > 0) { // 응모한 경우가 있는 경우라면
 		str_my_recruit_no = str_my_recruit_no.substring(0, str_my_recruit_no.length()-1);
 		// "1,3,2"
 		
@@ -489,7 +490,7 @@ public class Ctrl_gujikja extends Ctrl_common {
 		System.out.println(">> 이미 모든 채용공고에 응모하셨기에 더 이상 채용에 응모한 채용공고번호가 없습니다\n");
 		return; // 메소드 종료
 	}
-	
+		}
 		// 채용 공고 번호는 채용 공고로 올라온 번호만 입력해야한다.
 		
 		boolean is_existence, is_duplicate_recruit_no;
