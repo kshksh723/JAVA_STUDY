@@ -221,6 +221,40 @@ public class MyUtil {
 		return null;
 	}// end of public static String append_comma(long_sum_monkey)-----
 
+	
+	public static int age(String jubun) {
+	      
+	      Date now = new Date();
+	      SimpleDateFormat sdfmt = new SimpleDateFormat("yyyyMMdd");
+	      String str_today = sdfmt.format(now);
+	      
+	      String centry = ( "1".equals(jubun.substring(6)) || "2".equals(jubun.substring(6)) )?"19":"20"; 
+	      String str_birthday = centry + jubun.substring(0, jubun.length()-1);
+	      //                   "19720910"   "20020320"
+	      
+	      String str_nowYear_birthday = String.format("%tY", now) + jubun.substring(2, jubun.length()-1);
+	       //                                                "2024"+"0910"   "2024"+"0320" 
+	      
+	      try {
+	          Date date_today = sdfmt.parse(str_today);
+	          Date date_nowYear_birthday = sdfmt.parse(str_nowYear_birthday);
+	          
+	          int n_nowYear = Integer.parseInt(String.format("%tY", now)); 
+	          int n_birthYear = Integer.parseInt(str_birthday.substring(0, 4));
+	          
+	          if(date_nowYear_birthday.compareTo(date_today) > 0) {
+	             return n_nowYear - n_birthYear - 1;
+	          }
+	          else {
+	             return n_nowYear - n_birthYear;
+	          }
+	          
+	      } catch (ParseException e) {
+	         return -1;
+	      }
+	      
+	   }// end of public int age()--------------------------------------
+
 	// == 주민번호 7자리를 입력받아서 올바른 데이터인지 검사해주는 메소드 생성
 	public static boolean isCheckJubun(String jubun) {
 		
@@ -279,8 +313,8 @@ public class MyUtil {
 	
 		
 		
-	}// end of public static boolean isCheckJubun
 	}
+	} // end of public static boolean isCheckJubun
 }
 			
 	
