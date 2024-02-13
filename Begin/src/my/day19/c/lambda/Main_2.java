@@ -1,6 +1,6 @@
 package my.day19.c.lambda;
 
-public class Main {
+public class Main_2 {
 
 	public static void main(String[] args) {
 		
@@ -62,6 +62,131 @@ public class Main {
 	       만약에 FunctionalInterface(함수형 인터페이스)에 두 개 이상의 메소드가 선언되면 자바 컴파일러는 오류를 발생시킨다.  
 	       함수형 인터페이스를 만드려면 @FunctionalInterface 어노테이션을 사용하면 된다.
 	   */
+		
+		Functional_Area_1 lambda_area_obj = (x, y, type) ->  {
+			
+			
+			switch (type) {
+			case 1:
+				System.out.println("가로 " + x + ", 세로 " + y +"인 사각형 면적은 :" + (x*y));
+				break;
+			case 2:
+				System.out.println("밑변 " + x + ", 높이 " + y +"인 삼각형 면적은 :" + (x*y*0.5));
+		
+				break;
+			case 3:
+				System.out.println("장축의 반지름 " + x + ", 단축의 반지름 " + y + "인 타원의 면적은 : " + (3.142*x*y));
+				break;
+				
+				default:
+					System.out.println("세번째 파라미터는 1 또는 2또는 3만 가능합니다");
+					break;
+		
+			}  // end of type
+		};
+		
+		area_obj.area(10.5, 5.5, 1);
+		// 가로 10.5, 세로 5.5인 사각형 면적은 :57.75
+		area_obj.area(10.5, 5.5, 2);
+		// 밑변 10.5, 높이 5.5인 삼각형 면적은 :28.875
+		area_obj.area(10.5, 5.5, 3);
+		// 장축의 반지름 10.5, 단축의 반지름 5.5인 타원의 면적은 : 181.4505
+		area_obj.area(10.5, 5.5, 4);
+		// 세번째 파라미터는 1 또는 2또는 3만 가능합니다
+		
+		
+		lambda_area_obj.area(10.5, 5.5, 1);
+		// 가로 10.5, 세로 5.5인 사각형 면적은 :57.75
+		lambda_area_obj.area(10.5, 5.5, 2);
+		// 밑변 10.5, 높이 5.5인 삼각형 면적은 :28.875
+		lambda_area_obj.area(10.5, 5.5, 3);
+		// 장축의 반지름 10.5, 단축의 반지름 5.5인 타원의 면적은 : 181.4505
+		lambda_area_obj.area(10.5, 5.5, 4);
+		// 세번째 파라미터는 1 또는 2또는 3만 가능합니다
+		
+		
+		
+		System.out.println("~ 람다식(Lambda)표기 방법 알아보기 ~");
+		
+		
+		Functional_Operator_3 annonymous_op = new Functional_Operator_3() {
+			
+			@Override
+			public double operator(double a, double b, String type) {
+					double result = 0.0;
+					
+					switch(type) {
+					case "+":
+						result = a+b;
+						break;
+					case "-":
+						result = a-b;
+						break;
+					
+					default:
+						System.out.println("세번째 파라미터는 ");
+					} // end type
+					return result;
+			}
+			
+		};
+		
+		double opr_result = annonymous_op.operator(20, 10, "+");
+		System.out.println(opr_result); // 30.0
+		
+		// 1. 람다식(Lambda) 표기 기본 방법
+		Functional_Operator_3  = annonymous_op2(double a, double b, String type)  
+					double result = 0.0;
+					
+					switch(type) {
+					case "+":
+						result = a+b;
+						break;
+					case "-":
+						result = a-b;
+						break;
+					case "*":
+						result = a*b;
+						break;
+					
+					default:
+						System.out.println("세번째 파라미터는 ");
+					} // end type
+					return result;
+			}
+			
+		};
+		
+		opr_result = annonymous_op2.operator(20, 10, "-");
+		System.out.println(opr_result); // 10.0
+		
+		
+		//2. 파라미터의 타입은 생략할 수 있다 
+		
+		Functional_Operator_3  annonymous_op3(a, b, type)  -> {
+				double result = 0.0;
+				
+				switch(type) {
+				case "+":
+					result = a+b;
+					break;
+				case "-":
+					result = a-b;
+					break;
+				case "*":
+					result = a*b;
+					break;
+				
+				default:
+					System.out.println("세번째 파라미터는 ");
+				} // end type
+				return result;
+		}
+		
+	};
+	
+	opr_result = annonymous_op2.operator(20, 10, "-");
+	System.out.println(opr_result); // 200.0
 	} // end of main
 
 }
