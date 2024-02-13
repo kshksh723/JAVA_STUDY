@@ -1,6 +1,7 @@
 package my.day18.a.collection;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -51,7 +52,7 @@ public class HashMap_main_4 {
 		System.out.println(mbr_map.get("kangkc"));  // 강기춘이 나옴
 	
 	
-	Member mem1 = new Member("parksj", "Qwer1234$", "박서준", "88032301");
+	Member mem1 = new Member("parksj", "Qwer1234$", "박서준", "8032301");
 	Member mem2 = mem1;
 	mem2.setName("이현우");
 	mbr_map.put("mem1", mem1); // 키 값이 다르면 value 값이 중복된 값이 들어와도 괜찮다
@@ -116,13 +117,89 @@ public class HashMap_main_4 {
 		System.out.println("\n >> " + userid + "아이디는 이미 사용중입니다. 회원가입 실패!! <<<");
 	}
 	
+	// === mbr_map 에 저장되어진 모든 key들을 읽어오는 두번째 방법 === //
+    
+    System.out.println("\n=== mbr_map 에 저장되어진 모든 key들을 읽어오는 두번째 방법 ===\n");
+    Set<String> key_set2 = mbr_map.keySet();
 	
+    Iterator<String> iterator = key_set2.iterator();	// java.util로 임포트
+ // Iterator 는 저장소가 아니라 Collection 에 저장되어진 요소(Element)를 읽어오는 용도로 쓰이는 것이다.
+    
+    while(iterator.hasNext()) {
+    	
+    	/*
+        itrator.hasNext() 는
+        itrator 에서 현재 itrator 가 가지고 있는 여러 String 데이터중 
+        하나를 끄집어내서 존재하는지를 알아보는 것이다.
+        존재하면 true, 존재하지 않으면 false 리턴해준다.
+        그러므로 현재는 키의 개수가 9개 이므로 9번 반복을 할 것이다.     
+     */
+    	String key = iterator.next();
+    	/*
+        실제로 키값인 String 값을 itrator 에서 끄집어 낸다.
+        !!!! 그러면 끄집어 낸 String 값은 더 이상 itrator 에는 남아 있지 않게 된다.!!!!  
+    */
+    	System.out.println(key);
+    }// end of while()---
+	
+    System.out.println("\n ~~~~~~또 한번 더~~~~~~~ \n");
+    
+    iterator = key_set2.iterator();
+    while(iterator.hasNext()) {
+    	String key = iterator.next();
+    	System.out.println(key);
+    }
+    
+    System.out.println("\n== mbr_map 에 저장되어진 모든 Member 객체의 정보를 출력해주는 두번째 방법 ==\n");
+    Set<String> key_set3 = mbr_map.keySet();
+    Iterator<String> itr = key_set3.iterator();
+    while(itr.hasNext()) {
+    
+    /*String key = itr.next();
+    	System.out.println(mbr_map.get(key));
+    	 */	
+
+    // 또는
+    	System.out.println(mbr_map.get(itr.next()));
+    
+    
+    }
+    
+    System.out.println("\n>> mbr_map 에서 key값이 leess인 Member 를 삭제하기 ==\n");
+    
+   Member deleted_mbr =  mbr_map.remove("leess");
+    System.out.println("== 삭제된 회원 정보 ===");
+    System.out.println(deleted_mbr);
+
+    System.out.println("== 남은 회원 정보 ===");
+    
+    for(String key : key_set) {
+    	System.out.println(mbr_map.get(key));
+    }
+    System.out.println("\n>> mbr_map 에 저장된 모든 Member 를 삭제하기 ==\n");
+    mbr_map.clear();
+    
+    System.out.println(">> 남은 회원들 정보 <<");
+    for(String key : key_set) {
+    	System.out.println(mbr_map.get(key));
+    }
+    
+    //mbr_map의 크기
+    System.out.println(mbr_map.size()); // 0
+    System.out.println(mbr_map.isEmpty()); // true
+    
 // set도 하나의 collection ,set은 중복된 값이 못들어옴!	
 
 	} //end of public static void main(String[] args)
 	
 	/*
 	 * map은 왠만하면 for문 쓰지 말기
+	 * 
+	 * 한개만 꺼내올 때 map이 더 좋다 
+	 * list 같은 경우는 계속 for문을 돌려야함 for문 돌려서 비교해야함
+	 * 특정한 회원을 꺼내올 때는 map이 빠르다
+	 * list를 쓸 땐 모든 회원을 꺼내올 때가 좋다
+	 * 
 	 */
 	
 	
