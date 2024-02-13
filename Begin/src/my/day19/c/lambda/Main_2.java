@@ -13,7 +13,7 @@ public class Main_2 {
 				
 				switch (type) {
 					case 1:
-						System.out.println("가로 "+x+", 세로 "+y+"인 사각형 면적은 : " + (x*y) ); 
+						System.out.println("가로 "+ x + ", 세로 "+ y +"인 사각형 면적은 : " + (x*y) ); 
 						break;
 						
 					case 2:
