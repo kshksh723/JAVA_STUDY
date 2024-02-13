@@ -9,7 +9,7 @@ public class Recruit_imple implements Recruit {
 
 	// field
 	private int recruit_no;       // 채용공고순번
-	private Company_imple cp;           // 회사
+	private Company_imple cp;     // 회사
 	private String  subject;      // 채용제목
 	private String work_type;     // 채용분야(근무형태)
 	private int cnt;              // 채용인원
@@ -17,11 +17,10 @@ public class Recruit_imple implements Recruit {
 	private String register_day;  // 채용공고 등록일자
 	private String finish_day;    // 채용마감일자
 	
-	 // Recruit 객체(인스턴스)의 개수를 알아오려는 용도
-static int count;
+	static int count; // 채용공고순번(recruit_no)을 1씩 증가시켜주는 용도
+
 	// 기본생성자
 	public Recruit_imple() {
-		// ++recruit_no; // 1, instance 번호
 		recruit_no = ++count;
 		
 		Date now = new Date(); // 현재시각

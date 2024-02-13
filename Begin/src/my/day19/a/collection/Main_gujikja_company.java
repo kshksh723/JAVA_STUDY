@@ -169,12 +169,12 @@ public class Main_gujikja_company {
 					break;	
 					
 				case "4": // 구인회사 로그인
-					Company_imple login_cp = ctrl_common.login(sc, cp_map);
+					Company_imple login_cp = ctrl_cp.login(sc, cp_map);
 					
 					if(login_cp != null) {
 						System.out.println(">> 구인회사 "+ login_cp.getName() +"기업 로그인 성공^^ << \n"); 
 						
-						ctrl_cp.cp_menu(sc, (Company_imple)login_cp, gu_list, rc_list, rcapply_list); // 구인회사 전용메뉴
+						ctrl_cp.cp_menu(sc, login_cp, gu_list, rc_list, rcapply_list); // 구인회사 전용메뉴
 					}
 					else {
 						System.out.println(">> 구인회사 로그인 실패 ㅜㅜ <<\n");

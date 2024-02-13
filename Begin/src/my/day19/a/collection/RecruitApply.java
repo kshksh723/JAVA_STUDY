@@ -10,8 +10,7 @@ public class RecruitApply {
 	private Gujikja_imple gu;           // 구직자 
 	private String apply_motive;  // 지원동기
 	private String register_day;  // 등록일자
-	
-	
+	 
 	
 	// 기본생성자
 	public RecruitApply() {

@@ -15,8 +15,7 @@ public abstract class CommonMember implements Common {
 	private String passwd;       // 비밀번호
 	private String name;         // 성명 또는 회사명
 	private String register_day; // 가입일자
-	
-	// Gujikja 객체 및 Company 객체가 생성되어진 개수를 알아오려는 용도 
+	 
 	
 	// Gujikja 및 Company 클래스의 부모클래스인 CommonMember 클래스의 기본생성자 
 	public CommonMember(){

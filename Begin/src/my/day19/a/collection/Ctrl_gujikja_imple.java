@@ -12,33 +12,29 @@ public class Ctrl_gujikja_imple extends Ctrl_common_imple implements Ctrl_gujikj
 	
 	// == 구직자(Gujikja) 신규 회원가입시
 	//    Gujikja 클래스의 field 의 요구사항에 모두 맞으면
-	//    Ctrl_gujikja_imple 에 저장시켜주는 메소드 생성하기 ==
-	public void register(Scanner sc, List<Gujikja> gu_list, Map<String, Gujikja> gu_map) {
-		
-		
+	//    List<Gujikja_imple> gu_list 와 Map<String, Gujikja_imple> gu_map 에 저장시켜주는 메소드 생성하기 ==
+	@Override
+	public void register(Scanner sc, List<Gujikja_imple> gu_list, Map<String, Gujikja_imple> gu_map) {
+		    
 			Gujikja_imple gu = new Gujikja_imple();
 			
+			String id = null;
 			// 아이디는 필수 입력사항이면서 아이디 조건에 맞을때 까지 반복해야 한다.
 			outer:
 			do {
 				System.out.print("1.아이디 : ");
-				String id = sc.nextLine();
+				id = sc.nextLine();
 				
 				// == 중복 아이디 검사하기 시작 == //
-			if(gu_map.get(id) != null) {			
-						System.out.println(">> 이미 사용중인 아이디 이므로 다른 아이디값을 입력하세요!!\n");
-						continue outer;
-					}
-					
+				if(gu_map.get(id) != null) {
+					System.out.println(">> 이미 사용중인 아이디 이므로 다른 아이디값을 입력하세요!!\n");
+					continue outer;
+				}
 				// == 중복 아이디 검사하기 끝 == //
 				
 				gu.setId(id);
 				
 			} while(!(gu.getId() != null));
-			///////////////////////////////////////
-			
-			 gu_list.add(gu);
-			gu,
 			
 			
 			// 비밀번호는 필수 입력사항이면서 비밀번호 조건에 맞을때 까지 반복해야 한다.
@@ -73,19 +69,38 @@ public class Ctrl_gujikja_imple extends Ctrl_common_imple implements Ctrl_gujikj
 			
 			////////////////////////////////////////////////
 			
-			cmbr_arr[CommonMember.count++] = gu;
+			gu_list.add(gu);
+			gu_map.put(id, gu);
 			
 			System.out.println(">> 구직자 회원가입 성공 !! <<\n");
-			
-		}
 		
-		
-	}// end of void register(Scanner sc, CommonMember[] cmbr_arr)------------
+	}// end of void register(Scanner sc, List<Gujikja_imple> gu_list, Map<String, Gujikja_imple> gu_map)------------
 
 	
+	// == 구직자 로그인 메소드 생성하기 == //
+	@Override
+	public Gujikja_imple login(Scanner sc, Map<String, Gujikja_imple> gu_map) {
+		
+		System.out.print("▷ 구직자 ID : ");
+		String id = sc.nextLine();
+			
+		System.out.print("▷ 비밀번호 : ");
+		String passwd = sc.nextLine();
+			
+		if( gu_map.get(id) != null && passwd.equals( gu_map.get(id).getPasswd() ) ) {
+			return gu_map.get(id);
+		}
+		else {
+			return null;
+		}
+			
+	}// end of public CommonMember login(Scanner sc, Map<String, Gujikja_imple> gu_map)-------
+	
+	
+	
 	// == 구직자 전용메뉴 메소드 생성하기 == //
-@Override
-public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr, Recruit[] rc_arr, RecruitApply[] rcApply_arr) {
+	@Override
+	public void gu_menu(Scanner sc, Gujikja_imple login_gu, List<Company_imple> cp_list, List<Recruit_imple> rc_list, List<RecruitApply> rcapply_list) {
 		
 		String str_menuno;
 		do {
@@ -105,24 +120,24 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 					break;	
 					
 				case "3": // 모든구인회사 조회
-					view_company_info(cmbr_arr); // 메소드의 오버로딩(overloading)
+					view_company_info(cp_list); // 메소드의 오버로딩(overloading)
 					break;	
 					
 				case "4": // 구인회사검색하기
-					view_company_info(sc, cmbr_arr); // 메소드의 오버로딩(overloading)
+					view_company_info(sc, cp_list); // 메소드의 오버로딩(overloading)
 					break;
 					
 					
 				case "5":	// 모든채용공고조회      
-					view_all_recruit_info(rc_arr);
+					view_all_recruit_info(rc_list);
 					break;
 					
 				case "6":   // 채용응모하기
-					input_recruitApply(sc, login_gu, rc_arr, rcApply_arr); 
+					input_recruitApply(sc, login_gu, rc_list, rcapply_list); 
 					break;
 					
 				case "7":   // 채용응모한것조회 	
-					view_my_recruitApply(login_gu, rcApply_arr);
+					view_my_recruitApply(login_gu, rcapply_list);
 					break;
 					
 				case "8": // 로그아웃
@@ -139,7 +154,7 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 		
 		System.out.println(">> 로그아웃 되었습니다. <<\n");
 		
-	}// end of public void gu_menu(Scanner sc, Gujikja login_gu, CommonMember[] cmbr_arr, Recruit[] rc_arr, RecruitApply[] rcApply_arr)--------------
+	}// end of public void gu_menu(Scanner sc, Gujikja_imple login_gu, List<Company_imple> cp_list, List<Recruit_imple> rc_list, List<RecruitApply> rcapply_list)--------------
 	
 
 
@@ -270,16 +285,9 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 	
 	
 	// 모든구인회사 조회
-	private void view_company_info(CommonMember[] cmbr_arr) {
+	private void view_company_info(List<Company_imple> cp_list) {
 		
-		int cnt = 0;
-		for(int i=0; i<CommonMember.count; i++) {
-			if(cmbr_arr[i].getType() == 2) {
-				cnt++;
-			}
-		}// end of for--------------------------
-		
-		if(cnt == 0) {
+		if(cp_list.size() == 0) {
 			System.out.println(">> 구인회사로 등록된 회사가 한개도 없습니다. << \n");
 		}
 		
@@ -288,16 +296,14 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 			
 			StringBuilder sb = new StringBuilder();
 			
-			for(int i=0; i<CommonMember.count; i++) {
-				if(cmbr_arr[i].getType() == 2) {
-					sb.append(cmbr_arr[i].getInfo()+"\n");
-				}
+			for(int i=0; i<cp_list.size(); i++) {
+				sb.append(cp_list.get(i).getInfo()+"\n");
 			}// end of for--------------
 			
 			System.out.println(sb.toString());
 		}
 		
-	}// end of private void view_company_info(CommonMember[] cmbr_arr)------
+	}// end of private void view_company_info(List<Company_imple> cp_list)------
 
 
 	private void title_company() {
@@ -310,7 +316,7 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 	
 	
 	// 구인회사검색하기
-	private void view_company_info(Scanner sc, CommonMember[] cmbr_arr) {
+	private void view_company_info(Scanner sc, List<Company_imple> cp_list) {
 		
 		String str_menuno = "";		
 		
@@ -323,11 +329,11 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 			
 			switch (str_menuno) {
 				case "1": // 업종검색
-					search_jobtype_company(sc, cmbr_arr);
+					search_jobtype_company(sc, cp_list);
 					break;
 					
 				case "2": // 자본금검색
-					search_seedmoney_company(sc, cmbr_arr);
+					search_seedmoney_company(sc, cp_list);
 					break;
 					
 				case "3": // 구직자메뉴로 돌아가기
@@ -345,24 +351,20 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 
 	
 	// 업종검색
-	private void search_jobtype_company(Scanner sc, CommonMember[] cmbr_arr) {
+	private void search_jobtype_company(Scanner sc, List<Company_imple> cp_list) {
 		
 		System.out.print("▷ 업종명 : ");
-		String job_type_name = sc.nextLine().toLowerCase();
+		String job_type_name = sc.nextLine().toLowerCase();  
 		
 		StringBuilder sb = new StringBuilder();
 		
 		boolean is_existence = false;
 		
-		for(int i=0; i<CommonMember.count; i++) {
-			
-			if(cmbr_arr[i] instanceof Company_imple && 
-			   ((Company_imple) cmbr_arr[i]).getJob_type().toLowerCase().contains(String.join("", job_type_name.split("\\ "))) ) {
-			 // cmbr_arr[i] instanceof Company 은 cmbr_arr[i] 객체(인스턴스)가 Company 객체이라면 이다. 
+		for(Company_imple cp : cp_list) {
+			if( cp.getJob_type().toLowerCase().contains(String.join("", job_type_name.split("\\ "))) ) {
 				is_existence = true;
-				sb.append(cmbr_arr[i].getInfo()+"\n");
+				sb.append(cp.getInfo()+"\n");
 			}
-			
 		}// end of for----------------------------
 		
 		if(is_existence) {
@@ -373,11 +375,11 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 			System.out.println(">> 검색하시려는 "+ job_type_name +"업종에 해당하는 회사는 없습니다.!!\n");
 		}
 		
-	}// end of private void search_jobtype_company(Scanner sc, CommonMember[] cmbr_arr)------
+	}// end of private void search_jobtype_company(Scanner sc, List<Company_imple> cp_list)------
 
 	
 	// 자본금검색
-	private void search_seedmoney_company(Scanner sc, CommonMember[] cmbr_arr) {
+	private void search_seedmoney_company(Scanner sc, List<Company_imple> cp_list) {
 		
 		System.out.print("▷ 자본금 : ");
 		String str_search_seed_money = sc.nextLine();
@@ -388,13 +390,12 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 			StringBuilder sb = new StringBuilder();
 			boolean is_existence = false;
 			
-			for(int i=0; i<CommonMember.count; i++) {
-				if( cmbr_arr[i] instanceof Company_imple &&
-					search_seed_money <= ((Company_imple) cmbr_arr[i]).getSeed_money() ) {
+			for(Company_imple cp : cp_list) {
+				if( search_seed_money <= cp.getSeed_money() ) {
 					is_existence = true;
-					sb.append(cmbr_arr[i].getInfo()+"\n");
+					sb.append(cp.getInfo()+"\n");
 				}
-			}// end of for----------------------------
+			}// end of for---------------------------
 			
 			if(is_existence) {
 				title_company();
@@ -408,13 +409,13 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 			System.out.println(">>[경고] 자본금은 정수로만 입력하세요!!<< \n");
 		}
 		
-	}// end of private void search_seedmoney_company(Scanner sc, CommonMember[] cmbr_arr)------
+	}// end of private void search_seedmoney_company(Scanner sc, List<Company_imple> cp_list)------
 
 
 	// 모든채용공고조회 (채용마감일자가 오늘보다 이전인것은 보여주면 안된다!!)
-	private void view_all_recruit_info(Recruit[] rc_arr) {
+	private void view_all_recruit_info(List<Recruit_imple> rc_list) {
 		
-		if(Recruit_imple.count == 0) {
+		if(rc_list.size() == 0) {
 			System.out.println(">> 채용공고가 1개도 없습니다. <<\n");
 		}
 		
@@ -427,9 +428,7 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 				SimpleDateFormat sdft = new SimpleDateFormat("yyyyMMdd");
 				Date today = sdft.parse(sdft.format(now)); // "20240207" ==> 20240207 00:00:00
 				
-				for(int i=0; i<Recruit_imple.count; i++) {
-				
-					Recruit_imple rc = (Recruit_imple) rc_arr[i];
+				for(Recruit_imple rc : rc_list) {
 					
 					Date date_finish_day = sdft.parse(rc.getFinish_day());
 					
@@ -443,8 +442,9 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 								  rc.getRegister_day().substring(0,4)+"-"+rc.getRegister_day().substring(4,6)+"-"+rc.getRegister_day().substring(6)+"\t"+  
 								  rc.getFinish_day().substring(0,4)+"-"+rc.getFinish_day().substring(4,6)+"-"+rc.getFinish_day().substring(6)+"\n");
 					}
-				}// end of for-----------------------------------
-		
+					
+				}// end of for---------------------
+				
 			} catch(ParseException e) {
 				
 			}
@@ -453,23 +453,24 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 			System.out.println("채용공고순번      회사명   회사직종타입  자본금   채용분야(근무형태)  채용인원  등록일자  채용마감일자");
 			System.out.println("-".repeat(90));
 		    System.out.println(sb.toString());
-			System.out.println("[채용공고가 "+ Recruit_imple.count +"건이 있습니다]\n");
+			System.out.println("[채용공고가 "+ rc_list.size() +"건이 있습니다]\n");
 		}
 		
-	}// end of private void view_all_recruit_info(Recruit[] rc_arr)------------	
+	}// end of private void view_all_recruit_info(List<Recruit_imple> rc_list)------------	
 	
 	
 
 	// 채용응모하기
-	private void input_recruitApply(Scanner sc, Gujikja_imple login_gu, Recruit[] rc_arr, RecruitApply[] rcApply_arr) {
+	private void input_recruitApply(Scanner sc, Gujikja_imple login_gu, List<Recruit_imple> rc_list, List<RecruitApply> rcapply_list) {
 		
 		// 구직자 자신이 응모한 채용공고 번호를 알아오자.
 		String str_my_recruit_no = "";
-		for(int i=0; i<RecruitApply.count; i++) {
-			if(rcApply_arr[i].getGu().getId().equals(login_gu.getId())) {
-				str_my_recruit_no += rcApply_arr[i].getRc().getRecruit_no()+","; 
+		
+		for(RecruitApply rc_apply : rcapply_list) {
+			if(rc_apply.getGu().getId().equals(login_gu.getId())) {
+				str_my_recruit_no += rc_apply.getRc().getRecruit_no()+","; 
 			}
-		}// end of for-------------------------------
+		}// end of for-----------------------
 		//  str_my_recruit_no = "1,3,2,";
 		
 		if(str_my_recruit_no.length() > 0) { // 응모한 경우가 있는 경우라면
@@ -495,14 +496,13 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 			System.out.print("▷ 채용공고번호 : ");
 			String input_recruit_no = sc.nextLine();  // "1"  "3"  "2"  "1435"  "강아지"
 			
-			for(int i=0; i<Recruit_imple.count; i++) {
-				Recruit_imple rc2 = (Recruit_imple)rc_arr[i];
-				if( input_recruit_no.equals( String.valueOf(rc2.getRecruit_no()) ) ) {
+			for(Recruit_imple recruit : rc_list) {
+				if(input_recruit_no.equals( String.valueOf(recruit.getRecruit_no()) ) ) {
 					is_existence = true;
-					rc = rc2;
+					rc = recruit;
 					break;
 				}
-			}// end of for--------------------
+			}// end of for------------------
 			
 			if(!is_existence) {
 				System.out.println(">> 입력하신 "+ input_recruit_no +"번은 채용공고에 존재하지 않습니다.!!\n");
@@ -510,16 +510,17 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 			
 			else {
 					// == 채용공고번호는 채용공고로 올라온 번호이지만 이미 응모한 채용공고번호는 입력하면 안된다. == //
-					for(int i=0; i<RecruitApply.count; i++) {
-						// rcApply_arr[i].getRc().getRecruit_no() ==> 채용공고번호(int) 
-						// rcApply_arr[i].getGu().getId()  ==> 채용공고에 지원한 구직자ID
-						
-						if(String.valueOf(rcApply_arr[i].getRc().getRecruit_no()).equals(input_recruit_no) &&  
-						   rcApply_arr[i].getGu().getId().equals(login_gu.getId()) ) {
-							 is_duplicate_recruit_no = true;
-							 break;
-						}
-					}// end of for-----------------------------
+				    for(RecruitApply rcapply : rcapply_list) {
+				    	// rcapply.getRc().getRecruit_no() ==> 채용공고번호(int)
+				    	// rcapply.getGu().getId() ==> 채용공고에 지원한 구직자ID
+				    	
+				    	if( String.valueOf(rcapply.getRc().getRecruit_no()).equals(input_recruit_no) &&
+				    		rcapply.getGu().getId().equals(login_gu.getId()) ) {
+				    		   is_duplicate_recruit_no = true;
+							   break;
+				    	}
+				    	
+				    }// end of for--------------------
 					
 					if(is_duplicate_recruit_no) {
 						System.out.println(">> 입력하신 채용공고번호 "+ input_recruit_no + "번은 이미 응모하신 번호 입니다. \n"); 
@@ -538,9 +539,11 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 								rc_apply.setGu(login_gu);
 								rc_apply.setApply_motive(apply_motive);
 								
-								rcApply_arr[RecruitApply.count++] = rc_apply; 
+								rcapply_list.add(rc_apply);
+								
 								break;
 							}
+							
 						} while(true);
 					}
 					
@@ -548,22 +551,22 @@ public void gu_menu(Scanner sc, Gujikja_imple login_gu, CommonMember[] cmbr_arr,
 				
 		} while(!(is_existence && !is_duplicate_recruit_no));
 		
-	}// end of private void input_recruitApply(Scanner sc, Gujikja login_gu, Recruit[] rc_arr, RecruitApply[] rcApply_arr)-------------
+	}// end of private void input_recruitApply(Scanner sc, Gujikja_imple login_gu, List<Recruit_imple> rc_list, List<RecruitApply> rcapply_list)-------------
 	
 	
 
 	// 채용응모한것조회
-	private void view_my_recruitApply(Gujikja_imple login_gu, RecruitApply[] rcApply_arr) {
+	private void view_my_recruitApply(Gujikja_imple login_gu, List<RecruitApply> rcapply_list) {
 		
 		boolean is_existence = false;
 		
-		for(int i=0; i<RecruitApply.count; i++) {
-			if( login_gu.getId().equals(rcApply_arr[i].getGu().getId()) ) {
+		for(RecruitApply rcapply : rcapply_list) {
+			if( login_gu.getId().equals(rcapply.getGu().getId()) ) {
 				is_existence = true;
-				System.out.print(rcApply_arr[i].getRc().recruit_info());
-				System.out.println("▣ 지원동기 : " + rcApply_arr[i].getApply_motive() + "\n\n");
+				System.out.print(rcapply.getRc().recruit_info());
+				System.out.println("▣ 지원동기 : " + rcapply.getApply_motive() + "\n\n");
 			}
-		}// end of for----------------------------------
+		}// end of for----------------------
 		
 		if(!is_existence) {
 			System.out.println(">> 채용공고에 응모한 내역이 없습니다. <<\n");
