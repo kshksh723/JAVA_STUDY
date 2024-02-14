@@ -212,9 +212,73 @@ public class Main_2 {
 	opr_result = annonymous_op3.operator(20, 10, "*");
 	System.out.println(opr_result); // 200.0
 		
-		
-    
+	// 3. 실행명령문이 1개이라면 {};를 생략할 수 있다
+	 Functional_Search_4 lambda_srch = (str) -> { System.out.println("회원들중 \"" + str +"\"님을 조회합니다 "); };
+	 lambda_srch.search("이순신");
+    // 회원들중 "이순신"님을 조회합니다 
 	
+	 
+	 // 4. 파라미터의 개수가 1개일 때는 파라미터를 감싸는 소괄호()를 생략할 수 있다
+	 Functional_Search_4 lambda_srch2 = str ->  System.out.println("회원들중 \"" + str +"\"님을 조회합니다 "); 
+	 lambda_srch2.search("엄정화");
+	 // 회원들중 "엄정화"님을 조회합니다 
+	 
+	 //// 5. 파라미터의 개수가 2개 이상일 때는 무조건 소괄호()를 꼭 기재해야 한다.
+	/* Functional_Operator_3 annonymous_op4 = a, b, type -> {	// ()가 없으므로 오류 발생함
+			
+			double result = 0.0;
+			
+			switch (type) {
+				case "+":
+					result = a+b;
+					break;
+					
+				case "-":
+					result = a-b;
+					break;
+					
+				case "*":
+					result = a*b;
+					break;
+					
+				case "/":
+					result = a/b;
+					break;
+
+				default:
+					System.out.println("세번째 파라미터는 + - * / 만 가능합니다.");
+					break;
+					
+			}// end of switch(type)-----------------
+			
+			return result;
+	};
+	*/
+	 
+	 // 6. 파라미터가 없는 람다식은 무조건 소괄호()를 꼭 기재해야 한다
+	 Functional_Search_5 lambda_srch3 = () -> {
+		System.out.println("1. 파라미터에 값이 없는 것은 ");
+		System.out.println("2. 반드시  소괄호를 꼭 기재해야합니다 ");
+		System.out.println("== 모든 회원 조회 결과 ==");
+	};	
+		lambda_srch3.searchAll();
+		/*
+		 * 1. 파라미터에 값이 없는 것은 
+			2. 반드시  소괄호를 꼭 기재해야합니다 
+			== 모든 회원 조회 결과 ==
+		 */
+		
+		// 7. 실행명령문이 1개 이더라도 return 이 있을 경우에는 반드시 { }; 을 써야하지 생략할 수 없다.
+	//	Functional_Plus_6 lambda_plus = (a, b) -> return a+b; //오류
+		Functional_Plus_6 lambda_plus = (a, b) -> {return a+b; };
+		System.out.println(lambda_plus.plus(10, 20));
+		// 30
+		
+	// 8. return 문만 있는 단일 코드인 경우에는 { }; 및 return을 생략할 수 있다.
+		Functional_Plus_6 lambda_plus2 = (a, b) ->  a+b;
+		System.out.println(lambda_plus2.plus(10, 20));
+		// 50
+	 
   }// end of main()-----------------------------
 
 }
