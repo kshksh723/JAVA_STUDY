@@ -44,31 +44,16 @@ Data Sourceㅇ======>ㅇ 프로그램 ㅇ======>ㅇ Data Destination
               print(String str),
               write(int b)             
 */      
-public class InputStream_main_03 {
+public class InputStream_main_04 {
 
 	public static void main(String[] args) throws IOException {
 		
-	int input = 0;	
-	int totalByte = 0;	// byte 수 누적용도
-	while((input = System.in.read()) != -1) {
-		// -1 은 키보드로 Ctrl + C(강제종료)를 입력한 값이다.
-        // 키보드로 Ctrl + C(강제종료)를 하면 while 을 빠져 나간다.
-        // System.in.read() 는 1byte 씩 읽어온다.
-		if(input != 13 && input != 10) {
-			// 키보드로부터 입력받은 것이 엔터가 아니라면
-			totalByte++;
-		System.out.write(input);
-		System.out.flush(); // System.out.write가 나오면 flush는 무조건 있어야한다. 없어도 되긴 함
-		}
-		else {
-			//키보드로 부터 입력받은 것이 엔터이라면
-			
-			System.out.println("");
-		}
+	// 키보드에서 "대한민국서울시홍대입구엔터" 했다라면
+		byte[] data_arr = new byte[10];
 		
-	}// end of while
-	
-	System.out.println("총 : " + totalByte + "byte 입력함");
+		while() {
+			
+		}// end of while ~~~
 	
 	}// end of main
 
