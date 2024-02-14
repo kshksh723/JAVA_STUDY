@@ -49,56 +49,54 @@ public class InputStream_main_04 {
 	public static void main(String[] args) throws IOException {
 		
 	// 키보드에서 "대한민국서울시홍대입구엔터" 했다라면
+		// "대한민국서"  "울시홍대입"	     "구엔터"
+		// 10byte	  10byte		 4byte
 		byte[] data_arr = new byte[10];
+		// data_arr 변수의 용도는 빨대(System.in, 키보드)에서 흡입할 때 단위크기를 10byte로 하는 것이다
+		int input_length = 0;
+		// input_length 변수의 용도는 빨대(System.in, 키보드)에서 흡입한 실제 크기를 나타내는 용도임. 
 		
-		while() {
-			
-		}// end of while ~~~
+		int totalByte = 0;	// byte 수 누적용도 
+		
+		while((input_length = System.in.read(data_arr)) != -1 ) {
+			// 키보드로 Ctrl+c (강제종료)를 누르지 않으면 계속 실행해라
+		
+		/*
+        System.in.read(data_arr)은 
+            입력한 데이터가 "대한민국서울시홍대입구엔터" 이라면
+            입력한 내용에서 배열 data_arr의 크기만큼(지금은 10byte) 읽어들인다(지금은 "대한민국서"). 
+            읽어들인 "대한민국서"을 배열 data_arr 에 저장시키고, 읽어들인 크기를(지금은 10byte) 리턴시켜준다. 
+        
+         반복문의 첫번째일때
+            data_arr 에는 "대한민국서" 가 들어가고, input_length 에는 10 이 들어간다.
+      
+         반복문의 두번째일때
+            data_arr 에는  "울시홍대입" 이 들어가고, input_length 에는 10 이 들어간다.
+         
+         반복문의 세번째일때
+            data_arr 에는  "구엔터" 가 들어가고, input_length 에는 4 가 들어간다.   
+      */
+		System.out.write(data_arr, 0, input_length); //data_arr, 저장소에 끄집어낸다 , input_length가 출발점 
+		// 배열 data_arr 에 저장된 데이터에서 시작점이 0번째 index 부터(처음부터) input_length byte수 만큼 출력해라는 말이다.
+		System.out.flush();
+		System.out.println("");
+		
+		totalByte += input_length;	//10 + 10 + 4 
+		System.out.println("totalByte : " + totalByte);
 	
+		}// end of while ~~~
 	}// end of main
 
      
 }
-//      /*  
-// * 키보드로 윈도우 + r 해서 cmd 엔터한다
-// * 그러면 아래와 같이 명령 프롬프트가 나온다 
-// * 
-// * C:\Users\ user\Desktop\NCS\workspace_java\Begin\bin>java my.day20.a.io.InputStream_main_02>>영문자르 입력하세요[
-//
-//종료하려면 x를 입력하세요]<<ksh
-//
-//===
-//키보드로 부터
-//데이터 입력받기===화면에 출력[
-//println 을
-//사용한 input]:107 화면에 출력[
-//write 을
-//사용한 input]:
-//k 화면에 출력[Println을 사용한 (char)input] : k
-//
-// === 키보드로 부터 데이터 입력받기 ===
-//화면에 출력 [println 을 사용한 input] : 115
-//화면에 출력 [write 을 사용한 input] : s
-//화면에 출력 [Println을 사용한 (char)input] : s
-//
-// === 키보드로 부터 데이터 입력받기 ===
-//화면에 출력 [println 을 사용한 input] : 104
-//화면에 출력 [write 을 사용한 input] : h
-//화면에 출력 [Println을 사용한 (char)input] : h
-//
-// === 키보드로 부터 데이터 입력받기 ===
-//화면에 출력 [println 을 사용한 input] : 13
-//화면에 출력 [write 을 사용한 input] :
-//화면에 출력 [Println을 사용한 (char)input] :
-//
-// === 키보드로 부터 데이터 입력받기 ===
-//화면에 출력 [println 을 사용한 input] : 10
-//화면에 출력 [write 을 사용한 input] :
-//
-//화면에 출력 [Println을 사용한 (char)input] :
-
-
-
-
+/*
+ * 명령프롬프트에서 실행한 결과 화면 <<
+C:\Users\ user\Desktop\NCS\workspace_java\Begin\bin>java my.day20.a.io.InputStream_main_04
+대한민국서울시홍대입구
+대한민국서totalByte : 10
+울시홍대입totalByte : 20
+구
+totalByte : 24
+*/
 
 
