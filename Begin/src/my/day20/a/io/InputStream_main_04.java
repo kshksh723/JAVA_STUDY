@@ -57,6 +57,7 @@ public class InputStream_main_04 {
 		// input_length 변수의 용도는 빨대(System.in, 키보드)에서 흡입한 실제 크기를 나타내는 용도임. 
 		
 		int totalByte = 0;	// byte 수 누적용도 
+		int cnt = 0;	// while문의 반복 회수를 알기 위한 것
 		
 		while((input_length = System.in.read(data_arr)) != -1 ) {
 			// 키보드로 Ctrl+c (강제종료)를 누르지 않으면 계속 실행해라
@@ -82,12 +83,15 @@ public class InputStream_main_04 {
 		System.out.println("");
 		
 		totalByte += input_length;	//10 + 10 + 4 
-		System.out.println("totalByte : " + totalByte);
+		System.out.println("totalByte : " + totalByte); 
 	
+		cnt++; //3
 		}// end of while ~~~
-	}// end of main
+	
+	System.out.println("총 : " + (totalByte -2)+ "byte 입력함"); // 엔터크기를 빼려고 -2를 입력함
+	System.out.println("반복회수 : ");
 
-     
+     }// end of main
 }
 /*
  * 명령프롬프트에서 실행한 결과 화면 <<

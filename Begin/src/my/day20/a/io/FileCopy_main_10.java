@@ -54,8 +54,21 @@ public class FileCopy_main_10 {
 			
 			long src_file_size = src_file.length(); // 파일의 크기를 알려준다
 			System.out.println(">> 원본 파일 (" + src_fileName + ")  크기 : " + src_file_size+ "byte");
-			FileInputStream fist = new FileInputStream(src_fileName);
-			FileOutputStream fost = new FileOutputStream(target_fileName);
+			
+			long max_size = 1025*1024*10;	// 10 mb
+			
+			if(src_file_size > max_size) {
+				// 원본 파일의 크기가 10mb 초과한 경우
+				System.out.println(">> 원본 파일의 크기가 10mb 초과했으므로 복사할 수 없습니다 << ");
+				sc.close();
+				return; // main() 메소드 종료 
+			} //  if(src_file_size > max_size) { -> 이게 중요함
+			
+			FileInputStream fist = new FileInputStream(src_file);
+			
+			File target_file = new File(target_fileName);
+			
+			FileOutputStream fost = new FileOutputStream(target_file);
 		/*	
 			while((input_length = fist.read(data_arr)) != -1) {
 				fost.write(data_arr, 0, input_length); // 파일에 쓰기

@@ -24,10 +24,10 @@ Data Sourceㅇ======>ㅇ 프로그램 ㅇ======>ㅇ Data Destination
       public int read() throws IOException
       ==> 1byte 씩 데이터를 읽어서
           1byte 씩 반환하고
-          입력받은 키보드가 Ctrl+C(윈도우), Ctrl+D(유닉스,리눅스,맥) 이라면 -1 을 반환해주는 메소드이다.
+          입력받은 키보드가 Ctrl+Z(윈도우), Ctrl+D(유닉스,리눅스,맥) 이라면 -1 을 반환해주는 메소드이다.
           read() 메소드의 리턴타입은 byte 가 아니라 int 이다.
           데이터 입력의 끝을 나타내는 것으로 -1 을 사용하는데
-          Ctrl+C(윈도우), Ctrl+D(유닉스,리눅스,맥)을 사용하면 된다.
+          Ctrl+Z(윈도우), Ctrl+D(유닉스,리눅스,맥)을 사용하면 된다.
                       
           또한 IOException 이 발생할수도 있으므로 반드시 예외처리를 꼭 해주어야 한다.              
           그래서 현재 우리는 윈도우를 사용하고 있으므로 InputStream 작업을 
