@@ -38,10 +38,18 @@ public class File_main {
 		System.out.println("파일이 저장된 경로명을 포함한 파일명 2 : " +  Path);
 		
 		// ==== C:\NCS\iotestdata\쉐보레전면.jpg 파일이 저장된 경로명만 출력하세요 !! ===//
-		Path.substring(0, Path.indexOf(file_1.getName()));
-		System.out.println("경로명만 : ");
+		String path_name = Path.substring(0, Path.indexOf(file_1.getName()));
+		System.out.println("경로명만 : " + path_name);
 		
 		sc.close();
+		System.out.println("\n ==================== \n");
+		System.out.println(">>> 디렉토리(폴더) 생성하기 <<<");
+		File dir = new File("C:/NCS/iotestdata/MyDir"); // dir까지 다 포함 시켜버린다
+		
+		if(dir.exists()) {
+			// 해당 디렉토리(폴더)가 없으면
+			dir.mkdir();	// 해당 디렉토리(폴더)를 생성해라
+		}
 	
 	}// end of main() ----------
 
