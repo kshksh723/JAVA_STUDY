@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
-
+// 이 파일 오류 남..
 /*
 ※ Data Source (File, 키보드, 원격 컴퓨터)
 : 데이터의 근원
@@ -69,9 +69,10 @@ public class FileInputStream_main_06 {
 	            */
 				System.out.write(data_arr, 0, input_length);// 모니터(콘솔화면)에 출력
 				System.out.flush();
-			}
+			
 			totalByte += totalByte;
 			cnt++;	// 반복회수
+			}//end of while
 			fist.close();
 		} catch (FileNotFoundException e) {
 			System.out.println(fileName + "파일은 없습니다");
