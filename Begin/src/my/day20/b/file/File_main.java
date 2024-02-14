@@ -1,6 +1,7 @@
 package my.day20.b.file;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class File_main {
@@ -48,9 +49,49 @@ public class File_main {
 		
 		if(dir.exists()) {
 			// 해당 디렉토리(폴더)가 없으면
-			dir.mkdir();	// 해당 디렉토리(폴더)를 생성해라
+		boolean bool =	dir.mkdir();	// 해당 디렉토리(폴더)를 생성해라
+			
+			String result = bool?"디렉토리(폴더) 생성 성공!!": "디렉토리(폴더) 생성 실패ㅜㅜ";
+			System.out.println("C:/NCS/iotestdata/MyDir" + result);
+			// C:/NCS/iotestdata/MyDir 디렉토리(폴더) 생성 성공!!
 		}
-	
+		// >> File dir이 디렉토리(폴더)인지 알아오기
+		if(dir.isDirectory()) {
+			System.out.println("C:/NCS/iotestdata/MyDir 은 디렉토리(폴더) 입니다.");
+			// C:/NCS/iotestdata/MyDir 디렉토리(폴더)입니다
+		}
+		
+		
+		System.out.println("\n ==================== \n");
+		System.out.println(">>> 파일 생성하기 <<<");
+		
+		File file_2 = new File("C:/NCS/iotestdata/MyDir/테스트1.txt"); 
+		
+		if(!file_2.exists()) {
+			// 해당 파일이 존재하지 않으면 
+			
+			try {
+				boolean bool = file_2.createNewFile(); // 파일 생성하기
+				if(bool) {
+					// 해당 파일이 정상적으로 생성되었다면 
+					System.out.println("테스트1.txt의 절대경로 : " + file_2.getPath());
+					// 테스트1.txt의 절대경로 : 
+				}
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}// 파일 생성하기
+		}
+		// >> File file_2이 파일인지 알아오기 <<
+		
+		if(file_2.isFile()) {
+			System.out.println("C:/NCS/iotestdata/MyDir/테스트1.txt은 파일입니다.");
+			
+		}
+		
+		sc.close();
+		
+		
 	}// end of main() ----------
 
 }
