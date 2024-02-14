@@ -37,6 +37,10 @@ public class File_main {
 		String Path = file_1.getPath();
 		System.out.println("파일이 저장된 경로명을 포함한 파일명 2 : " +  Path);
 		
+		// ==== C:\NCS\iotestdata\쉐보레전면.jpg 파일이 저장된 경로명만 출력하세요 !! ===//
+		Path.substring(0, Path.indexOf(file_1.getName()));
+		System.out.println("경로명만 : ");
+		
 		sc.close();
 	
 	}// end of main() ----------
