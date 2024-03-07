@@ -17,7 +17,7 @@ public class File_main {
 		System.out.print("탐색기에 존재하는 파일명을 입력하세요 : ");
 	
 		String file_name = sc.nextLine();
-	// C :\NCS\iotestdata\쉐보레전면.jpg
+	// C:\NCS\iotestdata\쉐보레전면.jpg
 		
 		File file_1 = new File(file_name);
 		
@@ -88,6 +88,54 @@ public class File_main {
 			System.out.println("C:/NCS/iotestdata/MyDir/테스트1.txt은 파일입니다.");
 			
 		}
+		
+		System.out.println("\n ==================== \n");
+		
+		System.out.println(">>> 파일 삭제하기 <<<");
+		boolean is_delete_ok = file_2.delete();	// 파일 삭제하기
+		String result = is_delete_ok ? " C:/NCS/iotestdata/MyDir/테스트1.txt 파일 삭제 성공!!"  : "C:/NCS/iotestdata/MyDir/테스트1.txt 파일 삭제 실패!!";
+		System.out.println(result); 
+
+		
+	System.out.println("\n ==================== \n");
+		
+		System.out.println(">>> 내용물이 들어있는 디렉토리(폴더) 삭제하기 실패한 예제 <<<");
+		// 실습하려면 탐색기에서  C:/NCS/iotestdata 밑에 images 라는 폴더를 생성
+		// images 폴더 속에 파일을 몇 개 올려둔다
+		File images_dir = new File("C:/NCS/iotestdata/images");
+		
+		if(dir.exists()) {	// dir은 C:/NCS/iotestdata/MyDir 폴더이다
+		is_delete_ok = images_dir.delete();	// 파일 삭제하기
+		result = is_delete_ok ? " \"C:/NCS/iotestdata/images 파일 삭제 성공!!"  : "\"C:/NCS/iotestdata/images 파일 삭제 실패!!";
+		System.out.println(result); 
+		// C:/NCS/iotestdata/MyDir 폴더 삭제 성공
+		}
+		
+		
+		System.out.println("\n ==================== \n");
+		
+		System.out.println(">>> 내용물이 들어있는 디렉토리(폴더) 삭제하기 성공한 예제 <<<");
+		
+		// 1. 내용물이 들어있는 디렉토리(폴더)내에 존재하는 내용물을 파악한다
+		
+		File[] file_arr = images_dir.listFiles();
+		
+		
+		for(int i = 0; i < file_arr.length; i++) {
+			if(file_arr[i].isFile()) {
+				System.out.println(file_arr[i].getAbsolutPath());
+			}
+		} // end of for
+		
+		
+		// C:/NCS/iotestdata/images 폴더 내의 파일들을 모두 삭제한다
+		for(int i = 0; i < file_arr.length; i++) {
+			if(file_arr[i].isFile()) {
+				file_arr[i].delete;
+			}
+		
+			is_delete_ok = images_dir.delete();	//텅빈 디렉토리(폴더) 삭제하기
+			result = is_delete_ok ? "C:/NCS/iotestdata/images 파일 삭제 성공!!"  : "C:/NCS/iotestdata/images 파일 삭제 실패!!";
 		
 		sc.close();
 		
