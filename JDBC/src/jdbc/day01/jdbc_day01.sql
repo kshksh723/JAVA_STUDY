@@ -54,8 +54,78 @@ select no, name, msg, to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') AS writeday fro
 
 
 update tbl_memo set writeday = writeday - 1
-where no between 1 and 3
+where no between 1 and 3;
+
+commit;
+
+
 select no, name, msg, to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') AS writeday
 from tbl_memo
-where
+order by no desc; 
+
+select no, name, msg, to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') AS writeday
+from tbl_memo
+where to_char(writeday,'yyyy-mm-dd') = '2024-03-06'
 order by no desc;
+
+
+
+select no, name, msg, to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') AS writeday
+from tbl_memo
+where no = '1' -- string type도 호환 가능하다
+order by no desc;
+
+select no, name, msg, to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') AS writeday
+from tbl_memo
+where msg like '%'||'점심'||'%'
+order by no desc;
+--  문자 찾기 
+
+
+select no, name, msg, to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') AS writeday
+from tbl_memo
+where msg like '%'||'^^'||'%'
+order by no desc;
+
+
+select no, name, msg, to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') AS writeday
+from tbl_memo
+where name = '%'||'^^'||'%'
+order by no desc;
+
+
+select no, name, msg, to_char(writeday, 'yyyy-mm-dd hh24:mi:ss') AS writeday
+from tbl_memo
+where msg like '차은우'
+order by no desc;
+
+
+---tbl_memo 테이블에 updateday 컬럼을 추가합니다 -----
+alter table tbl_memo
+add updateday date; -- not null 할 수 없음
+-- Table TBL_MEMO이(가) 변경되었습니다.
+
+
+select *
+from tbl_memo;
+/*
+1	김승혜	^^	24/03/06	
+2	윤두준	나는 가수입니다	24/03/06	
+3	안녕하세요	안녕히계세요	24/03/06	
+
+*/
+
+
+select name, msg
+from tbl_memo
+where no = 2;
+-- 이것을 바꾸려면
+
+commit;
+rollback;
+
+
+select name, msg
+from tbl_memo
+where no = 65453; -- 존재하지 않는 숫자를 막 넣으면 데이터가 없다 바꿔준다 
+ 
