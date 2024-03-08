@@ -130,3 +130,52 @@ begin
     
 end pcd_student_select_one;
 -- Procedure PCD_STUDENT_SELECT_ONE이(가) 컴파일되었습니다.
+
+
+
+create or replace procedure pcd_student_select_many
+(p_addr IN  tbl_student.addr%type
+,o_data OUT SYS_REFCURSOR
+
+)
+is
+
+begin
+  SELECT S.name, S.tel, S.addr, 
+        to_char(S.registerdate, 'yyyy-mm-dd hh24:mi:ss') as registerdate,
+            C.classname, C.teachername
+    FROM
+    (
+        select *
+        from tbl_student
+        where addr like '%'|| '강남구' ||'%'
+    ) S JOIN tbl_class C
+    ON  S.fk_classno = C.classno;
+end  pcd_student_select_many;
+
+/*
+김하하	010-1234-1234	서울시 강남구	2024-03-08 12:41:07	자바웹프로그래밍C	서샘
+이순신	02-234-5678	서울시 강남구 역삼동	2024-03-08 11:22:01	자바웹프로그래밍A	김샘
+*/
+
+create or replace procedure pcd_student_select_many
+(p_addr IN  tbl_student.addr%type
+,o_data OUT SYS_REFCURSOR
+
+)
+is
+
+begin
+OPEN o_data FOR
+  SELECT S.name, S.tel, S.addr, 
+        to_char(S.registerdate, 'yyyy-mm-dd hh24:mi:ss') as registerdate,
+            C.classname, C.teachername
+    FROM
+    (
+        select *
+        from tbl_student
+        where addr like '%'|| p_addr ||'%'
+    ) S JOIN tbl_class C
+    ON  S.fk_classno = C.classno;
+end  pcd_student_select_many;
+-- Procedure PCD_STUDENT_SELECT_MANY이(가) 컴파일되었습니다.
