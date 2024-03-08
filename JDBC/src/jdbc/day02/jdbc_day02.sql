@@ -115,7 +115,7 @@ begin
     o_classname := null;
     o_teachername := null;
     else 
-    SELECT S.name, S.tel, S.addr, to_char(S.registerdate, 'yyyy-mm-dd hh24:mi:ss'),
+    SELECT S.stno, S.name, S.tel, S.addr, to_char(S.registerdate, 'yyyy-mm-dd hh24:mi:ss'),
             C.classname, C.teachername
             INTO 
             o_name, o_tel, o_addr, o_registerdate, o_classname, o_teachername
@@ -167,7 +167,7 @@ is
 
 begin
 OPEN o_data FOR
-  SELECT S.name, S.tel, S.addr, 
+  SELECT S.stno, S.name, S.tel, S.addr, 
         to_char(S.registerdate, 'yyyy-mm-dd hh24:mi:ss') as registerdate,
             C.classname, C.teachername
     FROM

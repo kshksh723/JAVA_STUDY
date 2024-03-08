@@ -3,6 +3,7 @@ package jdbc.day02;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -38,7 +39,8 @@ public class Procedure_select_many_CallableStatement_03 {
          
        CallableStatement cstmt = null;
          // CallableStatement cstmt 은 Connection conn(연결한 DB 서버)에 존재하는 Procedure 를 호출해주는 객체(우편배달부)이다. 
-      
+      ResultSet rs = null;
+       
       try {
          // >>> 1. 오라클 드라이버 로딩 <<<
          Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -49,10 +51,10 @@ public class Procedure_select_many_CallableStatement_03 {
          
          // >>> 3. Connection conn 객체를 사용하여 prepareCall() 메소드를 호출함으로써
            //        CallableStatement cstmt 객체를 생성한다. 즉, 우편배달부(택배기사) 객체 만들기
-         cstmt = conn.prepareCall("{call pcd_student_select_one(?,?,?,?,?,?,?)}");
+         cstmt = conn.prepareCall("{pcd_student_select_many(?,?)}");
          /*
-               오라클 서버에 생성한 프로시저 pcd_student_select_one 의 
-               매개변수 갯수가 7개 이므로 ? 를 7개 준다.
+               오라클 서버에 생성한 프로시저 ,?,?,?,?,? 의 
+               매개변수 갯수가 2개 이므로 ? 를 2개 준다.
               
                다음으로 오라클의 프로시저를 수행( executeUpdate() ) 하기에 앞서서  
                반드시 해야할 일은 IN mode 로 되어진 파라미터에 값을 넣어주고,
@@ -74,45 +76,54 @@ public class Procedure_select_many_CallableStatement_03 {
                                     실수      정수      문자
          */
          Scanner sc = new Scanner(System.in);
-         System.out.print("▷ 학번 : ");
-         String stno = sc.nextLine(); // 9001 234234
+         System.out.print("▷ 주소 : ");
+         String searchAddr = sc.nextLine(); // 서울 강남구
          
          //자바와 sql의 타입이 맞게끔 매핑을 시켜줘야 한다.
          
-         cstmt.setString(1, stno); // 숫자 1 은 프로시저 파라미터중 첫번째 파라미터인 IN 모드의 ? 를 말한다. => 자동 형변환이 되므로 String이어도 number로 형변환 된다.
+         cstmt.setString(1, searchAddr); // 숫자 1 은 프로시저 파라미터중 첫번째 파라미터인 IN 모드의 ? 를 말한다. => 자동 형변환이 되므로 String이어도 number로 형변환 된다.
          // out에 있는 파라미터 매개변수 타입을 맞춰줘야 함! 오라클 데이터타입으로 저장되어 있는 값들을 읽어와서 JDBC타입(자바에서 인식하는 타입)으로 변경하는 과정을 >거쳐야만 한다<.
-         cstmt.registerOutParameter(2, java.sql.Types.VARCHAR); // 숫자 2는 프로시저 파라미터중  두번째 파라미터인 OUT 모드의 ? 를 말한다. 
-         cstmt.registerOutParameter(3, java.sql.Types.VARCHAR); // 숫자 3는 프로시저 파라미터중  세번째 파라미터인 OUT 모드의 ? 를 말한다. 
-         cstmt.registerOutParameter(4, java.sql.Types.VARCHAR); // 숫자 4는 프로시저 파라미터중  네번째 파라미터인 OUT 모드의 ? 를 말한다. 
-         cstmt.registerOutParameter(5, java.sql.Types.VARCHAR); // 숫자 5는 프로시저 파라미터중 다섯번째 파라미터인 OUT 모드의 ? 를 말한다. 
-         cstmt.registerOutParameter(6, java.sql.Types.VARCHAR); // 숫자 6는 프로시저 파라미터중 여섯번째 파라미터인 OUT 모드의 ? 를 말한다. 
-         cstmt.registerOutParameter(7, java.sql.Types.VARCHAR); // 숫자 7는 프로시저 파라미터중 일곱번째 파라미터인 OUT 모드의 ? 를 말한다. 
-         // java.sql. 임포트 하기 싫어서  java.sql. 붙인 것
+         cstmt.registerOutParameter(2, oracle.jdbc.OracleTypes.CURSOR); // 숫자 2는 프로시저 파라미터중  두번째 파라미터인 OUT 모드의 ? 를 말한다. 
+
+         // 커서는 패키지가 다르다 
          
          // >>> 4. CallableStatement cstmt 객체를 사용하여 오라클의 프로시저 실행하기
          cstmt.executeUpdate(); // 오라클 서버에게 해당 프로시저를 실행해라는 것이다.
          //프로시저의 실행은 cstmt.executeUpdate(); 또는 cstmt.execute();이다. [둘다 똑같]
          
          
-         if( cstmt.getString(2) == null ) {
-            System.out.println(">>> 입력하신 학번 "+ stno +"은 존재하지 않습니다. <<<");
-         } else {
-            System.out.println("-".repeat(60));
-            
-            String result = "▶ 학생명 : " + cstmt.getString(2) + "\n"
-                        + "▶ 연락처 : " + cstmt.getString(3) + "\n" 
-                        + "▶ 주 소 : " + cstmt.getString(4) + "\n"
-                        + "▶ 입학일자 : " + cstmt.getString(5) + "\n"
-                        + "▶ 학급명 : " + cstmt.getString(6) + "\n"
-                        + "▶ 교사명 : " + cstmt.getString(7);
-            // 위의 cstmt.getString(2) 에서 숫자 2는 프로시저 파라미터중 두번째 파라미터인 OUT 모드의 결과값을 말한다.
-               // 나머지 3 부터 7 도 동일한 것이다.
-            
-            System.out.println(result);
-            
-            System.out.println("-".repeat(60));
-         }
+      rs =  (ResultSet) cstmt.getObject(2);
          
+      
+      StringBuilder sb = new StringBuilder();
+      
+      int cnt = 0;
+      while(rs.next()) {
+    	  cnt++;
+    	  
+    	  if(cnt == 1) {
+    		  sb.append("-".repeat(80)+"\n");
+    		  sb.append("학번\t성명\t연락처\t\t주소\t\t과정명\t\t교사명\n");
+    		  sb.append("-".repeat(80)+"\n");
+    	  }
+    	  int stno = rs.getInt("stno");
+    	  String name = rs.getString("name");
+    			  String tel = rs.getString("tel");
+    			  String addr = rs.getString("addr");
+    			  String registerdate = rs.getString(" registerdate");
+    			  String classname = rs.getString("classname");
+    			  String teachername = rs.getString("teachername");
+    			  sb.append(stno+" \t" + name+" \t"+ tel + "\t"+ addr + "\t"+ registerdate + "\t" + classname + "\t" + teachername);
+    			  
+    	
+    	  
+      }//end of while(rs.next())
+      	if(cnt == 0) {
+      		System.out.println(">> 검색하신 주소"+ searchAddr +"에 거주하는 학생은 없습니다 ");
+      	}
+      	else {
+      		System.out.println(sb.toString());
+      	}
            sc.close();
          
       } catch (ClassNotFoundException e) {
@@ -124,6 +135,11 @@ public class Procedure_select_many_CallableStatement_03 {
          // 반납의 순서는 생성순의 역순으로 한다.
       
          try {
+        	  if(rs != null) {
+                  rs.close();
+                  rs = null;
+               }
+        	 
             if(cstmt != null) {
                cstmt.close();
                cstmt = null;

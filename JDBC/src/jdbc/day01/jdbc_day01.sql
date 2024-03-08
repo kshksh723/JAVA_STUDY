@@ -128,4 +128,36 @@ rollback;
 select name, msg
 from tbl_memo
 where no = 65453; -- 존재하지 않는 숫자를 막 넣으면 데이터가 없다 바꿔준다 
+
+
+
+select name, msg
+from tbl_memo
+where no = 2;
  
+ 
+  " update tbl_memo set name = ?, msg = ? "
+							+ " where no = ? ";
+                            
+                            
+select name, msg, select *
+ from view_emp_age;
+day
+from tbl_memo
+where no = 2;
+
+
+update tbl_memo set name = '영학서', msg = '불금이오니 칼퇴근 합니다.'
+where no = 1;
+
+commit;
+rollback;
+
+select *
+from user_tables
+where table_name = 'TBL_MEMO';
+
+
+select *
+from user_sequences
+where sequence_name = 'SEQ_MEMO';
