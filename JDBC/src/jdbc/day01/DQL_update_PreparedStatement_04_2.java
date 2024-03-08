@@ -39,9 +39,7 @@ public class DQL_update_PreparedStatement_04_2 {
 			
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@"+ip+":1521:xe", "JDBC_USER", "gclass");  // Unhandled exception type SQLException
 			// == Connection conn에서 DML의 기본값은 auto commit이다 ==///
-			// == Connection conn에서 DML의 기본값은 auto commit을 수동 commit으로 전환하겠습니다  ==///
-			conn.setAutoCommit(false); // false가 수동 commit으로 전환 
-	//		conn.setAutoCommit(true); // 자동 commit
+	
 			
 			
 			// >>>> 3. SQL 문(편지)을 작성한다  <<<
