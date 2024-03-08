@@ -33,6 +33,9 @@ commit;
 select *
 from tbl_class;
 
+select classno, classname
+from tbl_class;
+
 
 -- 2) 학생테이블 생성 
 create table tbl_student
@@ -86,3 +89,44 @@ from dual;
 select to_number('Fdsfsdfs')
 from dual;
 -- ORA-01722: 수치가 부적합합니다
+
+
+
+create or replace procedure pcd_student_select_one
+(p_stno         IN  tbl_student.stno%type
+,o_name         OUT tbl_student.name%type
+,o_tel          OUT tbl_student.tel%type
+,o_addr         OUT tbl_student.addr%type
+,o_registerdate OUT varchar2
+,o_classname    OUT tbl_class.classname%type
+,o_teachername  OUT tbl_class.teachername%type
+)
+is
+    v_cnt   number(1);
+begin
+    select count(*) INTO v_cnt
+    from tbl_student
+    where stno = p_stno; --  stno :pk
+    
+    if v_cnt = 0 then 
+    o_name := null;
+    o_tel := null;
+    o_registerdate := null;
+    o_classname := null;
+    o_teachername := null;
+    else 
+    SELECT S.name, S.tel, S.addr, to_char(S.registerdate, 'yyyy-mm-dd hh24:mi:ss'),
+            C.classname, C.teachername
+            INTO 
+            o_name, o_tel, o_addr, o_registerdate, o_classname, o_teachername
+    FROM
+    (
+        select *
+        from tbl_student
+        where stno = p_stno
+    ) S JOIN tbl_class C
+    ON  S.fk_classno = C.classno;
+    end if; -- 이거 빼먹으면 안됌 
+    
+end pcd_student_select_one;
+-- Procedure PCD_STUDENT_SELECT_ONE이(가) 컴파일되었습니다.
