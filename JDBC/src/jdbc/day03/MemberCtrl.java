@@ -196,6 +196,27 @@ public class MemberCtrl {
 	   List<MemberDTO> memberList = mdao.showAllMember();
 	   
 	   if(memberList.size() > 0) {
+		   System.out.println("-".repeat(50));
+		   System.out.println("회원번호   아이디  회원명  연락처  포인트  가입일자  가입상태");
+		   System.out.println("-".repeat(50));
+		   
+		   StringBuilder sb = new StringBuilder();
+		   
+		   for( MemberDTO member : memberList ) {
+			   
+			   String status = (member.getStatus()== 1)?"가입중":"탙퇴";
+			   
+		   	sb.append(member.getUserseq()+"  " + 
+		   			member.getUserid()+"  "+
+		   			member.getName()+"  "+
+		   			member.getMobile()+ "  "+
+		   			member.getPoint()+"  "+
+		   			member.getRegisterday()+"  "+
+		   			status+"\n" );
+		   
+			   
+		   }// end of for ----------------------------
+		   System.out.println(sb.toString()); // string에 쌓아둔 것을 출력 
 		   
 	   }
 	   else {

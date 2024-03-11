@@ -143,7 +143,7 @@ public class MemberDAO_imple implements MemberDAO {
 			
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "JDBC_USER", "gclass");  // Unhandled exception type SQLException
 		
-			String sql = " update into tbl_member set status = 0 " // 문자열(userseq, userid, passwd, name, mobile)
+			String sql = " update tbl_member set status = 0 " // 문자열(userseq, userid, passwd, name, mobile)
 					+ " where userseq = ? ";
 		
 		pstmt = conn.prepareStatement(sql); //pstmt = conn.prepareStatement(sql); 이렇게 꼭 해줘야 함 

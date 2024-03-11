@@ -76,3 +76,4 @@ insert into tbl_member(userseq, userid, passwd, name, mobile, status)
 values(userseq.nextval, 'sonjh', 'qWer1234$', '손정화', '010-3245-4562', 0);
 
 commit;
+
