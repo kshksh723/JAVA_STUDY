@@ -1,0 +1,52 @@
+show user;
+-- USER이(가) "JDBC_USER"입니다.
+
+
+create table tbl_member
+(userseq      number         not null    -- 회원번호 
+,userid       varchar2(30)   not null    -- 회원아이디
+,passwd       varchar2(30)   not null    -- 회원비밀번호
+,name         Nvarchar2(20)  not null    -- 회원명
+,mobile       varchar2(20)               -- 연락처
+,point        number(10) default 0       -- 포인트
+,registerday  date default sysdate       -- 가입일자
+,status       number(1) default 1        -- status 컬럼의 값이 1 이면 가입된 상태, 0 이면 탈퇴
+,constraint  PK_tbl_member_userseq primary key(userseq)
+,constraint  UQ_tbl_member_userid unique(userid)
+,constraint  CK_tbl_member_status check( status in (0,1) ) --- check 제약때문에 0과 1밖에 못 옴 
+);
+-- Table TBL_MEMBER이(가) 생성되었습니다.
+
+
+create sequence userseq
+start with 1
+increment by 1
+nomaxvalue
+nominvalue
+nocycle
+nocache;
+-- Sequence USERSEQ이(가) 생성되었습니다.
+
+select *
+from tbl_member
+order by userseq desc;
+
+
+select *
+from tbl_member
+where userid = 'leess' and passwd = 'qWer1234$';
+
+
+select *
+from tbl_member
+where userid = 'fjlsffsfs' and passwd = 'qWer1234$'; -- null값이라면 로그인 실패 
+
+select *
+from tbl_member
+where userid = 'leess' and passwd = 'qWer1234$';
+
+
+
+select userseq, userid, name, mobile, point, to_char(registerday, 'yyyy-mm-dd hh24:mi:ss') as registerday
+from tbl_member
+where userid = 'leess' and passwd = 'qWer1234$';
