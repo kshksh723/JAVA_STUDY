@@ -1,0 +1,18 @@
+
+dto : data T : transfer o : object  --> 회원정보 
+dto --> jdbc_member 테이블에 있는 insert되어진 한 행을 말한다 
+
+그냥 한 행이라 암기 ! 
+
+dao : database 
+oracle database Access object 
+
+--> 어떤 데이터베이스에 접근해서 어떠한 일처리 insert, update, select ddl, procedure 데이터베이스의 업무처리를 도와주는 dao
+
+한 행을 dto에 다 만들어준 걸 dao에 보내준다
+db(insert, update,...) method를 만드는 것 , 필요한 프로시저만 호출해주면 된다
+ctrl가 메소드를 불러준다
+
+database에서 다 해준다 
+dao 하나를 만들어야 한다 
+=-  MemberDAO 회원과 관련되어진 인터페이스 
