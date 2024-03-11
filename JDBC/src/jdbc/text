@@ -1,0 +1,32 @@
+jar --> 확장자 jar파일이 오라클과 관련되어진 클래스 
+
+자바에서 import해서 씀
+자바와 오라클을 붙인다
+데이터베이
+
+jdbc들어가서 confige build path
+object_lib
+c: e들어가서 obj
+
+
+
+
+Connection conn  --> 오라클 db server다 
+
+
+db 연결해야할 것을 여러개 짜볼 것이다 
+
+
+
+
+conn은 sql문이 성공하든 아니든 무조건 꼭 하고 넘어가야 한다 -->finally 
+
+conn을 만든 다음에 
+
+내일은 프로시저 배움
+
+커밋할래?안할래? 물어보지 않으면 락이 걸려진 것임  
+
+수동 commit으로 하면 꼬인다 
+
+복수개를 읽어올 때 cursor를 쓴다
