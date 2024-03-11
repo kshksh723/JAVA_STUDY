@@ -80,5 +80,15 @@ public class MemberDTO {
 		this.status = status;
 	}
 	
+	//////////////////////////////
+	
+	@Override
+	public String toString() {
+		return "=== 나의 정보 === \n"
+				+ "> 성명 : " + name + '\n'
+				+ "> 연락처 : " + mobile + '\n'
+				+ "> 포인트 : " + point + '\n'
+				+ "> 가입일자 : " + registerday.substring(0, 10) + '\n'; // 처음부터 10인덱스 앞까지 
+	}
 
 }

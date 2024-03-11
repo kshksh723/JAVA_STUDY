@@ -9,8 +9,8 @@ public class Member_main {
 		MemberCtrl mctrl = new MemberCtrl();
 		Scanner sc = new Scanner(System.in);
 		
-		mctrl.menu_Start(sc);
-		
+		mctrl.menu_start(sc);
+	
 		sc.close();
 		System.out.println("\n~~~~~~ 프로그램 종료 ~~~~~~~~~~ ");
 

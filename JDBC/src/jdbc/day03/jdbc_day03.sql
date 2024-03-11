@@ -50,3 +50,29 @@ where userid = 'leess' and passwd = 'qWer1234$';
 select userseq, userid, name, mobile, point, to_char(registerday, 'yyyy-mm-dd hh24:mi:ss') as registerday
 from tbl_member
 where userid = 'leess' and passwd = 'qWer1234$';
+
+
+
+select userseq, userid, name, mobile, point, to_char(registerday, 'yyyy-mm-dd hh24:mi:ss') as registerday
+from tbl_member
+where userid = 'leess' and passwd = 'qWer1234$';
+
+update tbl_member set status = 1;
+
+commit;
+
+
+
+insert into tbl_member(userseq, userid, passwd, name, mobile)
+values(userseq.nextval, 'eomjh', 'qWer1234$', '엄정화', '010-5245-2562');
+
+insert into tbl_member(userseq, userid, passwd, name, mobile)
+values(userseq.nextval, 'kimjh', 'qWer1234$', '김정화', '010-8245-8562');
+
+insert into tbl_member(userseq, userid, passwd, name, mobile)
+values(userseq.nextval, 'parkjh', 'qWer1234$', '박정화', '010-9245-7562');
+
+insert into tbl_member(userseq, userid, passwd, name, mobile, status)
+values(userseq.nextval, 'sonjh', 'qWer1234$', '손정화', '010-3245-4562', 0);
+
+commit;
