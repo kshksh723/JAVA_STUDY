@@ -61,6 +61,7 @@ update tbl_member set status = 1;
 
 commit;
 
+up
 
 
 insert into tbl_member(userseq, userid, passwd, name, mobile)
