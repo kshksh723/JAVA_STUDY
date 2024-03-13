@@ -24,7 +24,7 @@ public class MemberDAO_imple implements MemberDAO {
 			
 				if( rs != null ) {rs.close(); rs = null;}
 				if( pstmt != null ) {pstmt.close(); pstmt = null;}
-				if( conn != null ) {conn.close(); conn = null;}
+			
 		} catch (SQLException e) {
 		e.printStackTrace();
 	}
@@ -63,19 +63,11 @@ public class MemberDAO_imple implements MemberDAO {
 			System.out.println(">>> objdbc8.jar 파일이 없습니다 <<< ");
 		
 		}catch(SQLException e){
-	         if(e.getErrorCode() == 1) {
-	             System.out.println(">>아이디가 중복되었습니다. 새로운 아이디를 입력하세요!");
-	          } else {
+	        
 	             e.printStackTrace();
 	          }
-			
-		} finally {
-			close();
-		 
-		}	
-		
-		return result; 
-	}// end of public int memberRegister(MemberDTO member) 
+		return result;
+		}// end of public int memberRegister(MemberDTO member) 
 
 	
 	
@@ -188,6 +180,7 @@ public class MemberDAO_imple implements MemberDAO {
 					+ " from tbl_member "
 					+ " order by userseq asc ";
 			
+		
 		
 			
 		pstmt = conn.prepareStatement(sql); //pstmt = conn.prepareStatement(sql); 이렇게 꼭 해줘야 함 
