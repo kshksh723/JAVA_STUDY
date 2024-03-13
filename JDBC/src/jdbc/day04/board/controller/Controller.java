@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import jdbc.day04.board.dbconnection.MyDBConnection;
 import jdbc.day04.board.domain.BoardDTO;
+import jdbc.day04.board.domain.CommentDTO;
 import jdbc.day04.board.domain.MemberDTO;
 
 import jdbc.day04.board.model.*;
@@ -290,7 +291,7 @@ public class Controller {
 						break;
 						
 					case "3": // 글쓰기
-						int n =	write(member, sc);
+						int n =	write(member, sc); // SWITCH에서 N이 작동 
 						
 						if(n == 1) {
 							System.out.println(" >> 글쓰기 성공 !! << ");
@@ -308,6 +309,20 @@ public class Controller {
 					
 					case "4": //댓글쓰기
 						
+						 n = writeComment(member.getUserid() , sc);
+						 
+						 if(n == 1) {
+								System.out.println(" >> 댓글쓰기 성공 !! << ");
+							}
+							
+							else if(n == 0) {
+								System.out.println(" >> 댓글쓰기 취소 !! <<");
+							}
+							
+							else if(n == -1 ) {
+								System.out.println(">> 댓글쓰기 실패!! <<");
+							}
+						 
 						break;
 		
 					case "5": // 글수정하기 
@@ -345,7 +360,15 @@ public class Controller {
 
 
 
-// 글 삭제하기를 해
+
+
+
+
+
+
+
+
+		// 글 삭제하기를 해
 		   // **글삭제하기를 해주는 메소드
 		   private void deleteBoard(String login_userid, Scanner sc) {
 		      System.out.println("\n >>> 글 삭제하기 <<<");
@@ -412,18 +435,91 @@ public class Controller {
 		      
 		   } // private void deleteBoard(String login_userid, Scanner sc) ---------------
 		      
-		      
+		  
 
 
-
-
-
-
-
-
-
-
-
+		// 댓글쓰기 
+		private int writeComment(MemberDTO member, Scanner sc) {
+			int result = 0;
+			
+			System.out.println("\n >> 댓글쓰기  <<<");
+			
+			System.out.println("1. 작성자명 : " + member.getName());
+			
+			int  fk_boardno = 0;
+			do {
+			/////////////////////////////////////////////////////////////////////
+			
+					System.out.println("2. 원글의 글번호 : " );
+				String s_fk_boardno = sc.nextLine(); //"똘똘이"와 같은 문자가 들어오면 안된다 
+					
+					try {
+						fk_boardno = Integer.parseInt(s_fk_boardno);
+						
+						if(fk_boardno < 1) {
+							System.out.println(">> [경고] 원글의 글번호는 1 이상인  정수로만 입력하셔야 합니다 ");
+						}
+						else {
+							break;
+						}
+					} catch(NumberFormatException e) {
+						System.out.println(">> [경고] 원글의 글번호는 정수로만 입력하셔야 합니다 ");
+					}
+					//////////////////////////////////////////////////////////
+					} while(true);
+			
+				String contents = sc.nextLine();
+					do {
+					////////////////////////////////////////////////////////|
+					System.out.println("3. 댓글내용 : ");
+				
+					/*
+		            댓글의 내용을 입력할 때 그냥 엔터
+		            또는 공백만으로 입력하거나 
+		            또는 tbl_comment 테이블의 contents 컬럼의 크기(최대 100글자)보다 더 많은 글자를 입력하는 경우 
+		         */
+					if(contents.isBlank()) { // 그냥 엔터 또는 공백만으로 입력한 경우 
+						System.out.println(">> [경고] 댓글내용은 필수로 입력하셔야 합니다 ");
+					}
+					else if( contents.length() > 100) {
+						System.out.println(">> [경고] 댓글내용은 최대 100글자 이내로   입력하셔야 합니다 ");
+					}
+					else {
+						break;
+					}
+					//////////////////////////////
+					} while(true);
+					
+						 String yn = "";
+						 do {
+							 ////////////////////////////////////////////////////////
+							 System.out.print("> 정말로 댓글쓰기를 하시겠습니까[y/n] :");
+							 yn = sc.nextLine();
+							 
+							 if("y".equalsIgnoreCase(yn)) {
+								 
+								 CommentDTO cmtdto = new CommentDTO();
+								 cmtdto.setFk_boardno(fk_boardno); // 원글의 글 번호
+								 cmtdto.setFk_userid(member.getUserid()); // 작성자 아이디
+								 cmtdto.setContents(contents);
+								 
+								 result = bdao.writeComment(cmtdto);
+								 // 1 또는 -1
+								 
+							 }
+							 else if("n".equalsIgnoreCase(yn)) {
+							 
+							 }
+							 else {
+								 System.out.println(">> [경고 ] y 또는 n만 입력하세ㅛㅇ !! << \n");
+							 }
+							 /////////////////////////////////////////////////////
+						 } while(("y".equalsIgnoreCase(yn) || "n".equalsIgnoreCase(yn)));
+						
+					
+						 return result;
+					
+		} //end of private int writeComment(String userid, Scanner sc) 
 
 
 // 글 수정하기 메소드
