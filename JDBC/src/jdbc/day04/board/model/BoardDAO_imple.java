@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import jdbc.day04.board.dbconnection.MyDBConnection;
 import jdbc.day04.board.domain.BoardDTO;
+import jdbc.day04.board.domain.CommentDTO;
 import jdbc.day04.board.domain.MemberDTO;
 
 // 게시판 글쓰기
@@ -123,15 +125,27 @@ public class BoardDAO_imple implements BoardDAO  {
  		  try {
 		      
 		         
-		         String sql = " select B.boardno "
-		         		+ "	, CASE WHEN length ( B.subject) >  15 THEN substr(B.subject,1,13) || '..' "
-		         		+ "        ELSE B.subject END AS subject "
-		         		+ "    , M.name "
-		         		+ "    ,to_char( B.writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday "
-		         		+ "    , B.viewcount "
-		         		+ " from tbl_board B JOIN tbl_member M "
-		         		+ " ON B.fk_userid = M.userid  "
-		         		+ " order by B.boardno DESC ";
+		         String sql = "   SELECT V1.boardno, V1.subject ||  ' [' || V2.comment_cnt || ']' as subject "
+		         		+ "         , V1.name, V1.writeday, V1.viewcount "
+		         		+ "           FROM             "
+		         		+ "            (          "
+		         		+ "            select B.boardno "
+		         		+ "			, CASE WHEN length ( B.subject) >  15 THEN substr(B.subject,1,13) || '..'  "
+		         		+ "		              ELSE B.subject END AS subject "
+		         		+ "		         		   , M.name   "
+		         		+ "		         	  ,to_char( B.writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday  "
+		         		+ "		         	  , B.viewcount  "
+		         		+ "		         		 from tbl_board B JOIN tbl_member M  "
+		         		+ "		         ON B.fk_userid = M.userid  "
+		         		+ "		     )V1    "
+		         		+ "          LEFT OUTER   JOIN  "
+		         		+ "             ( "
+		         		+ "        select fk_boardno, count(*) as comment_cnt  "
+		         		+ "        from tbl_comment  "
+		         		+ "        group by fk_boardno "
+		         		+ "                        ) V2  "
+		         		+ "                    ON V1.boardno = V2.fk_boardno  "
+		         		+ "                    ORDER BY V1.boardno DESC ";
 		         			// status 가 1일 때만 로그인 완료된것이기 때문에 status = 1
 		         
 		         
@@ -210,7 +224,9 @@ public class BoardDAO_imple implements BoardDAO  {
        
        try {
           String sql = 
-          		 " SELECT V.subject, V.contents, M.name, V.viewcount, V.fk_userid "
+          		 " SELECT   V2.comment_cnt IS NULL THEN  V1.subject  "
+          		 + "            ELSE V1.subject ||  ' [' || V2.comment_cnt || ']' "
+          		 + "            END as subject  "
           		+ " FROM "
           		+ " ( "
           		+ " SELECT boardno "
@@ -345,8 +361,223 @@ public BoardDTO viewContents_2(String boardno) {
 			   
 			   return result;
 			}
+
+
+
+    
+//*** 댓글쓰기 ***
+@Override
+public int writeComment(CommentDTO cmtdto) {
+   
+   int result = 0;
+   
+   // default 가 자동 commit 인데, transaction 처리를 위해서 수동 commit 으로 전환시킨다.
+   // 그래야 rollback - committ 이 되기 때문
+   try {
+      conn.setAutoCommit(false);
+      
+      String sql = " insert into tbl_comment(commentno, fk_boardno, fk_userid, contents) "
+               + " values(seq_comment.nextval, ?, ?, ?) ";
+      
+      pstmt = conn.prepareStatement(sql);
+      
+      pstmt.setInt(1, cmtdto.getFk_boardno()); // DAO 를 호출해준 ctrl 에서 bdto 에 set set 해줬으니까 그거 가져온거임
+      pstmt.setString(2, cmtdto.getFk_userid());
+      pstmt.setString(3, cmtdto.getContents());
+      
+      int n1 = pstmt.executeUpdate(); // sql 문 실행하기 -- return type 이 int고, 성공되면 1이 나올 것이다.
+      
+      if(n1 == 1) { // tbl_board 테이블에 insert 가 성공되었다면 POINT +10 씩 update 한다.
+         sql = " update tbl_member set point = point + 5 "
+            + " where userid = ? ";
+         
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setString(1, cmtdto.getFk_userid() ); // point 를 가지고 오려면 회원정보가 필요한 것이고
+                                         // bdto 에 member 정보를 불러오는 set 이 있음
+         int n2 = pstmt.executeUpdate(); // sql 문 실행하기
+         // 정상이라면 1
+         
+         if(n2==1) { // n1==1 이라는 것은 게시글에 insert 가 성공되었다는 뜻이고
+                  // n2==1 이라는 것은 sql 문에 update 가 성공되었다는 뜻
+            conn.commit(); // 둘 다 성공이라면 commit 을 해주겠다.
+            result = 1;
+         }
+      }
+      
+   } catch (SQLException e) {
+      
+      if(e.getErrorCode()==2291) {
+         /*
+              오류 보고 -
+              ORA-02291: 무결성 제약조건(JDBC_USER.FK_TBL_COMMENT_FK_BOARDNO)이 위배되었습니다- 부모 키가 없습니다
+            */
+         System.out.println(">>> 입력하신 원글번호 "+ cmtdto.getFk_boardno() +"는 게시글에 존재하지 않습니다. <<<");
+         result = -1;  // 처음부터 오류가 떨어져서 insert 자체가 안된것임. rollback 이런게 소용x
+      }
+      
+      else if(e.getErrorCode()==2290) { // 포인트 초과 오류 번호 / check 제약
+         System.out.println(">> 아이디 "+ cmtdto.getFk_userid() +" 님의 포인트는 30을 초과할 수 없기 때문에 오류가 발생하였습니다. <<\n");
+         try {
+            conn.rollback(); // insert 성공하고 update 실패할 경우 insert 문을 rollback 해주어야 하기 때문
+            result = -1;
+         } catch (SQLException e2) { }
+      }
+      
+      else {
+         e.printStackTrace();
+      }
+      
+   } finally {
+      try {
+         conn.setAutoCommit(true); // ★ 자동 commit 으로 복원시킨다.
+      } catch (SQLException e2) { }
+      
+      close(); // 자원 반납하기
+   }
+   
+   return result;
+   
+}// public int writeComment(CommentDTO cmtdto)
+
+// 원글에 대한 댓글을 가져오는 것(특정 게시글 글번호에 대한 tbl_comment 테이블과 tbl_member 테이블을 JOIN 해서 보여준다.)
+
+@Override
+public List<CommentDTO> commentList(String boardno) {
+	List<CommentDTO> commentList = new ArrayList<>();
+	BoardDTO bdto = null;
+
+    try {
+       String sql =  "  SELECT C.contents, M.name, to_char(C.writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday "
+       		+ "  FROM "
+       		+ "           ( "
+       		+ "                        select * "
+       		+ "                        from tbl_comment "
+       		+ "                        where fk_boardno = ?  "
+       		+ "                        ) C JOIN tbl_member M "
+       		+ "                        ON C.fk_userid = M.userid "
+       		+ "                        order by C.commentno desc ";
+             
+                
+       pstmt = conn.prepareStatement(sql);
+       pstmt.setString(1, boardno);
+                
+       rs = pstmt.executeQuery(); // sql문 실행
+       
+       while (rs.next()) {
+    	   CommentDTO cmtdto = new CommentDTO();
+    	   
+    	   cmtdto.setContents(rs.getString("contents"));
+       
+    	   MemberDTO mdto = new MemberDTO();
+    	   mdto.setName(rs.getString("name"));
+    	   
+    	   cmtdto.setWriteday(rs.getString("writeday"));
+        
+    	   commentList.add(cmtdto);
+	       } // while (rs.next()) 
+	       
+	       } catch (SQLException e) {
+           
+              e.printStackTrace();
+           }
+
+        finally {
+           close();   
+        } 
+        
+        return commentList;
+} // end of public List<CommentDTO> commentList(String boardno) 
+
+
+// 최근 1주일내
+@Override
+public Map<String, Integer> statistics_by_Week() {
+
+	 Map<String, Integer> resultMap = new HashMap<>();
+	 List<CommentDTO> commentList = new ArrayList<>();
+		BoardDTO bdto = null;
+
+	    try {
+	       String sql =  " SELECT COUNT(*) AS TOTAL "
+	       		+ "      ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 6, 1, 0)) as PREVIOUS6 "
+	       		+ "    ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 5, 1, 0)) as PREVIOUS5 "
+	       		+ "    ,   SUM(decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 4, 1, 0))as PREVIOUS4 "
+	       		+ "    ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 3, 1, 0))as PREVIOUS3 "
+	       		+ "    ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 2, 1, 0)) as PREVIOUS2 "
+	       		+ "    , SUM(  decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 1, 1, 0)) as PREVIOUS1 "
+	       		+ "    ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 0, 1, 0)) as TODAY "
+	       		+ " FROM tbl_board "
+	       		+ " WHERE to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd') < 7  ";
+	             
+	                
+	       pstmt = conn.prepareStatement(sql);
+	      
+	                
+	       rs = pstmt.executeQuery(); // sql문 실행
+	       rs.next();
+	       
+	       resultMap.put("TOTAL",rs.getInt("TOTAL"));
+	       resultMap.put("PREVIOUS6",rs.getInt("PREVIOUS6"));
+	       resultMap.put("PREVIOUS5",rs.getInt("PREVIOUS5"));
+	       resultMap.put("PREVIOUS4",rs.getInt("PREVIOUS4"));
+	       resultMap.put("PREVIOUS3",rs.getInt("PREVIOUS3"));
+	       resultMap.put("PREVIOUS2",rs.getInt("PREVIOUS2"));
+	       resultMap.put("PREVIOUS1",rs.getInt("PREVIOUS1"));
+	       resultMap.put("TODAY",rs.getInt("TODAY"));
+	      
+		       } catch (SQLException e) {
+	           
+	              e.printStackTrace();
+	           }
+
+	        finally {
+	           close();   
+	        } 
+	 return resultMap;
+	
+}// end of  public Map<String, Integer> statistics_by_Week()
+
+
+//이번달 일자별 게시글 작성건수
+@Override
+public List<Map<String, String>> statistics_by_CurrentMonth() {
+
+	List<Map<String, String>> mapList = new ArrayList <> ();
+	   try {
+	       String sql =  " select decode( grouping(to_char(writeday, 'yyyy-mm-dd')),0,to_char(writeday, 'yyyy-mm-dd'), '전체' ) as writeday "
+	       		+ "    , count(*) as cnt "
+	       		+ " from tbl_board "
+	       		+ " where to_char (writeday, 'yyyymm') = to_char(sysdate,'yyyymm') "
+	       		+ " group by rollup( to_char(writeday, 'yyyy-mm-dd'))  ";
+	             
+	                
+	       pstmt = conn.prepareStatement(sql);
+	      
+	                
+	       rs = pstmt.executeQuery(); // sql문 실행
+	      //복수개 -> while문
+	       
+	       while(rs.next()) {
+	    	   Map<String, String> map = new HashMap<>();  
+	    	   map.put("writeday", rs.getString("writeday"));
+	    	   // map.put("cnt", String.valueOf(rs.getInt("cnt")));
+	    	   // 또는
+	    	   map.put("cnt", rs.getString("cnt")); // 둘다 쓸 수 있다
+	    	   
+	    	   mapList.add(map); //SELECT 되어진 행의 개수만큼 담아짐
+	       } // end of while(rs.next())
+	       
+		       } catch (SQLException e) {
+	           
+	              e.printStackTrace();
+	           }
+
+	        finally {
+	           close();   
+	        } 
+	
+	return mapList;
+} // public List<Map<String, String>> statistics_by_CurrentMonth()
+
+ // 데이터가 없더라도 0000으로 나온다 
 }
-    
-    
-
-

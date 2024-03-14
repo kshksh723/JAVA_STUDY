@@ -158,7 +158,9 @@ create table tbl_comment
 
 
 
-
+update tbl_comment
+from name 
+where userid
 
 create sequence seq_comment
 start with 1
@@ -168,3 +170,186 @@ nominvalue
 nocycle
 nocache;
 -- Sequence SEQ_COMMENT이(가) 생성되었습니다.
+
+select *    
+from tbl_comment;
+
+select *    
+from tbl_member;
+tbl_board 
+
+
+
+
+            select B.boardno
+			, CASE WHEN length ( B.subject) >  15 THEN substr(B.subject,1,13) || '..' 
+		              ELSE B.subject END AS subject 
+		         		   , M.name 
+		         	  ,to_char( B.writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday 
+		         	  , B.viewcount 
+		         		 from tbl_board B JOIN tbl_member M 
+		         ON B.fk_userid = M.userid  
+		         		order by B.boardno DESC
+                        
+                        
+                        
+                        select fk_boardno, count(*) as comment_cnt
+                        from tbl_comment
+                        group by fk_boardno
+                        
+         SELECT V1.boardno
+         ,case when  V2.comment_cnt IS NULL THEN  V1.subject  
+            ELSE V1.subject ||  ' [' || V2.comment_cnt || ']'
+            END as subject 
+         , V1.name, V1.writeday, V1.viewcount
+           FROM              
+            (            
+            select B.boardno
+			, CASE WHEN length ( B.subject) >  15 THEN substr(B.subject,1,13) || '..' 
+		              ELSE B.subject END AS subject 
+		         		   , M.name 
+		         	  ,to_char( B.writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday 
+		         	  , B.viewcount 
+		         		 from tbl_board B JOIN tbl_member M 
+		         ON B.fk_userid = M.userid  
+		     )V1    
+          LEFT OUTER   JOIN 
+             (
+        select fk_boardno, count(*) as comment_cnt
+        from tbl_comment
+        group by fk_boardno
+                        ) V2
+                    ON V1.boardno = V2.fk_boardno
+                    ORDER BY V1.boardno DESC;
+                        --OUTER은 생략 가능 
+                        
+                        
+                        
+                        --  V1.boardno, V1.subject ||  ' [' || V2.comment_cnt || ']' as subject  댓글 갯수
+                        
+                        SELECT C.contents, M.name, to_char(C.writeday, 'yyyy-mm-dd hh24:mi:ss') as writeday
+                        FROM
+                        (
+                        select *
+                        from tbl_comment
+                        where fk_boardno = '1'
+                        ) C JOIN tbl_member M
+                        ON C.fk_userid = M.userid
+                        order by C.commentno desc;
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+--- 최근 1주일내에 작성된 게시글만 날짜별로 개수를 출력하도록 한다
+update tbl_board set writeday = writeday - 7  -- 일주일전
+where boardno = 1;
+-- 1 행 이(가) 업데이트되었습니다.
+
+
+-- 일주일전 테이블 
+select writeday
+    , to_char(writeday, 'yyyy-mm-dd hh24:mi:ss')
+    , to_char(writeday, 'yyyy-mm-dd')
+    , to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd')
+    , to_char(to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 'yyyy-mm-dd hh24:mi:ss')
+    , sysdate
+    ,to_char( to_date (to_char( sysdate, 'yyyy-mm-dd')), 'yyyy-mm-dd hh24:mi:ss')
+from tbl_board;
+
+
+
+select to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd')
+,  to_date (to_char( sysdate, 'yyyy-mm-dd'),  'yyyy-mm-dd')
+, to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd')
+from tbl_board;
+------------------------------------------------------------------------------------------------------
+
+select 
+    to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), --작성일자를 년월일만 땡겨와서 다시 날짜로 바꾸면 0시 0분 0초가 된다.
+    to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd'),
+    to_date(to_char(writeday, 
+    'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') --날짜 - 날짜는 숫자, 일수차이 
+from tbl_board;
+
+
+
+select 
+    to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), --작성일자를 년월일만 땡겨와서 다시 날짜로 바꾸면 0시 0분 0초가 된다.
+    to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd'),
+    to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd') --날짜 - 날짜는 숫자, 일수차이 
+from tbl_board;
+                        
+                        
+                        
+select 
+    to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 
+    to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd'),
+    to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd') < 7;
+    
+from tbl_board;
+
+
+
+
+select writeday
+     , to_char(writeday, 'yyyy-mm-dd hh24:mi:ss')
+     , to_char(writeday, 'yyyy-mm-dd')
+     , to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd')
+     , to_char(to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 'yyyy-mm-dd hh24:mi:ss')
+     , sysdate
+     , to_char(to_date(to_char(sysdate, 'yyyy-mm-dd')), 'yyyy-mm-dd hh24:mi:ss')
+from tbl_board; 
+
+select to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd')
+     , to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd')
+     , to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd')  
+from tbl_board; 
+
+select * 
+from tbl_board
+where to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd') < 7; 
+
+
+
+
+
+
+
+
+
+
+SELECT COUNT(*) AS TOTAL
+      ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 6, 1, 0)) as PREVIOUS6
+    ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 5, 1, 0)) as PREVIOUS5
+    ,   SUM(decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 4, 1, 0))as PREVIOUS4
+    ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 3, 1, 0))as PREVIOUS3
+    ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 2, 1, 0)) as PREVIOUS2
+    , SUM(  decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 1, 1, 0)) as PREVIOUS1
+    ,  SUM( decode(to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd'), 0, 1, 0)) as TODAY
+FROM tbl_board
+WHERE to_date(to_char(sysdate, 'yyyy-mm-dd'), 'yyyy-mm-dd') - to_date(to_char(writeday, 'yyyy-mm-dd'), 'yyyy-mm-dd') < 7; 
+-- map도 한 행이다  -- 2	0	0	0	0	0	1	1 이걸 map으로 본다
+
+
+
+
+
+
+
+-- // 이번달 일자별 게시글 작성건수
+
+select decode( grouping(to_char(writeday, 'yyyy-mm-dd')),0,to_char(writeday, 'yyyy-mm-dd'), '전체' ) as writeday
+    , count(*) as cnt
+from tbl_board
+where to_char (writeday, 'yyyymm') = to_char(sysdate,'yyyymm')
+group by rollup( to_char(writeday, 'yyyy-mm-dd'));

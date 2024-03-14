@@ -465,7 +465,7 @@ public class Main_calendar {
 		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		 
 		 // === 어제시각 나타내기 === //
-		 currentDate.add(Calendar.DATE, -1); 
+		 currentDate.add(Calendar.DATE, -1);  
 		 System.out.println("어제시각 => " + dateFormat.format(currentDate.getTime()));
 		 // 어제시각 => 2024-01-29 14:33:15	 
 			 

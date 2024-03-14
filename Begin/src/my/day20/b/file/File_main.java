@@ -123,7 +123,7 @@ public class File_main {
 		
 		for(int i = 0; i < file_arr.length; i++) {
 			if(file_arr[i].isFile()) {
-				System.out.println(file_arr[i].getAbsolutPath());
+				System.out.println(file_arr[i].getAbsolutePath());
 			}
 		} // end of for
 		
@@ -142,4 +142,6 @@ public class File_main {
 		
 	}// end of main() ----------
 
+
+	}
 }

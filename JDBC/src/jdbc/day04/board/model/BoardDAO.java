@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import jdbc.day04.board.domain.BoardDTO;
+import jdbc.day04.board.domain.CommentDTO;
 
 public interface BoardDAO {
 
@@ -23,8 +24,17 @@ public interface BoardDAO {
 
 	int updateBoard(Map<String, String> paraMap);
 
-	int deleteBoard(String boardno);
+	int deleteBoard(String boardno); // 글 삭제하기 
 
+	int writeComment(CommentDTO cmtdto); // 댓글쓰기
+
+	List<CommentDTO> commentList(String boardno);
+//원글에 대한 댓글을 가져오는 것(특정 게시글 글번호에 대한 tbl_comment 테이블과 tbl_member 테이블을 JOIN 해서 보여준다.)
+
+	Map<String, Integer> statistics_by_Week(); // 최근 
+
+	
+	List<Map<String, String>> statistics_by_CurrentMonth(); //이번달 일자별 게시글 작성건수
 	
 	
 	

@@ -1,5 +1,7 @@
 package jdbc.day04.board.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -309,7 +311,7 @@ public class Controller {
 					
 					case "4": //댓글쓰기
 						
-						 n = writeComment(member.getUserid() , sc);
+						 n = writeComment(member, sc);
 						 
 						 if(n == 1) {
 								System.out.println(" >> 댓글쓰기 성공 !! << ");
@@ -334,12 +336,22 @@ public class Controller {
 	     deleteBoard(member.getUserid(),sc);
 						break;
 					
-					case "7": // 최근1주일간 일자별 게시글 작성건수
-						
-						break;
-					
+					case "7": // 최근1주일간 일자별 게시글 작성건수 -- 관리자 
+						if("admin".equals(member.getUserid())) {
+							statistics_by_Week();
+							
+						}
+						else {
+						System.out.println(">> [경고] 관리자만 접근 가능한 메뉴입니다 . 다시 선택하세요. <<");
+						}
+					break;
 					case "8": // 이번달 일자별 게시글 작성건수
-						
+						if("admin".equals(member.getUserid())) {
+							statistics_by_CurrentMonth();
+						} 
+						else {
+							System.out.println(">> [경고] 관리자만 접근 가능한 메뉴입니다 . 다시 선택하세요. <<");
+							}
 						break;
 						
 					case "9": // 나가기
@@ -354,6 +366,14 @@ public class Controller {
 			} while(!("9".equals(s_menuNo)));
 			
 		}//end of 	private void menu_Board(Scanner sc, Scanner sc2)
+
+
+
+
+
+
+
+
 
 
 
@@ -450,7 +470,7 @@ public class Controller {
 			do {
 			/////////////////////////////////////////////////////////////////////
 			
-					System.out.println("2. 원글의 글번호 : " );
+					System.out.print("2. 원글의 글번호 : " );
 				String s_fk_boardno = sc.nextLine(); //"똘똘이"와 같은 문자가 들어오면 안된다 
 					
 					try {
@@ -472,7 +492,7 @@ public class Controller {
 					do {
 					////////////////////////////////////////////////////////|
 					System.out.println("3. 댓글내용 : ");
-				
+				contents = sc.nextLine();
 					/*
 		            댓글의 내용을 입력할 때 그냥 엔터
 		            또는 공백만으로 입력하거나 
@@ -514,7 +534,7 @@ public class Controller {
 								 System.out.println(">> [경고 ] y 또는 n만 입력하세ㅛㅇ !! << \n");
 							 }
 							 /////////////////////////////////////////////////////
-						 } while(("y".equalsIgnoreCase(yn) || "n".equalsIgnoreCase(yn)));
+						 } while(!("y".equalsIgnoreCase(yn) || "n".equalsIgnoreCase(yn)));
 						
 					
 						 return result;
@@ -677,6 +697,30 @@ private void updateBoard(String login_userid, Scanner sc) {
 				System.out.println(">> 글번호 "+ boardno +"은 글목록에 존재하지 않습니다.<< \n");
 			}
 			
+			
+			/////////////////////////////////////////////////////////
+			System.out.println("[댓글]\n"+"-".repeat(50));
+			
+		List<CommentDTO> commentList = bdao.commentList(boardno);
+		//원글에 대한 댓글을 가져오는 것(특정 게시글 글번호에 대한 tbl_comment 테이블과 tbl_member 테이블을 JOIN 해서 보여준다.)
+	
+		if(commentList.size() > 0) {
+		System.out.println("댓글내용\t\t작성자명\t작성일자\t");
+		System.out.println("-".repeat(50));
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for(CommentDTO cmtdto : commentList) {
+			sb.append(cmtdto.getContents()+"\t\t"+cmtdto.getMember().getName()+"\t"+cmtdto.getWriteday()+"\n"); // 댓글내용
+		}// end of for
+		
+		System.out.println(sb.toString());
+		}
+		else {
+			// 댓글이 존재하지 않는 원글인 경우
+			System.out.println("> 댓글내용 없음 << \n");
+		}
+			
 	} // end of private void viewContents(String userid, Scanner sc)
 
 
@@ -752,6 +796,122 @@ private void updateBoard(String login_userid, Scanner sc) {
 	} // end of private int write(MemberDTO member, Scanner sc)
  
 	
+	
+	
+	
+	///////////////////////////////////////////////////////////////////////////////////
+
+	// -- 현재일로부터 일수만큼 더하거나 빼주어서 날짜를 리턴시켜주는 메소드 --  
+	private String addDay(int n) {
+	
+		Calendar currentDate = Calendar.getInstance(); 
+	// 현재날짜와 시간을 얻어온다.
+		
+		
+		currentDate.add(Calendar.DATE, n);
+		// currentDate.add(Calendar.DATE, 1);
+	    // ==> currentDate(현재날짜) 에서 두번째 파라미터에 입력해준 숫자(그 단위는 첫번째 파라미터인 것이다. 지금은 Calendar.DATE 이므로 날짜수이다) 만큼 더한다. 
+	    // ==> 위의 결과는 currentDate 값은 1일 더한 값으로 변한다. 
+		
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		 
+		 return dateFormat.format(currentDate.getTime());
+		 
+		
+	} // end of 	private String addDay(int n) 
+	// ***최근1주일간 일자별 게시글 작성건수 
+	private void statistics_by_Week() {
+	
+		System.out.println("\n"+"-".repeat(30)+ " [최근 1주일간 일자별 게시글 작성건수]");
+		// 만약 오늘이 2024-03-14 이라면
+		// 전체 2024-03-08 2024-03-09 2024-03-10 2024-03-11 	2024-03-12 2024-03-13 2024-03-14 --> 7번 반복 
+		
+		String title = "전체\t";
+		
+		for(int i = 0; i<7; i++) {
+			title += addDay(i-6) + "  "; // -6	-5	-4	-3	-2	-1	0
+		}// end of for
+		
+		System.out.println(title);
+		
+		
+		System.out.println("-".repeat(100));
+		
+		// 최근 1주일내에 작성된 게시글만 db에서 가져온 결과물
+		Map<String,Integer> resultMap =  bdao.statistics_by_Week(); // select 
+		// map은 1개 행으로 보면 된다 ⭐ --> map 많이 쓰임 , 한개만 받아온다  값들은 value값 
+		
+		String result = resultMap.get("TOTAL") + "\t" + 
+						resultMap.get("PREVIOUS6") + "\t" +
+						resultMap.get("PREVIOUS5") + "\t" +
+						resultMap.get("PREVIOUS4") + "\t" +
+						resultMap.get("PREVIOUS3") + "\t" +
+						resultMap.get("PREVIOUS2") + "\t" +
+						resultMap.get("PREVIOUS1") + "\t" +
+						resultMap.get("TODAY");
+		
+		System.out.println(result);
+	} // end of private void statistics_by_Week()
+	
+	
+	
+	                               
+	//*** 이번달 일자별 게시글 작성건수
+	 private void statistics_by_CurrentMonth() {
+		 
+		 
+			Calendar currentDate = Calendar.getInstance(); 
+			// 현재날짜와 시간을 얻어온다.
+				
+			 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월");
+			 
+		  String currentMonth = dateFormat.format(currentDate.getTime()); 
+		 
+		 System.out.println("\n>>> ["+currentMonth+" 일자별 게시글 작성건수] <<<"); 
+		 
+		
+		  List<Map<String, String>> mapList =  bdao.statistics_by_CurrentMonth();
+		 
+		  if(mapList.size() > 0 ) { // 3월까지 행이 있고 4월의 행이 없을 때
+			  System.out.println("-----------------");
+			  System.out.println(" 작성일자\t 작성건수");
+			  System.out.println("-----------------");
+
+			  StringBuilder sb = new StringBuilder();
+			  
+		  for(Map<String, String> map :mapList) {
+			 sb.append( map.get("writeday")+"\t"+map.get("cnt")+"\n");
+		  } // end of for
+			  
+		  }
+		  else {
+			 System.out.println("게시된 글이 없습니다 "); 
+		  }
+		  
+		 // 컬럼 + 컬럼 -- >  dto
+		 // map을 써서 한 행인데 여러개 있다는 뜻이다 ==> list 
+		 // select에서 join 
+		 // dto로 하면 부모를 다 집어 넣어줘야 한다 
+		 // 복잡한 쿼리문으로 join을 쓴다
+		 // 거의 다 map을 쓴다 --> map이 제일 편함
+		 // 복수 개 => list, 대부분 join하면 map을 쓴다 
+		 // String을 호환 
+			  
+		
+	} //  private void statistics_by_CurrentMonth() 
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 }

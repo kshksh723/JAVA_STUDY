@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="public int"/>
+		<item key="selection" value="Writeday"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="public int"/>
-			<item value="write"/>
-			<item value="write(Board"/>
-			<item value="글 암호"/>
-			<item value="정렬에"/>
-			<item value="menu_start"/>
-			<item value="PSMT"/>
-			<item value="connection"/>
-			<item value="toString"/>
-			<item value="getInt"/>
-			<item value="static string"/>
+			<item value="writeday"/>
+			<item value="최근"/>
+			<item value="case"/>
+			<item value="select"/>
+			<item value="원글"/>
+			<item value="글번호"/>
+			<item value="포인트"/>
+			<item value="글쓰기"/>
+			<item value="pass"/>
+			<item value="HashMap"/>
+			<item value="boardno"/>
+			<item value="수정"/>
+			<item value="존재"/>
+			<item value="case "/>
+			<item value="글 내용"/>
 		</list>
 		<list key="replacehistory">
 		</list>
