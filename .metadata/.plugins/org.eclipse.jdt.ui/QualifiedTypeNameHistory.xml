@@ -26,4 +26,8 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="member.domain.MemberDTO"/>
+    <fullyQualifiedTypeName name="dbconnection.MyDBConnection"/>
+    <fullyQualifiedTypeName name="member.model.MemberDAO"/>
+    <fullyQualifiedTypeName name="member.model.MemberDAO_imple"/>
 </qualifiedTypeNameHistroy>
