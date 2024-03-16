@@ -1,4 +1,4 @@
--- 지원 1
+-- �??�� 1
     create table tbl_apply
     (Pk_apply_no  number(3)
     ,Fk_recruit_notice_code varchar2(10)
@@ -11,14 +11,14 @@
     );
     
     
-     -- 업종 2
+     -- ?���? 2
     create table tbl_buss_type
     (pk_buss_type_code varchar2(10)
     ,buss_type_name Nvarchar2(20) not null
     );
     
     
-     -- 경력상세정보 3
+     -- 경력?��?��?���? 3
     create table tbl_career
     (Pk_career_info_code        NUMBER(10)      
     ,work_status                VARCHAR2(10)   not null     
@@ -40,7 +40,7 @@
     
     
     
-    -- 자격증정보 4
+    -- ?��격증?���? 4
     create table tbl_certifi
     (Pk_certifi_code    varchar2(10)
     ,certifi_name       NVARCHAR2(30)
@@ -52,7 +52,7 @@
     
     
     
-    -- 기업상세정보  5
+    -- 기업?��?��?���?  5
     create table tbl_company_detail 
     (Pk_company_code        VARCHAR2(10)       
     ,company_name           VARCHAR2(30)     not null
@@ -83,12 +83,12 @@
     
     commit;
    
-    -- 기업회원로그인 테이블 6
+    -- 기업?��?��로그?�� ?��?���? 6
      create table tbl_company_login
     (Pk_Fk_company_code   varchar2(10)     -- 기업코드
-    , company_passwd   varchar2(20)   not null  -- 비밀번호
-    , company_name      nvarchar2(30)   -- 기업명
-    , Fk_resume_code  varchar2(10)  -- 이력서코드
+    , company_passwd   varchar2(20)   not null  -- 비�?번호
+    , company_name      nvarchar2(30)   -- 기업�?
+    , Fk_resume_code  varchar2(10)  -- ?��?��?��코드
     
     ,constraint pk_tbl_company_login primary key(Fk_company_code)
     ,constraint FK_TBL_COMPANY_LOGIN foreign key(pk_company_code) references tbl_company_detail(pk_company_code)
@@ -97,7 +97,7 @@
     
     
     
-    -- 기업규모 테이블 7 
+    -- 기업규모 ?��?���? 7 
     create table tbl_company_size
     (pk_com_size_code varchar2(10)
     ,com_size      Nvarchar2(5) not null
@@ -106,7 +106,7 @@
     
     
     
-    -- 직무 형태 8
+    -- 직무 ?��?�� 8
     create table tbl_job_type
     (pk_job_type_code VARCHAR2(10) 
     ,job_type_name NVARCHAR2(20) not null
@@ -115,7 +115,7 @@
     
     
     
-    -- 지역 9
+    -- �??�� 9
     create table tbl_location
     (pk_location_code  VARCHAR2(10)
     , location_name NVARCHAR2(20)  not null
@@ -124,7 +124,7 @@
     
     
     
-    -- 구직자 정보 테이블 10
+    -- 구직?�� ?���? ?��?���? 10
     create table tbl_member
     (pk_user_id        varchar2(15)
     ,user_email     varchar2(50)    not NULL    
@@ -142,7 +142,7 @@
     
     
     
-     -- 개인회원로그인 11
+     -- 개인?��?��로그?�� 11
     create table tbl_member_login
     (Pk_fk_user_id             VARCHAR2(15)     not null
     ,user_passwd            VARCHAR2(20)
@@ -157,7 +157,7 @@
     
     
     
-    -- 내 자격증 12
+    -- ?�� ?��격증 12
     create table tbl_mycertifi
     (Pk_Fk_certifi_code    varchar2(10)
     ,mycertifi_date     DATE
@@ -168,7 +168,7 @@
     
     
     
-    -- 직위 테이블 13
+    -- 직위 ?��?���? 13
     create table tbl_position
     (pk_position_code varchar2(10)
     ,position_name Nvarchar2(10) not null
@@ -216,7 +216,7 @@
     
     
     
-    -- 모집전형 테이블 15
+    -- 모집?��?�� ?��?���? 15
     create table TBL_RECRUIT_STEP
     (pk_recruit_step_code    VARCHAR2(10)
     ,recruit_step_name    NVARCHAR2(10)   not null
@@ -226,7 +226,7 @@
     
     
     
-    -- 이력서 16
+    -- ?��?��?�� 16
     create table tbl_resume
     (pk_resume_code        varchar2(10)        
     ,self_introduce        nvarchar2(50)    not null   
@@ -247,7 +247,7 @@
 
 
     
-     -- 졸업학교 테이블 17
+     -- 졸업?���? ?��?���? 17
     create table tbl_school
     (pk_school_code      varchar2(5)       
     ,school_name      Nvarchar2(15)     not null   
@@ -261,7 +261,7 @@ from tbl_member
     
     
     
-    -- 학과 테이블  18
+    -- ?���? ?��?���?  18
     create table tbl_school_dept
     (school_dept_code   varchar2(3)     not null
     ,school_dept_name    varchar2(15)   not null
@@ -270,7 +270,7 @@ from tbl_member
     
     
     
-    -- 학력정보 19
+    -- ?��?��?���? 19
      create table tbl_school_info
     (edu_info        varchar2(10)
     ,school_code     varchar2(5)        not null
@@ -284,7 +284,7 @@ from tbl_member
     
     
     
-      -- 근무형태 테이블 20
+      -- 근무?��?�� ?��?���? 20
     create table TBL_WORKTYPE
     (worktype_code    VARCHAR2(10)  
     ,worktype_name    NVARCHAR2(10)   not null
@@ -331,13 +331,16 @@ from tbl_member
     
     
     
+    
 select PK_user_id, user_passwd
 from tbl_member
-where  status PK_user_id = 'kimsh' and user_passwd = 'Qwer1234$';
+where  PK_user_id = 'kimsh' and user_passwd = 'Qwer1234$';
     
-    
+    select PK_user_id, user_passwd, user_name 
+    from tbl_member 
+    where  PK_user_id = 'kimsh' and user_passwd = 'Qwer1234$';
     
     
     insert into TBL_RECRUIT_NOTICE
     (pk_recruit_notice_code, recruit_notice_name, YEARSAL, WOODAE, BENEFIT, RECRUIT_START_DAY, RECRUIT_FINISH_DAY, FK_POSITION_CODE, FK_COMPANY_CODE, FK_WORKTYPE_CODE,FK_JOB_TYPE_CODE, FK_RECRUIT_STEP_CODE_1, FK_RECRUIT_STEP_CODE_2, FK_RECRUIT_STEP_CODE_3, FK_RECRUIT_STEP_CODE_4,FK_RECRUIT_STEP_CODE_5, FK_LOCATION_CODE,QUAIL)
-    values (seq_fk_recruit_notice_code.nextval , '실력이 안좋아도 괜찮아요 신입 개발자 모십니다.','6,000만원','웹개발 경력자, 정보처리기사 자격증 보유자, 관련 전공 졸업자','주2회출근, 연 1회 원하는 노트북 지급, 성과급 3,000%, 명절상여금, 생일선물, 자유로운 연차반차',sysdate , sysdate + 15,'00','03','01','06-01','0','4-1','7','4-2','8','031-03-03','경력 3년 이하');
+    values (seq_fk_recruit_notice_code.nextval , '?��?��?�� ?��좋아?�� 괜찮?��?�� ?��?�� 개발?�� 모십?��?��.','6,000만원','?��개발 경력?��, ?��보처리기?�� ?��격증 보유?��, �??�� ?���? 졸업?��','�?2?��출근, ?�� 1?�� ?��?��?�� ?��?���? �?�?, ?��과급 3,000%, 명절?��?���?, ?��?��?���?, ?��?��로운 ?��차반�?',sysdate , sysdate + 15,'00','03','01','06-01','0','4-1','7','4-2','8','031-03-03','경력 3?�� ?��?��');

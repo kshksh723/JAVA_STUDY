@@ -1,4 +1,5 @@
 package member.domain;
+
 /*
 PK_USER_ID    NOT NULL VARCHAR2(15)  
 USER_EMAIL    NOT NULL VARCHAR2(50)  
@@ -11,7 +12,6 @@ LOCATION_CODE NOT NULL VARCHAR2(10)
 
  */
 
-import java.util.Map;
 
 public class MemberDTO {
 	
@@ -107,6 +107,11 @@ public class MemberDTO {
 		
 	}
 	public void setRegisterday(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setCOMPANY_NAME(String string) {
 		// TODO Auto-generated method stub
 		
 	}
