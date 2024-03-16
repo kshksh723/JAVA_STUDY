@@ -178,6 +178,7 @@ do {
         
       default:
    	   
+       	System.out.println(">> 메뉴에 없는 번호입니다. 다시 선택하세요 !! <<");
       	System.out.println(">> 메뉴에 없는 번호입니다. 다시 선택하세요 !! <<");
       	break; 
       
