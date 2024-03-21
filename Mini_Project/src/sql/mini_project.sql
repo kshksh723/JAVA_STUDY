@@ -140,14 +140,20 @@
     );
     
     
+    SELECT *
+    FROM TBL_RESUME
     
+    
+    SELECT *
+    FROM  tbl_member
+    COMMIT;
     
      -- 개인회원로그인 11
     create table tbl_member_login
     (Pk_fk_user_id             VARCHAR2(15)     not null
     ,user_passwd            VARCHAR2(20)
     ,user_name              NVARCHAR2(10)
-    ,Fk_recruit_notice_code VARCHAR2(10)
+    ,Fk_recruit_notice_code VARCHAR2(10) 
     
     ,constraint tbl_member_login_user_id primary key(Pk_user_id)
     ,constraint FK_tbl_member_login foreign key(Fk_job_code) references tbl_worktype(worktype_code)
@@ -225,6 +231,8 @@
     
     
     
+    SELECT pk_resume_code 
+    FROM TBL_RESUME
     
     -- 이력서 16
     create table tbl_resume

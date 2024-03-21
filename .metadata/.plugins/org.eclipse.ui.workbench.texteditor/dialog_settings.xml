@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Writeday"/>
+		<item key="selection" value="조회"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="조회"/>
+			<item value="메뉴에 없는"/>
 			<item value="writeday"/>
 			<item value="최근"/>
 			<item value="case"/>
@@ -21,8 +23,6 @@
 			<item value="boardno"/>
 			<item value="수정"/>
 			<item value="존재"/>
-			<item value="case "/>
-			<item value="글 내용"/>
 		</list>
 		<list key="replacehistory">
 		</list>

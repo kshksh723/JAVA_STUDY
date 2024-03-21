@@ -28,11 +28,11 @@ public class MyDBConnection {
 			// static 초기화 블럭은 호출이 안되어진다.
 			
 			try {
-				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Class.forName("oracle.jdbc.OracleDriver");
 				
 				conn = DriverManager.getConnection("jdbc:oracle:thin:@211.238.142.195:1521:xe", "MINI_ORAUSER4", "gclass");
 			} catch(ClassNotFoundException e) {
-				System.out.println(" >>> ojdbc8.jar 파일이 없습니다. <<<");
+				e.printStackTrace();
 			} catch(SQLException e){
 				e.printStackTrace();
 			}
